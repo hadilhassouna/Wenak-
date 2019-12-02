@@ -8,6 +8,10 @@ var app = express()
 var db = require('./database.js');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+var auth = require('./authontication/auth.js');
+app.use('/api/auth', auth);
+module.exports = app;
+
 
 
 
