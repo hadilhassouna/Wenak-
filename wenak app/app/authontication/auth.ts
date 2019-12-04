@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router= express.Router();
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -15,15 +15,15 @@ router.post('/register',[
     check('mobilenum').isNumeric(),
     // password must be at least 5 chars long
     check('password').isLength({ min: 5 })
-    ], (req, res) => {
+    ], (req:any, res:any) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    const mobilenum = req.body.mobilenum;
-    const  password =req.body.password;
-    const type =req.body.type;
+    var mobilenum:Number = req.body.mobilenum;
+    var password:String =req.body.password;
+    var type:String =req.body.type;
     const hashedPassword = bcrypt.hashSync(password, 8);
     console.log(req.body.mobilenum);
     
@@ -32,7 +32,7 @@ router.post('/register',[
       password: hashedPassword,
       type:type
    },
-    function (err, user) {
+    function (err:any, user:any) {
       if (err) return res.status(500).send("There was a problem registering the user.")
       // create a token
       const token = jwt.sign({ id: user._id }, config.secret, {
@@ -43,8 +43,8 @@ router.post('/register',[
   });
 
     //user login
-    router.post('/login', function(req, res) {
-      User.findOne({ mobilenum: req.body.mobilenum }, function (err, user) {
+    router.post('/login', function(req:any, res:any) {
+      User.findOne({ mobilenum: req.body.mobilenum }, function (err:any, user:any) {
         if (err) return res.status(500).send('Error on the server.');
         if (!user) return res.status(404).send('No user found.');
 
@@ -59,9 +59,9 @@ router.post('/register',[
     });
     
     //get the user
-    router.get('/me', VerifyToken, function(req, res, next) {
+    router.get('/me', VerifyToken, function(req:any, res:any, next:any) {
 
-      User.findById(req.userId, { password: 0 }, function (err, user) {
+      User.findById(req.userId, { password: 0 }, function (err:any, user:any) {
         if (err) return res.status(500).send("There was a problem finding the user.");
         if (!user) return res.status(404).send("No user found.");
         
@@ -70,13 +70,13 @@ router.post('/register',[
       
     });
 
-    router.get('/logout', function(req, res) {
+    router.get('/logout', function(req:any, res:any) {
     res.status(200).send({ auth: false, token: null });
 });
 
-  router.get("/", (req, res) => {
+  router.get("/", (req:any, res:any) => {
     res.json({ status: "success", message: "hello" });
 });
 
-
+export {}
 module.exports = router;
