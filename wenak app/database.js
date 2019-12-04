@@ -12,7 +12,8 @@ db.once('open', function() {
 //user schema
 const UserSchema= Schema({
   mobilenum:{type: Number}, 
-  password:{type: String}
+  password: {type: String},
+  type:{type:String}
 })
 
 const User= mongoose.model('User', UserSchema);
@@ -20,7 +21,8 @@ const User= mongoose.model('User', UserSchema);
 let save_user= (user_) => {  
   var user_model = new User({
     mobilenum: user_.mobilenum,
-    password: user_.password
+    password: user_.password,
+    type:user_.type
   })
   user_model.save();
 }
@@ -106,4 +108,4 @@ const DriverSchema= Schema({
     order_model.save();
   }
 
-  module.exports={User,Customer,save,Driver,save_driver,Order,save_order};
+  module.exports={User,Customer,save,Driver,save_driver,Order,save_order,save_user};
