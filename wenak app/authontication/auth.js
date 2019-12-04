@@ -3,11 +3,13 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
-const User = require('../database.js').Customer;
+const User = require('../database.js').User;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config');
+var VerifyToken = require('./AuthController.js');
 const { check, validationResult } = require('express-validator');
+
 
 router.post('/register',[
     check('mobilenum').isNumeric(),
@@ -21,17 +23,15 @@ router.post('/register',[
     }
     const mobilenum = req.body.mobilenum;
     const  password =req.body.password;
-
-
-
-
+    const type =req.body.type;
     const hashedPassword = bcrypt.hashSync(password, 8);
-    console.log(req.body.username);
+    console.log(req.body.mobilenum);
+    
     User.create({
       mobilenum: mobilenum,
       password: hashedPassword,
       type:type
-    },
+   },
     function (err, user) {
       if (err) return res.status(500).send("There was a problem registering the user.")
       // create a token
@@ -41,9 +41,10 @@ router.post('/register',[
       res.status(200).send({ auth: true, token: token });
     });  
   });
+
     //user login
-    app.post('/login', function(req, res) {
-      User.findOne({ email: req.body.email }, function (err, user) {
+    router.post('/login', function(req, res) {
+      User.findOne({ mobilenum: req.body.mobilenum }, function (err, user) {
         if (err) return res.status(500).send('Error on the server.');
         if (!user) return res.status(404).send('No user found.');
 
@@ -57,7 +58,8 @@ router.post('/register',[
       });
     });
     
-    app.get('/me', VerifyToken, function(req, res, next) {
+    //get the user
+    router.get('/me', VerifyToken, function(req, res, next) {
 
       User.findById(req.userId, { password: 0 }, function (err, user) {
         if (err) return res.status(500).send("There was a problem finding the user.");
@@ -68,15 +70,13 @@ router.post('/register',[
       
     });
 
-app.get('/logout', function(req, res) {
-  res.status(200).send({ auth: false, token: null });
+    router.get('/logout', function(req, res) {
+    res.status(200).send({ auth: false, token: null });
 });
 
-app.get("/", (req, res) => {
-  res.json({ status: "success", message: "hello" });
+  router.get("/", (req, res) => {
+    res.json({ status: "success", message: "hello" });
 });
 
-app.listen(process.env.PORT || 1200); 
-console.log('We party on port', 1200);
 
-module.exports = app;
+module.exports = router;
