@@ -39,7 +39,7 @@ const LoginForm = () => (
         </Segment>
       </Form>
       <Message>
-        Become a driver <a href='#'>Sign Up</a>
+        <a href='#'>Sign Up</a>
       </Message>
     </Grid.Column>
   </Grid>
