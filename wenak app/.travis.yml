@@ -14,4 +14,3 @@ script:
     github-token: $GITHUB_TOKEN
     on:
         branch: gh-pages
-        
