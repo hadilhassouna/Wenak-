@@ -9,17 +9,19 @@
     "module": "esnext",
     "moduleResolution": "node",
     "baseUrl": ".",
-    "paths": {
-      "*": [
-          "node_modules/*"
-      ]
-  },
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-  
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react"
   },
   "include": [
     "app/**/*.ts"
