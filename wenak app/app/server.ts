@@ -4,17 +4,21 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const URI ="mongodb+srv://Jar:a!123456789@cluster0-2appk.mongodb.net/test"
 //const request = require('request');
-var app = express()
-var db = require('./database.js');
+const app = express()
+const db = require('./database.js');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-var auth = require('./authontication/auth.js');
+const auth = require('./authontication/auth.js');
 app.use('/api/auth', auth);
+const order_d = require('./Order_Driver/order_d.js');
+app.use('/api/order_d', auth);
 module.exports = app;
 
 
+app.get('/',function(req:any,res:any){
+  res.send('Hello world');
+})
 
-
-
-app.listen(process.env.PORT || 1300);
-console.log("Partying on port", 1300);
+export {}
+app.listen(process.env.PORT ||3000);
+console.log("Partying on port", 3000);
