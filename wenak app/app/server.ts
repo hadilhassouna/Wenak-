@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -20,5 +19,5 @@ app.get('/',function(req:any,res:any){
 })
 
 export {}
-app.listen(process.env.PORT ||3000);
-console.log("Partying on port", 3000);
+app.listen(process.env.PORT ||4000);
+console.log("Partying on port", 4000);
