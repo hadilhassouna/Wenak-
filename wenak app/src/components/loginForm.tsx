@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown } from 'semantic-ui-react'
-// import Logo2 from '.../public/logo2.png'
+// import Logo2 from '../assets/logo2.png'
 
 // const countryOptions = [
 //   { key: 'ps', value: 'ps', flag: 'ps', text: 'Palestine' },
