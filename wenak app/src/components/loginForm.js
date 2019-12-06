@@ -1,9 +1,16 @@
-//screen 1
-import React, { Component } from "react";
-import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown } from "semantic-ui-react";
-import Logo2 from "../assets/logo2.png";
+import React, { Component } from 'react';
+import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown } from 'semantic-ui-react'
+import Logo2 from '../assets/logo2.png'
 
-class LoginForm extends React.Component {
+// const countryOptions = [
+//   { key: 'ps', value: 'ps', flag: 'ps', text: 'Palestine' },
+//   { key: 'jo', value: 'jo', flag: 'jo', text: 'Jordan' },
+  
+// ]
+
+
+class LoginForm extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +21,7 @@ class LoginForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   handleChange(event) {
     const target = event.target;
     const value = target.value;
@@ -21,10 +29,12 @@ class LoginForm extends React.Component {
     this.setState({
       [name]: value
     });
+
   };
   handleSubmit(event) {    
     event.preventDefault();
     };
+
   render() {
     return (
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -40,8 +50,10 @@ class LoginForm extends React.Component {
               iconPosition='left' 
               placeholder='+970' 
               // type='number'
+
               value={this.state.mobile} onChange={this.handleChange} />
 ​
+
               <Form.Input
                 name="password"
                 fluid
@@ -64,5 +76,6 @@ class LoginForm extends React.Component {
       </Grid>
     )
   }
+
 }
 export default LoginForm;
