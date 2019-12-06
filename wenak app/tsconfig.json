@@ -1,14 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "outDir": "./servers",
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "baseUrl": ".",
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
@@ -16,17 +8,18 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react"
   },
   "include": [
-    "app/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
+    "src"
   ]
 }

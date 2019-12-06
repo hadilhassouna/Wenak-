@@ -1,6 +1,9 @@
+//screen 1
+
+
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown } from 'semantic-ui-react'
-// import Logo2 from '../assets/logo2.png'
+import Logo2 from '../assets/logo2.png'
 
 // const countryOptions = [
 //   { key: 'ps', value: 'ps', flag: 'ps', text: 'Palestine' },
@@ -13,7 +16,7 @@ const LoginForm = () => (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='yellow' textAlign='center'>
-        {/* <Image src={Logo2} /> Log-in to your account */}
+        <Image src={Logo2} /> Log-in to your account
       </Header>
       <Form size='large'>
         <Segment stacked>

@@ -1,6 +1,10 @@
+//Screen 2
+
+
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import Logo2 from '../assets/logo2.png'
 
 
 class home extends React.Component {
@@ -9,17 +13,31 @@ class home extends React.Component {
       <div>
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='bottom'>
           <Grid.Column style={{ maxWidth: 450 }}>
-
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+            <hr></hr>
             <Header as='h2' size='medium' color='grey' textAlign='center'>
-              Assign your pickUp point
-      </Header>
-
+              Assign your Pickup point
+            </Header>
+            <Image src={Logo2} size='small'/>
+            
             <Form size='large'>
               <Segment stacked>
 
                 <Button color='yellow' size='large'>
-                  Press Here To Continue
-          </Button>
+                  After assigning The Pickup Point Press Here To Continue
+                </Button>
 
               </Segment>
             </Form>
@@ -27,8 +45,11 @@ class home extends React.Component {
           </Grid.Column>
         </Grid>
 
-        <Map google={this.props.google}
           
+  
+         
+        <Map google={this.props.google}
+
           center={{
             lat: 31.9478,
             lng: 35.2296
@@ -37,16 +58,19 @@ class home extends React.Component {
 
           <Marker onClick={this.onMarkerClick}
             name={'Current location'}
-            position={{lat: 31.9478, lng: 35.2296}}
-            />
-   
+            position={{ lat: 31.9478, lng: 35.2296 }}
+          />
+
 
           <InfoWindow onClose={this.onInfoWindowClose}>
 
           </InfoWindow>
         </Map>
-        )
+
+
         
+        
+
       </div>
     )
   }
@@ -56,7 +80,6 @@ export default GoogleApiWrapper({
   apiKey: ("AIzaSyBwVhZGkweHHX618TDXpOsGMWWSJ2VA7Ug")
 })(home)
 
-// ReactDOM.render(<home />, document.getElementById("root"));
 
 
 
