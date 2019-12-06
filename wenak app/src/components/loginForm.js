@@ -1,26 +1,67 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown } from 'semantic-ui-react'
 import Logo2 from '../assets/logo2.png'
-
-// const countryOptions = [
-//   { key: 'ps', value: 'ps', flag: 'ps', text: 'Palestine' },
-//   { key: 'jo', value: 'jo', flag: 'jo', text: 'Jordan' },
-  
-// ]
-
-
+import $ from 'jquery';
 class LoginForm extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      mobile: '',
-      password: ''
+      mobile: "",
+      password: ""
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+     this.login = this.login.bind(this);
   }
 
+  
+  //handleSubmit(event) {    
+    // event.preventDefault();
+    // var mobilenum= this.state.mobile;
+    // var password = this.state.password;
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/api/auth/login",
+  //   data:{
+  //      mobilenum : mobilenum,
+  //       password : password
+  //   }, 
+  //   datatype: "json",
+  //   success:function(){
+  //       console.log("sucess login the user");
+  //       alert("Hello "+mobilenum);
+  //    // localStorage.setItem('usertoken', res.data.token)
+  //   },
+  //   error: function(request, status, error) {
+  //         console.log("error in mobilenumor password");
+  //         alert("Error in mobilenum or password")
+  //       }
+  //   });
+  //}​
+  login(event){
+    event.preventDefault();
+    var mobilenum= this.state.mobile;
+    var password = this.state.password;
+    console.log("Hi I'm inside login post")
+  $.ajax({
+    type: "POST",
+    url: "/api/auth/login",
+    data:{
+       mobilenum : mobilenum,
+        password : password
+    }, 
+    datatype: "json",
+    success:function(){
+        console.log("sucess login the user");
+        console.log("Hi I'm inside login post")
+        alert("Hello "+mobilenum);
+     // localStorage.setItem('usertoken', res.data.token)
+    },
+    error: function(request, status, error) {
+          console.log("error in mobilenumor password");
+          alert("Error in mobilenum or password")
+        }
+    });
+  }
 
   handleChange(event) {
     const target = event.target;
@@ -29,11 +70,7 @@ class LoginForm extends Component {
     this.setState({
       [name]: value
     });
-
-  };
-  handleSubmit(event) {    
-    event.preventDefault();
-    };
+  }
 
   render() {
     return (
@@ -42,7 +79,8 @@ class LoginForm extends Component {
           <Header as='h2' color='yellow' textAlign='center'>
             <Image src={Logo2} /> Log-in to your account
           </Header>
-          <Form size='large' onSubmit={this.handleSubmit}>
+          <Form size='large'>
+          {/* <Form size='large' onSubmit={this.handleSubmit}> */}
             <Segment stacked>
               <Form.Input name="mobile" 
               fluid 
@@ -50,10 +88,7 @@ class LoginForm extends Component {
               iconPosition='left' 
               placeholder='+970' 
               // type='number'
-
               value={this.state.mobile} onChange={this.handleChange} />
-​
-
               <Form.Input
                 name="password"
                 fluid
@@ -63,8 +98,7 @@ class LoginForm extends Component {
                 type='password'
                 value={this.state.password} onChange={this.handleChange}
               />
-    
-              <Button color='yellow' fluid size='large' type='submit' >
+              <Button color='yellow' fluid size='large' type='submit'  onClick={this.login}>
                 Login
               </Button>
             </Segment>
@@ -76,6 +110,5 @@ class LoginForm extends Component {
       </Grid>
     )
   }
-
 }
 export default LoginForm;
