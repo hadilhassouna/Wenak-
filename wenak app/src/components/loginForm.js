@@ -24,8 +24,27 @@ class LoginForm extends Component {
 ​
   handleSubmit(event) {    
     event.preventDefault();
-    // console.log("mobile ",this.state.mobile, 'pw', this.state.password)
-    //Requests go here
+    let mobile= this.state.mobile;
+    let password = this.state.password;
+  //this.props.onSignUp(username, email, password)
+  $.ajax({
+    type: "POST",
+    url: "/api/auth/login",
+    data:{
+       mobilenum:mobilenum,
+        password:password
+    }, 
+    datatype: "json",
+    success:function(){
+        console.log("sucess login the user");
+        alert("Hello "+mobilenum);
+     // localStorage.setItem('usertoken', res.data.token)
+    },
+    error: function(request, status, error) {
+          console.log("error in mobilenumor password");
+          alert("Error in mobilenum or password")
+        }
+    });
   }
 ​
   render() {

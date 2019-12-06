@@ -28,9 +28,8 @@
     "nodemon": "^2.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0",
-    "semantic-ui-react": "^0.88.1",
-    "typescript": "3.7.2"
+    "typescript": "3.7.2",
+    "react-scripts": "3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -73,5 +72,7 @@
     "@types/react": "^16.9.13",
     "babylon-react-templates-parser": "^1.0.1"
   },
-  "proxy": "http://localhost:4000"
-}
+  "proxy": "http://localhost:4000",
+    "typescript": "^3.4.5"
+  }
+
