@@ -1,22 +1,28 @@
 const mongoose = require('mongoose');
  const Schema = mongoose.Schema;
+ autoIncrement = require('mongoose-auto-increment');
 const URI ="mongodb+srv://Jar:a!123456789@cluster0-2appk.mongodb.net/test"
-
  mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
+ autoIncrement.initialize(connection);
+
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("db connected")
 });
+var counter =1;
 //user schema
 const UserSchema= Schema({
-  mobilenum:{type: Number}, 
+  user_id:{type: Number},
+  mobilenum:{type: Number,unique:true}, 
   password: {type: String},
   type:{type:String}
 })
 
 const User= mongoose.model('User', UserSchema);
+UserSchema.plugin(autoIncrement.plugin, 'User');
+bookSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'user_id' });
 
 let save_user= (user_) => {  
   var user_model = new User({
@@ -28,13 +34,14 @@ let save_user= (user_) => {
 }
 //customer schema
 const CustomerSchema= Schema({ //flower description schema
-    id_user:{type:Number},
+    customer_id:{type:Number},
     name:{type: String},
     mobilenum:{type: Number}, 
     password:{type: String},
     email:{type: String},
     img:{type: String},
-    address:{type:String}
+    address:{type:String},
+    user_id:{type: Number, ref: 'User' }
   })
   
   const Customer= mongoose.model('Customer', CustomerSchema);
@@ -53,10 +60,11 @@ const CustomerSchema= Schema({ //flower description schema
 
 //driver schema
 const DriverSchema= Schema({
-    id_user:{type:Number},
+   driver_id:{type:Number},
     name:{type: String},
     mobilenum:{type: Number}, 
-    password:{type: String}
+    password:{type: String},
+    user_id:{type: Number, ref: 'User' }
   })
   
   const Driver= mongoose.model('Driver', DriverSchema);
@@ -72,8 +80,8 @@ const DriverSchema= Schema({
 
   //order schema
   const OrderSchema= Schema({
-    driver_id:{type: Number},
-    user_id:{type: Number}, 
+  driver_id:{type: Number, ref: 'Driver'},
+  customer_id:{type: Number, ref: 'Customer'},
 	order_details:{type: String},
 	location_start_lng:{type: Number},
 	location_start_lat:{type: Number},
@@ -92,7 +100,7 @@ const DriverSchema= Schema({
   let save_order = (order) => {  
     var order_model = new Order({
 	  driver_id: order.driver_id,
-      user_id: order.user_id,
+    user_id: order.user_id,
 	  order_details: order.order_details,
 	  location_start_lng: order.location_start_lng,
 	  location_start_lat: order.location_start_lat,

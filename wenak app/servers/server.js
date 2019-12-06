@@ -1,27 +1,24 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose')
-const auth = require('./authontication/auth.js');
-const path = require('path')
-const db = require('./database.js');
-const order_d = require('./Order_Driver/order_d.js');
+const mongoose = require('mongoose');
 const URI = "mongodb+srv://Jar:a!123456789@cluster0-2appk.mongodb.net/test";
 //const request = require('request');
 const app = express();
+const db = require('./database.js');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/order_d', order_d);
-app.use(express.static(__dirname +'/'));
+const auth = require('./authontication/auth.js');
 app.use('/api/auth', auth);
-
-app.get('/hello', function (req, res) {
-    res.send('Hello worlduu');
+const order_d = require('./Order_Driver/order_d.js');
+app.use('/api/order_d', auth);
+const customer = require('./Customer/customer_order.js');
+app.use('/api/customer', customer);
+module.exports = app;
+app.get('/', function (req, res) {
+    res.send('Hello world');
 });
-
-
-// module.exports = app;
-
-var port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`listening on port ${port}!`))
+app.listen(process.env.PORT || 4000);
+console.log("Partying on port", 4000);
 //# sourceMappingURL=server.js.map
-//

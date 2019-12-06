@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './components/home';      
 import './app.scss';
-import LoginForm from './components/loginForm';
+import LoginForm from './components/loginForm.js';
 import { UserForm } from './components/signUpForm/UserForm.js';
 
 const App: React.FC = () => {
