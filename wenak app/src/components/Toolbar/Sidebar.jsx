@@ -1,17 +1,15 @@
 import React from 'react';
 
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+
+// Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 
-import './DrawerToggleButon.css';
-// import Drawer from 'react-motion-drawer';
-
-class DrawerToggleButton extends React.Component {
-
-render() {
-    return( 
-        <SideNav
+class Sidebar extends React.Component {
+    render() {
+        return(
+            <SideNav
             onSelect={(selected) => {
                 // Add your code here
             }}
@@ -46,26 +44,8 @@ render() {
                 </NavItem>
             </SideNav.Nav>
         </SideNav>
-
-    // <button className="toggle-button">
-   
-    //     <div className="toggle-button__line" />
-    //     <div className="toggle-button__line" />
-    //     <div className="toggle-button__line" />
-
-    //     <Drawer open={false} width={300} onChange={false}>
-    //     { val =>
-    //       <ul style={{ opacity: 300 / val }}>
-    //         <li>Home</li>
-    //         <li>About</li>
-    //         <li>Settings</li>
-    //       </ul>
-    //     }
-    //   </Drawer>
-
-    // </button>
-    );
-}
+        );
+    }
 }
 
-export default DrawerToggleButton;
+export default Sidebar;

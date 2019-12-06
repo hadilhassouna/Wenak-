@@ -4,7 +4,10 @@ import DrawerToggleButton from '../SideDrawer/DrawerToggleButton.jsx';
 import './Toolbar.css';
 
 
+
+
 class Toolbar extends React.Component {
+ 
     render() {
         return(
             <header className="toolbar">
@@ -16,8 +19,10 @@ class Toolbar extends React.Component {
                         <div className="spacer" />
                         <div className="toolbar_navigation-items">
                             <ul>
-                                <li><a href="/">Products</a></li>
-                                <li><a href="/">Users</a></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/">Current Order</a></li>
+                                <li><a href="/">Previous Orders</a></li>
+
 
                             </ul>
                         </div>

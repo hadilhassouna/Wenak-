@@ -1,15 +1,21 @@
 import React from 'react';
 import Toolbar from './components/Toolbar/Toolbar.jsx';
-import SideDrawer from './components/SideDrawer/SideDrawer.jsx';
-import Backdrop from './components/Backdrop/Backdrop.jsx'
+import Sidebar from './components/Toolbar/Sidebar.jsx';
+
+import './App.css';
+// import SideDrawer from './components/SideDrawer/SideDrawer.jsx';
+// import Backdrop from './components/Backdrop/Backdrop.jsx'
+
 const App: React.FC = () => {
+ 
   return (
-    <div style={{height: '100%'}}>
+    <div>
+      <Sidebar />
       <Toolbar />
-      <SideDrawer />
-      <Backdrop />
-      <main style={{marginTop: '64px'}}>
-      <p>This is the content of the page</p>
+      {/* {SideDrawer}
+      {Backdrop} */}
+      <main >
+      
       </main>
       
     </div>
