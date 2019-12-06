@@ -1,4 +1,3 @@
-//screen 1
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown } from 'semantic-ui-react'
 import Logo2 from '../assets/logo2.png'
@@ -11,6 +10,7 @@ import Logo2 from '../assets/logo2.png'
 
 
 class LoginForm extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,27 +20,7 @@ class LoginForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  // loginFun() {
-  //   // event.preventDefault();
-  //   var data = {
-  //     email: $("#mobile").val(),
-  //     password: $("#password").val()
-  //   };
-    // var that = this;
-    // $.ajax({
-    //   url: "/login",
-    //   type: "POST",
-    //   data: data,
-    //   datatype: "json",
-    //   success: function(res) {
-    //     localStorage.setItem("usertoken", res);
-    //     const decoded = jwt_decode(res);
-    //     that.setState({
-    //       email: decoded.password
-    //     });
-    //   }
-    // });
-  // }
+
 
   handleChange(event) {
     const target = event.target;
@@ -49,13 +29,11 @@ class LoginForm extends Component {
     this.setState({
       [name]: value
     });
-  }
 
+  };
   handleSubmit(event) {    
     event.preventDefault();
-    // console.log("mobile ",this.state.mobile, 'pw', this.state.password)
-    //Requests go here
-  }
+    };
 
   render() {
     return (
@@ -72,8 +50,9 @@ class LoginForm extends Component {
               iconPosition='left' 
               placeholder='+970' 
               // type='number'
-              value={this.state.mobile} onChange={this.handleChange} 
-              />
+
+              value={this.state.mobile} onChange={this.handleChange} />
+​
 
               <Form.Input
                 name="password"
@@ -97,31 +76,6 @@ class LoginForm extends Component {
       </Grid>
     )
   }
-} 
 
-export default LoginForm
-
-// import React, { Component } from 'react'
-// import { Button, Checkbox, Form } from 'semantic-ui-react'
-
-// export default class SignIn extends Component {
-//     render() {
-//         return (
-//             <Form>
-//             <Form.Field>
-//               <label>First Name</label>
-//               <input placeholder='First Name' />
-//             </Form.Field>
-//             <Form.Field>
-//               <label>Last Name</label>
-//               <input placeholder='Last Name' />
-//             </Form.Field>
-//             <Form.Field>
-//               <Checkbox label='I agree to the Terms and Conditions' />
-//             </Form.Field>
-//             <Button type='submit'>Submit</Button>
-//           </Form>
-//         )
-//     }
-// }
-
+}
+export default LoginForm;
