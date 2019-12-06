@@ -1,3 +1,6 @@
+//screen 1
+
+
 import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
 import Confirm from './Confirm';
@@ -37,6 +40,7 @@ export class UserForm extends Component {
         const { step } = this.state;
         const { mobile, password, userType } = this.state;
         const values = { mobile, password, userType }
+
         switch(step) {
             case 1:
                 return (

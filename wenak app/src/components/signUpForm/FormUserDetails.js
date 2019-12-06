@@ -1,3 +1,6 @@
+//screen 1
+
+
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
@@ -34,6 +37,7 @@ export class FormUserDetails extends Component {
                     <TextField 
                         hintText="Enter Password"
                         floatingLabelText="Password"
+                        type='password'
                         onChange={handleChange('password')}
                         defaultValue={values.password}
                     />
