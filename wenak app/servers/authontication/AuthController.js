@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 function verifyToken(req, res, next) {

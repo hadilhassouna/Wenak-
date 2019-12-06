@@ -11,6 +11,9 @@ const auth = require('./authontication/auth.js');
 app.use('/api/auth', auth);
 const order_d = require('./Order_Driver/order_d.js');
 app.use('/api/order_d', auth);
+
+const customer= require('./Customer/customer_order.js');
+app.use('/api/customer', customer);
 module.exports = app;
 
 
