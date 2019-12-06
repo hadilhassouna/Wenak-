@@ -42,6 +42,7 @@ router.post('/register', [
 });
 //user login
 router.post('/login', function (req, res) {
+    console.log("Hi I'm inside login post")
     User.findOne({ mobilenum: req.body.mobilenum }, function (err, user) {
         if (err)
             return res.status(500).send('Error on the server.');

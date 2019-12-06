@@ -1,6 +1,8 @@
+//screen 1
+
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
+// import AppBar from 'material-ui/AppBar';
 import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import $ from 'jquery';
@@ -51,7 +53,7 @@ export class FormUserDetails extends Component {
         return (
             <MuiThemeProvider>
                 <React.Fragment>
-                    <AppBar title="Confirm User Data"/>
+                    {/* <AppBar title="Confirm User Data"/> */}
                     <List>
                         <ListItem 
                             primaryText="Mobile Number"
