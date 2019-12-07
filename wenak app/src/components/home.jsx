@@ -7,6 +7,7 @@ import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Logo2 from '../assets/logo2.png'
 
 
+
 class home extends React.Component {
   render() {
     return (
@@ -45,16 +46,14 @@ class home extends React.Component {
           </Grid.Column>
         </Grid>
 
-          
-  
-         
-        <Map google={this.props.google}
 
-          center={{
+        <Map google={this.props.google}
+          initialCenter={{
             lat: 31.9478,
             lng: 35.2296
           }}
-          zoom={14}>
+          zoom={7}
+          onClick={this.onMapClicked}>
 
           <Marker onClick={this.onMarkerClick}
             name={'Current location'}
@@ -62,15 +61,11 @@ class home extends React.Component {
           />
 
 
+
           <InfoWindow onClose={this.onInfoWindowClose}>
 
           </InfoWindow>
         </Map>
-
-
-        
-        
-
       </div>
     )
   }
