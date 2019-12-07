@@ -1,7 +1,8 @@
 //Screen 3
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react'
-import { Button, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
+import { Button, Input, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
+import { Link } from "react-router-dom";
 
 const style = {
   h1: {
@@ -20,9 +21,40 @@ const style = {
 }
 
 class Completion extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      item:"",
+      recieverName:"",
+      recieverPhone:"",
+      additionalInfo:""
+    }
+    //bind methods here
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+//methods
+handleChange(event) {
+  const target = event.target;
+  const value = target.value;
+  const name = target.name;
+  this.setState({
+    [name]: value
+  })
+};
+
+  handleSubmit(event) {    
+    event.preventDefault();
+    console.log(this.state)
+    //  console.log("mobile ",this.state.mobile, 'pw', this.state.password)
+    //Requests go here
+  }
+
+
   render() {
     return (
       <div>
+
           
           <br></br>
           <br></br>
@@ -31,7 +63,7 @@ class Completion extends React.Component {
           <hr></hr>
 
         <Header as='h3' content='Complete Your Order Please' style={style.h3} textAlign='left' />
-     
+
         <Button animated>
           <Button.Content visible>
             <Icon name='arrow left' />
@@ -41,62 +73,85 @@ class Completion extends React.Component {
         <Grid>
           <Grid.Column computer={3} mobile={6} tablet={9}>
             <Header as='h3' content="Enter Your Order/Item:" style={style.h3} textAlign='left' />
-            <input type="text" placeholder="Enter Your Order/Item"></input>
+            <Input name = "item" onChange={this.handleChange} value= {this.state.item} placeholder="Order/Item"/> 
           </Grid.Column>
           <Grid.Column width={4}>
-            <Header as='h3' content="Reciever's Name:" style={style.h3} textAlign='left' />
-            <input type="text" placeholder="Reciever's Name"></input>
+            <Header as='h3' content="Reciever's Name" style={style.h3} textAlign='left' />
+            <Input name = "recieverName" onChange={this.handleChange} value= {this.state.recieverName} placeholder="reciever's name"/> 
           </Grid.Column>
           <Grid.Column computer={9} mobile={6} tablet={3}>
             <Header as='h3' content="Reciever's Phone:" style={style.h3} textAlign='left' />
-            <input type="text" placeholder="Reciever's Phone"></input>
-            <Header as='h3' content="Assign The Reciever's Location" style={style.h3} textAlign='left' />
+            <Input name = "recieverPhone" onChange={this.handleChange} value= {this.state.recieverPhone} placeholder="reciever's phone number"/> 
+
+
+
 
             <Map google={this.props.google}
+              initialCenter={{
+                lat: 31.9478,
+                lng: 35.2296
+              }}
+              zoom={7}
+              onClick={this.onMapClicked}>
 
-          center={{
-            lat: 31.9478,
-            lng: 35.2296
-          }}
-          zoom={14}>
-
-          <Marker onClick={this.onMarkerClick}
-            name={'Current location'}
-            position={{ lat: 31.9478, lng: 35.2296 }}
-          />
+              <Marker onClick={this.onMarkerClick}
+                name={'Current location'}
+                position={{ lat: 31.9478, lng: 35.2296 }}
+              />
 
 
-          <InfoWindow onClose={this.onInfoWindowClose}>
+              <InfoWindow onClose={this.onInfoWindowClose}>
 
-          </InfoWindow>
-        </Map>
+              </InfoWindow>
+            </Map>
 
           </Grid.Column>
           <Grid.Column computer={9} mobile={6} tablet={3}>
-          <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-            <Header as='h3' content="Add More Details (Optional):" style={style.h3} textAlign='left' />
-            <input type="text" placeholder="Add More Details (Optional)"></input>
-          </Grid.Column>
-          
-                   
-          {/* <Button color='yellow' size='large'>
-            Send Your Order
-          </Button> */}
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
 
-</Grid>
+            <Header as='h3' content="Add More Details (Optional):" style={style.h3} textAlign='left' />
+            <Input name = "additionalInfo" onChange={this.handleChange} value= {this.state.additionalInfo} placeholder="enter any additional info (optional)"/> 
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Link to={'/CurrentOrders'}>
+            <Button color='yellow' size='large'>
+            Send Your Order
+            </Button>  
+            </Link>
+            
+          </Grid.Column>
+        </Grid>
 
 
 
@@ -105,7 +160,6 @@ class Completion extends React.Component {
   }
 }
 
-// export default Completion
 export default GoogleApiWrapper({
   apiKey: ("AIzaSyBwVhZGkweHHX618TDXpOsGMWWSJ2VA7Ug")
 })(Completion)

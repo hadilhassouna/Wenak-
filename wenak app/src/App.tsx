@@ -11,14 +11,9 @@ import Orders from './components/YourOrders';
 import CurrentOrders from './components/CurrentOrders';     
 import Profile from './components/Profile';   
 import DriverOrders from './components/DriverOrders';     
-
-
 import { BrowserRouter, Route } from "react-router-dom";
 
-
-
 const App: React.FC = () => {
- 
   return (
     <BrowserRouter>
       <div className="App">
