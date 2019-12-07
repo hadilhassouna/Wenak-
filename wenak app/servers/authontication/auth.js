@@ -26,8 +26,11 @@ router.post('/register', [
     var mobilenum = req.body.mobilenum;
     var password = req.body.password;
     var type = req.body.type;
+    var user_id = req.body.user_id;
     const hashedPassword = bcrypt.hashSync(password, 8);
+    
     console.log(req.body.mobilenum);
+    console.log(user_id);
     //check if the user found
     User.findOne({'mobilenum': mobilenum}, (err, user) => {
         if(err) {
@@ -40,7 +43,8 @@ router.post('/register', [
     User.create({
         mobilenum: mobilenum,
         password: hashedPassword,
-        type: type
+        type: type,
+        user_id : user_id
     }, function (err, user) {
         if (err)
             return res.status(500).send("There was a problem registering the user.");

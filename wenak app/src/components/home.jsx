@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Completion from './Completion';
 
 
+
 class Home extends React.Component {
   render() {
     return (
@@ -41,16 +42,14 @@ class Home extends React.Component {
           </Grid.Column>
         </Grid>
 
-          
-  
-         
-        <Map google={this.props.google}
 
-          center={{
+        <Map google={this.props.google}
+          initialCenter={{
             lat: 31.9478,
             lng: 35.2296
           }}
-          zoom={14}>
+          zoom={7}
+          onClick={this.onMapClicked}>
 
           <Marker onClick={this.onMarkerClick}
             name={'Current location'}
@@ -58,15 +57,11 @@ class Home extends React.Component {
           />
 
 
+
           <InfoWindow onClose={this.onInfoWindowClose}>
 
           </InfoWindow>
         </Map>
-
-
-        
-        
-
       </div>
     )
   }

@@ -11,6 +11,7 @@ const config = require('../config');
 var VerifyToken = require('../authontication/AuthController.js');
 //get all orders that state is pending
 router.get('/allorder_d', function (req, res) {
+    console.log("hi, I'm inside get orders")
     Order.find({ state: "pending" }).exec((err, order) => {
         if (err) {
             console.log(err);
@@ -20,7 +21,8 @@ router.get('/allorder_d', function (req, res) {
     });
 });
 //get the current order
-router.get('/current_order_d', VerifyToken, function (req, res) {
+router.get('/order_d',function (req, res) {
+    console.log("hi, I'm inside get orders")
     Order.find({ state: "prepared" }).exec((err, order) => {
         if (err) {
             console.log(err);
