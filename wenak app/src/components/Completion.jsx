@@ -53,53 +53,13 @@ handleChange(event) {
   render() {
     return (
       <div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <hr></hr>
+
+          
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <hr></hr>
 
         <Header as='h3' content='Complete Your Order Please' style={style.h3} textAlign='left' />
 
@@ -171,6 +131,7 @@ handleChange(event) {
             <br></br>
             <br></br>
             <br></br>
+
             <Header as='h3' content="Add More Details (Optional):" style={style.h3} textAlign='left' />
             <Input name = "additionalInfo" onChange={this.handleChange} value= {this.state.additionalInfo} placeholder="enter any additional info (optional)"/> 
             <br></br>

@@ -4,24 +4,19 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import Logo2 from '../assets/logo2.png'
+import Logo2 from '../assets/logo2.png';
+import { Link } from "react-router-dom";
+import Completion from './Completion';
 
 
 
-class home extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <div>
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='bottom'>
           <Grid.Column style={{ maxWidth: 450 }}>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
+          
           <br></br>
           <br></br>
           <br></br>
@@ -35,10 +30,11 @@ class home extends React.Component {
             
             <Form size='large'>
               <Segment stacked>
-
+              <Link to={'/Completion'}>  
                 <Button color='yellow' size='large'>
                   After assigning The Pickup Point Press Here To Continue
                 </Button>
+                </Link>
 
               </Segment>
             </Form>
@@ -73,7 +69,7 @@ class home extends React.Component {
 
 export default GoogleApiWrapper({
   apiKey: ("AIzaSyBwVhZGkweHHX618TDXpOsGMWWSJ2VA7Ug")
-})(home)
+})(Home)
 
 
 

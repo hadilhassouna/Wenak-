@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
+// import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 //
@@ -12,6 +12,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import './signUp.css';
 
 export class FormUserDetails extends Component {
     continue = e => {
@@ -24,9 +25,9 @@ export class FormUserDetails extends Component {
     render() {
         const { values, handleChange } = this.props;
         return (
-            <MuiThemeProvider>
+            <MuiThemeProvider className="signUp">
                 <React.Fragment>
-                    <AppBar title="Enter User Details"/>
+                    {/* <AppBar title="Enter User Details"/> */}
                     <TextField 
                         hintText="Enter Your Mobile Number"
                         floatingLabelText="Mobile"
@@ -37,6 +38,7 @@ export class FormUserDetails extends Component {
                     <TextField 
                         hintText="Enter Password"
                         floatingLabelText="Password"
+                        type='password'
                         onChange={handleChange('password')}
                         defaultValue={values.password}
                     />
