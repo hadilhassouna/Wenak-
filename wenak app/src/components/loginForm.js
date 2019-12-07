@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown } from 'semantic-ui-react'
 import Logo2 from '../assets/logo2.png'
 import $ from 'jquery';
+import { Link } from "react-router-dom";
+
+
 class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -54,6 +57,10 @@ class LoginForm extends Component {
         console.log("sucess login the user");
         console.log("Hi I'm inside login post")
         alert("Hello "+mobilenum);
+        return(
+        <Link to={"/Home"}>
+        </Link>
+        );
      // localStorage.setItem('usertoken', res.data.token)
     },
     error: function(request, status, error) {
@@ -98,13 +105,14 @@ class LoginForm extends Component {
                 type='password'
                 value={this.state.password} onChange={this.handleChange}
               />
+              
               <Button color='yellow' fluid size='large' type='submit'  onClick={this.login}>
                 Login
               </Button>
             </Segment>
           </Form>
           <Message>
-            <a href='#'>Sign Up</a>
+            <Link to={"/UserForm"}>Sign Up</Link>
           </Message>
         </Grid.Column>
       </Grid>

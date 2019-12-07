@@ -2,6 +2,7 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react'
 import { Button, Input, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
+import { Link } from "react-router-dom";
 
 const style = {
   h1: {
@@ -143,9 +144,12 @@ handleChange(event) {
             <br></br>
             <br></br>
             <br></br>
-            <Button onClick={this.handleSubmit} color='yellow' size='large'>
+            <Link to={'/CurrentOrders'}>
+            <Button color='yellow' size='large'>
             Send Your Order
-          </Button>
+            </Button>  
+            </Link>
+            
           </Grid.Column>
         </Grid>
 
