@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 const config = require('../config');
 var VerifyToken = require('./AuthController.js');
 const { check, validationResult } = require('express-validator');
+var counter =0;
 
 //user register
 router.post('/register', [
@@ -21,9 +22,11 @@ router.post('/register', [
   if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
   }
+  counter ++;
   var mobilenum = req.body.mobilenum;
   var password = req.body.password;
   var type = req.body.type;
+  var user_id=counter;
   const hashedPassword = bcrypt.hashSync(password, 8);
   console.log(req.body.mobilenum);
      //check if the user found
@@ -38,7 +41,8 @@ router.post('/register', [
   User.create({
       mobilenum: mobilenum,
       password: hashedPassword,
-      type: type
+      type: type,
+      user_id:user_id
   }, function (err:any, user:any) {
       if (err)
           return res.status(500).send("There was a problem registering the user.");

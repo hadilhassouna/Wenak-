@@ -24,20 +24,20 @@ var VerifyToken = require('../authontication/AuthController.js');
 //     });
 //   });
 //send user order
-router.post('/send_order', VerifyToken, function (req, res, next) {
-    console.log("sarame");
-    User.findById(req.user_id, { password: 0 }, function (err, user) {
-        if (err)
-            return res.status(500).send("There was a problem finding the user.");
-        if (!user)
-            return res.status(404).send("No user found.");
-        var id;
-        console.log(req);
-        var obj = {
-            id: req.user_id,
-            password: user.password
-        };
-        console.log(typeof (obj.id));
+router.post('/send_order', function (req, res, next) {
+    console.log("saramee1");
+    // User.findById(req.user_id, { password: 0 }, function (err, user) {
+    //     if (err)
+    //         return res.status(500).send("There was a problem finding the user.");
+    //     if (!user)
+    //         return res.status(404).send("No user found.");
+    //     var id;
+    //     console.log(req);
+    //     var obj = {
+    //         id: req.user_id,
+    //         password: user.password
+    //     };
+    //     console.log(typeof (obj.id));
         //var mongoObjectId = mongoose.Types.ObjectId(obj.id);
         const myorder = req.body;
         console.log(myorder);
@@ -46,7 +46,7 @@ router.post('/send_order', VerifyToken, function (req, res, next) {
         else if (myorder) {
             // console.log(myorder);
             Order.create({
-                user_id: id,
+                // user_id: id,
                 order_details: myorder.order_details,
                 location_start_lng: myorder.location_start_lng,
                 location_start_lat: myorder.location_start_lat,
@@ -68,7 +68,7 @@ router.post('/send_order', VerifyToken, function (req, res, next) {
             res.send({ error: "problem" });
             console.log("body is empty");
         }
-    });
+    // });
 });
 module.exports = router;
 //# sourceMappingURL=customer_order.js.map

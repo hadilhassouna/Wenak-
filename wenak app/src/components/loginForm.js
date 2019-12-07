@@ -57,10 +57,7 @@ class LoginForm extends Component {
         console.log("sucess login the user");
         console.log("Hi I'm inside login post")
         alert("Hello "+mobilenum);
-        return(
-        <Link to={"/Home"}>
-        </Link>
-        );
+       window.location="/Home";
      // localStorage.setItem('usertoken', res.data.token)
     },
     error: function(request, status, error) {

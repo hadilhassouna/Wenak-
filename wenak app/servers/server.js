@@ -9,12 +9,17 @@ const app = express();
 const db = require('./database.js');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 const auth = require('./authontication/auth.js');
 app.use('/api/auth', auth);
+
 const order_d = require('./Order_Driver/order_d.js');
-app.use('/api/order_d', auth);
+app.use('/api/driver', order_d);
+
+
 const customer = require('./Customer/customer_order.js');
 app.use('/api/customer', customer);
+
 module.exports = app;
 app.get('/', function (req, res) {
     res.send('Hello world');
