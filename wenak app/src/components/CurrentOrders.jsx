@@ -5,6 +5,8 @@ import React, { Component } from 'react'
 import { Form, Button, Rating, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
 import Logo from '../assets/logo.png'
 import $ from 'jquery';
+import './components.css'
+
 
 
 const style = {
@@ -57,12 +59,12 @@ class CurrentOrders extends React.Component {
     render() {
         return (
 
-            <div>
+            <div className="surrentOrder">
 
 
-                <Header as='h3' content='Your Orders' style={style.h3} textAlign='left' />
+                <Header as='h3' content='Your Orders' style={style.h3} textAlign='center' />
 
-                <Button animated>
+                {/* <Button animated>
                     <Button.Content visible>
                         <Icon name='arrow left' />
                     </Button.Content>
@@ -76,13 +78,9 @@ class CurrentOrders extends React.Component {
 
                 <Button color='yellow' size='large'>
                     Cancel
-                </Button>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <Image src={Logo} size='small'/>
+                </Button> */}
+                
+                <Image src={Logo} size='small' textAlign='center'/>
 
                 <Container fluid>
           <Header as="h2">OrderID: {this.state.orderData.user} </Header>
@@ -108,7 +106,7 @@ class CurrentOrders extends React.Component {
                 <br></br>
                 <br></br>
 
-                <Form size='large'>
+                <Form size='small'>
               <Segment stacked>
               <Header as='h2'>Order Status:</Header>
               <Header as='h2'>Preparing</Header>
@@ -116,17 +114,7 @@ class CurrentOrders extends React.Component {
               <Header as='h2'>Completed Order</Header>
               </Segment>
             </Form>
-            <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <hr></hr>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
+            
             </div>
         )
     }

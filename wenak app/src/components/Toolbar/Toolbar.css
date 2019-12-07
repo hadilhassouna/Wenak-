@@ -49,3 +49,7 @@
 .toolbar_navigation-items a:active {
     color: black;
 }
+
+.sideNav {
+    height: auto;
+}
