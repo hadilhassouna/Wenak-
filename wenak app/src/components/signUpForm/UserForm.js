@@ -13,7 +13,8 @@ export class UserForm extends Component {
         step: 1,
         mobile: '',
         password: '',
-        userType: ''
+        userType: '',
+        user_id:0,
     }
 
     //Proceed to next step

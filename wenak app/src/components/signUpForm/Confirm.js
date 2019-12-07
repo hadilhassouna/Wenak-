@@ -11,9 +11,12 @@ export class FormUserDetails extends Component {
     continue = e => {
         e.preventDefault();
         // Process form //
+        let counter =0;
+           counter ++;
             let mobilenum= this.props.values.mobile;
             let password =this.props.values.password;
             let type =this.props.values.userType;
+            let user_id = counter;
             console.log("hi I'm from e function");
             console.log(mobilenum);
             console.log(type);
@@ -24,7 +27,8 @@ export class FormUserDetails extends Component {
               data:{
                 mobilenum:mobilenum,
                 password:password,
-                type:type
+                type:type,
+                user_id:user_id
               }, 
               datatype: "json",
               success:function(){
@@ -48,7 +52,7 @@ export class FormUserDetails extends Component {
     }
 
     render() {
-        const { values: { mobile, password, userType } } = this.props;
+        const { values: { mobile, password, userType,user_id } } = this.props;
         return (
             <MuiThemeProvider>
                 <React.Fragment>
