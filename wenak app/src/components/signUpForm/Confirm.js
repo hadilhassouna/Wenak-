@@ -21,7 +21,6 @@ export class FormUserDetails extends Component {
             $.ajax({
               type: "POST",
               url: "/api/auth/register",
-            //   data: "data",
               data:{
                 mobilenum:mobilenum,
                 password:password,
@@ -37,7 +36,9 @@ export class FormUserDetails extends Component {
               },
               error: function(request, status, error) {
                     console.log("error in register");
-                    alert("Error in register");
+
+                    alert("Error in register or the user is exists")
+
                   }
               });
             

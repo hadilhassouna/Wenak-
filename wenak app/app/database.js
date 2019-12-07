@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const URI ="mongodb+srv://Jar:a!123456789@cluster0-2appk.mongodb.net/test"
  mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
  autoIncrement.initialize(connection);
+ var uniqueValidator = require('mongoose-unique-validator');
+ 
 
 
 var db = mongoose.connection;
@@ -14,13 +16,22 @@ db.once('open', function() {
 var counter =1;
 //user schema
 const UserSchema= Schema({
-  user_id:{type: Number},
-  mobilenum:{type: Number,unique:true}, 
-  password: {type: String},
+  user_id:{
+    type: Number,
+  },
+  mobilenum:{
+    type: Number,
+    required: true,
+    unique: true
+  }, 
+  password: {
+    type: String,
+    required: true},
   type:{type:String}
 })
 
 const User= mongoose.model('User', UserSchema);
+UserSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
 UserSchema.plugin(autoIncrement.plugin, 'User');
 bookSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'user_id' });
 
