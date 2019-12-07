@@ -11,11 +11,13 @@ const bcrypt = require('bcryptjs');
 const config = require('../config');
 var VerifyToken = require('./AuthController.js');
 const { check, validationResult } = require('express-validator');
+
+//user register
 router.post('/register', [
     check('mobilenum').isNumeric(),
     // password must be at least 5 chars long
     check('password').isLength({ min: 5 })
-], (req, res) => {
+  ], (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -26,6 +28,15 @@ router.post('/register', [
     var type = req.body.type;
     const hashedPassword = bcrypt.hashSync(password, 8);
     console.log(req.body.mobilenum);
+    //check if the user found
+    User.findOne({'mobilenum': mobilenum}, (err, user) => {
+        if(err) {
+            return res.status(500).send(err);
+        }
+        if(user) {
+            return res.status(500).send({ succes: false, message: 'User already exist!' });
+        }
+    //otherwise create a new user
     User.create({
         mobilenum: mobilenum,
         password: hashedPassword,
@@ -34,12 +45,16 @@ router.post('/register', [
         if (err)
             return res.status(500).send("There was a problem registering the user.");
         // create a token
-        const token = jwt.sign({ id: user._id }, config.secret, {
-            expiresIn: 86400 // expires in 24 hours
-        });
-        res.status(200).send({ auth: true, token: token });
+        // const token = jwt.sign({ id: user._id }, config.secret, {
+        //     expiresIn: 86400 // expires in 24 hours
+        // });
+        const hello="hello user"
+        res.status(200).send({ auth: true, hello:hello});
     });
+  })
 });
+
+
 //user login
 router.post('/login', function (req, res) {
     console.log("Hi I'm inside login post")
