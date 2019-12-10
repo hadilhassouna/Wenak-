@@ -14,6 +14,7 @@ export class UserForm extends Component {
         mobile: '',
         password: '',
         userType: '',
+        name:'',
         user_id:0,
     }
 
@@ -40,8 +41,8 @@ export class UserForm extends Component {
 
     render() {
         const { step } = this.state;
-        const { mobile, password, userType } = this.state;
-        const values = { mobile, password, userType }
+        const { mobile, password, userType,name } = this.state;
+        const values = { mobile, password, userType,name}
 
         switch(step) {
             case 1:

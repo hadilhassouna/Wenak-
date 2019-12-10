@@ -11,15 +11,15 @@ export class FormUserDetails extends Component {
     continue = e => {
         e.preventDefault();
         // Process form //
-        let counter =0;
-           counter ++;
             let mobilenum= this.props.values.mobile;
             let password =this.props.values.password;
             let type =this.props.values.userType;
-            let user_id = counter;
+            let name =this.props.values.name;
+            
             console.log("hi I'm from e function");
             console.log(mobilenum);
             console.log(type);
+            console.log(name);
 
             $.ajax({
               type: "POST",
@@ -28,15 +28,15 @@ export class FormUserDetails extends Component {
                 mobilenum:mobilenum,
                 password:password,
                 type:type,
-                user_id:user_id
+                name:name,
               }, 
               datatype: "json",
               success:function(){
                   console.log(this.data)
                   console.log("sucess login the user");
-                  alert("Hello " + mobilenum);
+                  alert("Hello " + name);
                   window.location = './Home';
-               // localStorage.setItem('usertoken', res.data.token)
+        
               },
               error: function(request, status, error) {
                     console.log("error in register");
@@ -55,7 +55,7 @@ export class FormUserDetails extends Component {
     }
 
     render() {
-        const { values: { mobile, password, userType,user_id } } = this.props;
+        const { values: { mobile, password, userType,name } } = this.props;
         return (
             <MuiThemeProvider >
                 <React.Fragment>
@@ -64,6 +64,10 @@ export class FormUserDetails extends Component {
                         <ListItem 
                             primaryText="Mobile Number"
                             secondaryText={ mobile }
+                        />
+                         <ListItem 
+                            primaryText="Name"
+                            secondaryText={ name }
                         />
                         <ListItem 
                             primaryText="Password"
