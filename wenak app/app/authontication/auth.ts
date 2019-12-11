@@ -9,39 +9,52 @@ const bcrypt = require('bcryptjs');
 const config = require('../config');
 var VerifyToken = require('./AuthController.js');
 const { check, validationResult } = require('express-validator');
+var counter =0;
 
-
-router.post('/register',[
-    check('mobilenum').isNumeric(),
-    // password must be at least 5 chars long
-    check('password').isLength({ min: 5 })
-    ], (req:any, res:any) => {
-    // Finds the validation errors in this request and wraps them in an object with handy functions
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
+//user register
+router.post('/register', [
+  check('mobilenum').isNumeric(),
+  // password must be at least 5 chars long
+  check('password').isLength({ min: 5 })
+], (req:any, res:any) => {
+  // Finds the validation errors in this request and wraps them in an object with handy functions
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
+  }
+  counter ++;
+  var mobilenum = req.body.mobilenum;
+  var password = req.body.password;
+  var type = req.body.type;
+  var user_id=counter;
+  const hashedPassword = bcrypt.hashSync(password, 8);
+  console.log(req.body.mobilenum);
+     //check if the user found
+  User.findOne({'mobilenum': mobilenum}, (err:any, user:any) => {
+    if(err) {
+        return res.status(500).send(err);
     }
-    var mobilenum:Number = req.body.mobilenum;
-    var password:String =req.body.password;
-    var type:String =req.body.type;
-    const hashedPassword = bcrypt.hashSync(password, 8);
-    console.log(req.body.mobilenum);
-    
-    User.create({
+    if(user) {
+        return res.status(500).send({ succes: false, message: 'User already exist!' });
+    }
+    //otherwise create a new user
+  User.create({
       mobilenum: mobilenum,
       password: hashedPassword,
-      type:type
-   },
-    function (err:any, user:any) {
-      if (err) return res.status(500).send("There was a problem registering the user.")
+      type: type,
+      user_id:user_id
+  }, function (err:any, user:any) {
+      if (err)
+          return res.status(500).send("There was a problem registering the user.");
       // create a token
-      const token = jwt.sign({ id: user._id }, config.secret, {
-        expiresIn: 86400 // expires in 24 hours
-      });
-      res.status(200).send({ auth: true, token: token });
-    });  
+      // const token = jwt.sign({ id: user._id }, config.secret, {
+      //     expiresIn: 86400 // expires in 24 hours
+      // });
+      const hello="hello user"
+      res.status(200).send({ auth: true, hello:hello});
+    });
+  })
   });
-
     //user login
     router.post('/login', function(req:any, res:any) {
       User.findOne({ mobilenum: req.body.mobilenum }, function (err:any, user:any) {

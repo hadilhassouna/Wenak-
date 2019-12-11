@@ -20,11 +20,11 @@ export class Success extends Component {
 
     render() {
         return (
-            <MuiThemeProvider>
+            <MuiThemeProvider >
                 <React.Fragment>
                     {/* <AppBar title="Registeration was Successful!"/> */}
-                    <h1>Thank You For Your Submission</h1>
-                    <p>
+                    <h1  className="signUp">Thank You For Your Submission</h1>
+                    <p  className="Radio">
                         You will get an email with further instructions
                     </p>
                 </React.Fragment>
