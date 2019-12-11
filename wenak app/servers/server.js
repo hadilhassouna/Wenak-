@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const URI = "mongodb+srv://Jar:a!123456789@cluster0-2appk.mongodb.net/test";
+const Pusher = require('pusher');
 //const request = require('request');
 const app = express();
 const db = require('./database.js');
@@ -18,6 +19,9 @@ app.use('/api/driver', order_d);
 ///use the customer
 const customer = require('./Customer/customer_order.js');
 app.use('/api/customer', customer);
+//use the notifications 
+const notifications = require('./notifications.js');
+app.use('/notifi', notifications);
 module.exports = app;
 app.get('/', function (req, res) {
     res.send('Hello world');

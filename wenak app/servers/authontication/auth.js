@@ -68,8 +68,7 @@ router.post('/login', function (req, res) {
         const token = jwt.sign({ id: user._id }, config.secret, {
             expiresIn: 86400 // expires in 24 hours
         });
-        res.status(200).send({ auth: true, token: token,type:type});
-        //res.send(token);
+        res.status(200).send({ auth: true, token: token, type: type });
     });
 });
 //get the user
@@ -82,17 +81,18 @@ router.get('/me', VerifyToken, function (req, res, next) {
         res.status(200).send(user);
     });
 });
-    //get the user type
-    router.get('/usertype', VerifyToken, function(req, res, next) {
-        User.findById(req.userId, { password: 0 }, function (err, user) {
-          if (err) return res.status(500).send("There was a problem finding the user.");
-          if (!user) return res.status(404).send("No user found.");
-          var type = user.type;
-          res.status(200).send(type);
-        });
-      });
-
-//logout
+//get the user type
+router.get('/usertype', VerifyToken, function (req, res, next) {
+    User.findById(req.userId, { password: 0 }, function (err, user) {
+        if (err)
+            return res.status(500).send("There was a problem finding the user.");
+        if (!user)
+            return res.status(404).send("No user found.");
+        var type = user.type;
+        res.status(200).send(type);
+    });
+});
+//logout 
 router.get('/logout', function (req, res) {
     res.status(200).send({ auth: false, token: null });
 });
