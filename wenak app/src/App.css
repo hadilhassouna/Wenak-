@@ -1,7 +1,29 @@
 .nav {
-    background: yellow;
+  background: yellow;
 }
 
 .signUp {
-    align-items: center;
+  align-items: center;
+}
+
+.test {
+  color: blue !important;
+  text-align: center;
+  padding: 100px !important;
+  margin-top: 150px !important;
+  margin-left: 270px !important;
+  margin-right: 270px !important;
+}
+#order {
+  color: brown !important;
+  text-align: center !important;
+  padding: 20 px !important;
+  margin-top: 150px !important;
+  margin-left: 370px !important;
+  margin-right: 370px !important;
+}
+menu {
+  color: brown;
+  text-align: center;
+  padding: 20 px;
 }
