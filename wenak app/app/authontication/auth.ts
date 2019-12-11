@@ -10,6 +10,7 @@ const config = require('../config');
 var VerifyToken = require('./AuthController.js');
 const { check, validationResult } = require('express-validator');
 
+
 //user register
 router.post('/register', [
   check('mobilenum').isNumeric(),
@@ -21,9 +22,11 @@ router.post('/register', [
   if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
   }
+  
   var mobilenum = req.body.mobilenum;
   var password = req.body.password;
   var type = req.body.type;
+  var name =req.body.name;
   const hashedPassword = bcrypt.hashSync(password, 8);
   console.log(req.body.mobilenum);
      //check if the user found
@@ -38,6 +41,7 @@ router.post('/register', [
   User.create({
       mobilenum: mobilenum,
       password: hashedPassword,
+      name:name,
       type: type
   }, function (err:any, user:any) {
       if (err)
@@ -58,12 +62,13 @@ router.post('/register', [
         if (!user) return res.status(404).send('No user found.');
 
         const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-        if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
-        
+        const type = user.type;
+        if (!passwordIsValid)
+            return res.status(401).send({ auth: false, token: null });
         const token = jwt.sign({ id: user._id }, config.secret, {
-          expiresIn: 86400 // expires in 24 hours
+            expiresIn: 86400 // expires in 24 hours
         });
-        res.status(200).send({ auth: true, token: token });
+        res.status(200).send({ auth: true, token: token,type:type});
       });
     });
     
@@ -76,16 +81,26 @@ router.post('/register', [
         
         res.status(200).send(user);
       });
-      
+    });
+  
+    //get the user type
+    router.get('/usertype', VerifyToken, function(req:any, res:any, next:any) {
+      User.findById(req.userId, { password: 0 }, function (err:any, user:any) {
+        if (err) return res.status(500).send("There was a problem finding the user.");
+        if (!user) return res.status(404).send("No user found.");
+        var type = user.type;
+        res.status(200).send(type);
+      });
     });
 
-    router.get('/logout', function(req:any, res:any) {
+  //logout 
+  router.get('/logout', function(req:any, res:any) {
     res.status(200).send({ auth: false, token: null });
-});
+  });
 
   router.get("/", (req:any, res:any) => {
     res.json({ status: "success", message: "hello" });
-});
+  });
 
 export {}
 module.exports = router;

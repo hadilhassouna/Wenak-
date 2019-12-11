@@ -2,6 +2,7 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react'
 import { Button, Input, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
+import $ from 'jquery';
 import { Link } from "react-router-dom";
 
 const style = {
@@ -24,10 +25,15 @@ class Completion extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      item:"",
-      recieverName:"",
-      recieverPhone:"",
-      additionalInfo:""
+      item: "",
+      location_start_lng: "14.7555",
+      location_start_lat: "-45.544",
+      location_end_lng: "11.5855",
+      location_end_lat: "-13.352",
+      recieverName: "",
+      recieverPhone: "",
+      additionalInfo: "",
+      state: "pending"
     }
     //bind methods here
     this.handleChange = this.handleChange.bind(this);
@@ -43,12 +49,37 @@ handleChange(event) {
   })
 };
 
-  handleSubmit(event) {    
-    event.preventDefault();
-    console.log(this.state)
-    //  console.log("mobile ",this.state.mobile, 'pw', this.state.password)
-    //Requests go here
-  }
+handleSubmit(event) {
+  event.preventDefault();
+  console.log(this.state);
+  //  console.log("mobile ",this.state.mobile, 'pw', this.state.password)
+  //Requests go here  event.preventDefault();
+  console.log("hi I'm inside submit order");
+  var data = {
+    // userName: $("#name").val(),
+    // email: $("#email").val(),
+    location_start_lng: this.state.location_start_lng,
+    location_start_lat: this.state.location_start_lat,
+    location_end_lng: this.state.location_end_lng,
+    location_end_lat: this.state.location_end_lat,
+    order_details: this.state.item,
+    reciver_name: this.state.recieverName,
+    reciver_name: this.state.recieverName,
+    recieverPhone: this.state.recieverName,
+    order_notes: this.state.additionalInfo,
+    state: this.state.state
+  };
+  console.log(data);
+  $.ajax({
+    url: "/api/customer/send_order",
+    type: "POST",
+    data: data,
+    datatype: "json",
+    success: function(err) {
+      alert("User exists you can log in");
+    }
+  });
+}
 
 
   render() {
