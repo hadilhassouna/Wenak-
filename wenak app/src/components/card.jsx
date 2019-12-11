@@ -77,10 +77,10 @@ export default function ComplexGrid() {
 
   /////////////////////////hooks
 
-  const [data, setData] = useState({ hits: [] });
-  const [query, setQuery] = useState("react");
+  const [data, setData] = useState({ orders: [] });
+  const [query, setQuery] = useState("50");
   const [url, setUrl] = useState(
-    "https://hn.algolia.com/api/v1/search?query=react"
+    "mongodb+srv://Jar:a!123456789@cluster0-2appk.mongodb.net/test?query=price"
   );
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -88,35 +88,42 @@ export default function ComplexGrid() {
       setIsLoading(true);
       const result = await axios(url);
       setData(result.data);
+      console.log(result.data);
+      console.log(data);
       setIsLoading(false);
     };
     fetchData();
   }, [url]);
   return (
+    // console.log(data.orders.item.state);
     <div className={classes.root}>
       <Fragment>
-        <input
+        {/* <input
           type="text"
           value={query}
           onChange={event => setQuery(event.target.value)}
-        />
-        <button
+        /> */}
+        {/* <button
           type="button"
-          onClick={() => setUrl(`http://google.com/search?query=${query}`)}
+          onClick={() =>
+            setUrl(
+              `mongodb+srv://Jar:a!123456789@cluster0-2appk.mongodb.net/test?query=${query}`
+            )
+          }
         >
           Search
-        </button>
-        {isLoading ? (
+        </button> */}
+        {/* {isLoading ? (
           <div>Loading ...</div>
         ) : (
           <ul>
-            {data.hits.map(item => (
-              <li key={item.objectID}>
-                <a href={item.url}>{item.title}</a>
+            {data.orders.map(item => (
+              <li key={item.user_id}>
+                <a href={item.state}>{item.price}</a>
               </li>
             ))}
           </ul>
-        )}
+        )} */}
       </Fragment>
 
       <Paper className={classes.paper}>
