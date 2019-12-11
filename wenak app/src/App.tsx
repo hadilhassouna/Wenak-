@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-// import Toolbar from "./components/Toolbar/Toolbar.jsx";
-// import Sidebar from "./components/Toolbar/Sidebar.jsx";
-import "./App.css";
+import Toolbar from "./components/Toolbar/Toolbar.jsx";
+import Sidebar from "./components/Toolbar/Sidebar.jsx";
 import Home from "./components/home";
 // import HomePage from "./components/homePage/homePage";
 import Completion from "./components/Completion";
@@ -13,15 +12,32 @@ import CurrentOrders from "./components/CurrentOrders";
 import Profile from "./components/Profile";
 import DriverOrders from "./components/DriverOrders";
 import DriverOrd from "./components/DriverOrd";
+import NavBar from "./components/Toolbar/Toolbar.jsx";
+
+import NavbarUser from "./components/Toolbar/NavbarUser";
+
 import { BrowserRouter, Route } from "react-router-dom";
+import DrawerIcon from "./components/Toolbar/Drawer";
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <Sidebar /> */}
-        {/* <Toolbar /> */}
+        <Sidebar />
+        <Toolbar />
         <main></main>
+        <Route exact path={"/LoginForm"} component={LoginForm} />
+        <Route
+          exact
+          path={"/UserForm"}
+          component={UserForm}
+          className="signUp"
+        />
+        {/* <NavBar /> */}
+        {/* <DrawerIcon /> */}
+        <main></main>
+        <Route exact path={"/NavbarUser"} component={NavbarUser} />
+        <Route exact path={"/DrawerIcon"} component={DrawerIcon} />
         <Route exact path={"/LoginForm"} component={LoginForm} />
         <Route
           exact
