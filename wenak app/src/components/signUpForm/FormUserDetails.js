@@ -37,6 +37,13 @@ export class FormUserDetails extends Component {
                     />
                     <br/>
                     <TextField 
+                        hintText="Enter Your Name"
+                        floatingLabelText="Name"
+                        onChange={handleChange('name')}
+                        defaultValue={values.name}
+                    />
+                    <br/>
+                    <TextField 
                         hintText="Enter Password"
                         floatingLabelText="Password"
                         type='password'

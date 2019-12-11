@@ -5,6 +5,7 @@ const URI ="mongodb+srv://Jar:a!123456789@cluster0-2appk.mongodb.net/test"
  mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
  autoIncrement.initialize(connection);
  var uniqueValidator = require('mongoose-unique-validator');
+ var ObjectId = mongoose.Schema.Types.ObjectId;
  
 
 
@@ -17,7 +18,7 @@ var counter =1;
 //user schema
 const UserSchema= Schema({
   user_id:{
-    type: Number
+    type: String
   },
   mobilenum:{
     type: Number,
@@ -35,6 +36,9 @@ const UserSchema= Schema({
 
 const User= mongoose.model('User', UserSchema);
 UserSchema.plugin(uniqueValidator, { message: '{PATH} already exists!' });
+// {
+//   "_id":"5de7cfd7acb02c5830519c24"	
+//  }
 // UserSchema.plugin(autoIncrement.plugin, 'User');
 // bookSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'user_id' });
 
@@ -96,7 +100,7 @@ const DriverSchema= Schema({
 
   //order schema
   const OrderSchema = Schema({
-    driver_id: { type: Number },
+    driver_id: { type: String},
     user_id: { type: Number },
     order_details: { type: String },
     location_start_lng: { type: Number },
