@@ -20,8 +20,25 @@ router.get('/allorder_d', function (req:any, res:any){
           req.send()
         }
         res.json(order)});
-        var id = req.user_id;
-        
+        var id = req.user_id;     
+})
+
+//make the state prepared.
+router.post('/state_prepared',function (req:any, res:any){
+  var id_order =req.body._id;
+    Order.findOneAndUpdate({_id : ObjectId(id_order)}, {$set: {state: "prepared"}},{useFindAndModify: false}).then((data:any) =>{
+      if(data === null){
+          throw new Error('Order Not Found');
+      }
+      res.json({ message: 'Order updated!' })
+      console.log("New order data", data);
+  }).catch( (error:any) => {
+      /*
+          Deal with all your errors here with your preferred error handle middleware / method
+       */
+      res.status(500).json({ message: 'Some Error!' })
+      console.log(error);
+   }); 
 })
 
 //accept the order
@@ -50,53 +67,9 @@ router.post('/accept_order',VerifyToken,function(req:any, res:any,next: any){
        */
       res.status(500).json({ message: 'Some Error!' })
       console.log(error);
-  }); 
-    
-    
-    
-  //   {new: true}, (err:any, doc:any) => {
-  //     if (err) {
-  //         console.log("Something wrong when updating data!");
-  //     }
-  
-  //     console.log(doc);
-  // });
-    // Order.findOneAndUpdate(
-    //   {"_id" : ObjectId(id_order) },
-    //   { $set: { driver_id:ObjectId(id)} })
-   
-    // Order.findByIdAndUpdate(id_order, submission, {}, function (err, submission) {
-    //   if (err) {
-    //       console.log('error= ' + err);
-    //       return err;
-    //   }else{
-    // Order.updateOne({"_id":ObjectId(id_order)},function(err:any, req:any, res:any, next:any){
-    //   if (err) {
-    //     console.log(err);
-       
-    // }
-     //console.log("success")
-    })
-
-    //Order.find({_id: id_order})
-      // Order.update(
-      //   {_id: ObjectId(id_order)},
-      //   { $set:
-      //     {
-      //       driver_id:ObjectId(id)
-      //       },
-      //     function (err:any, order:any) {
-      //       if (err)
-      //           return res.status(500).send("There was a problem in adding the driver to order");
-      //       if (!order)
-      //           return res.status(404).send("No order found");
-      //       console.log(req); 
-      //   }
-
-        
-      //  });
-     // }
-    });
+   }); 
+  })
+});
   
 //get the current order
 router.get('/current_order_d',VerifyToken,function (req:any, res:any){
@@ -105,9 +78,9 @@ router.get('/current_order_d',VerifyToken,function (req:any, res:any){
           console.log(err);
           req.send()
         }
-        res.json(order)});
-      
+        res.json(order)});     
 })
+
 //get the previous orders
 router.get('/previous_order_d',VerifyToken,function (req:any, res:any){
     Order.find({state: "previous"}).exec((err:any,order:any) => { 
@@ -117,11 +90,7 @@ router.get('/previous_order_d',VerifyToken,function (req:any, res:any){
         }
         res.json(order)});
 })
-//accept the user order
-router.post('/accept_order',VerifyToken,function (req:any, res:any){
-    //const id = req.body.order_id;
 
-})
 
 export{}
 module.exports = router;
