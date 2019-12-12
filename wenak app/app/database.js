@@ -1,47 +1,45 @@
 const mongoose = require('mongoose');
- const Schema = mongoose.Schema;
- autoIncrement = require('mongoose-auto-increment');
 const URI ="mongodb+srv://Jar:a!123456789@cluster0-2appk.mongodb.net/test"
- mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
- autoIncrement.initialize(connection);
+mongoose.set('useFindAndModify', false);
+ mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false });
 
 
 var db = mongoose.connection;
+var Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("db connected")
 });
-var counter =1;
 //user schema
 const UserSchema= Schema({
-  user_id:{type: Number},
-  mobilenum:{type: Number,unique:true}, 
+  mobilenum:{type: Number}, 
+  name:{type:String},
   password: {type: String},
   type:{type:String}
 })
 
 const User= mongoose.model('User', UserSchema);
-UserSchema.plugin(autoIncrement.plugin, 'User');
-bookSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'user_id' });
 
 let save_user= (user_) => {  
   var user_model = new User({
     mobilenum: user_.mobilenum,
     password: user_.password,
+    name:user_.name,
     type:user_.type
   })
   user_model.save();
 }
 //customer schema
 const CustomerSchema= Schema({ //flower description schema
-    customer_id:{type:Number},
+    customer_user:{type:Number},
+    user_id:{type: ObjectId}, 
     name:{type: String},
     mobilenum:{type: Number}, 
     password:{type: String},
     email:{type: String},
     img:{type: String},
-    address:{type:String},
-    user_id:{type: Number, ref: 'User' }
+    address:{type:String}
   })
   
   const Customer= mongoose.model('Customer', CustomerSchema);
@@ -60,11 +58,11 @@ const CustomerSchema= Schema({ //flower description schema
 
 //driver schema
 const DriverSchema= Schema({
+   user_id:{type: ObjectId}, 
    driver_id:{type:Number},
     name:{type: String},
     mobilenum:{type: Number}, 
-    password:{type: String},
-    user_id:{type: Number, ref: 'User' }
+    password:{type: String}
   })
   
   const Driver= mongoose.model('Driver', DriverSchema);
@@ -80,19 +78,19 @@ const DriverSchema= Schema({
 
   //order schema
   const OrderSchema= Schema({
-  driver_id:{type: Number, ref: 'Driver'},
-  customer_id:{type: Number, ref: 'Customer'},
-	order_details:{type: String},
-	location_start_lng:{type: Number},
-	location_start_lat:{type: Number},
-	location_end_lng:{type: Number},
-	location_end_lat:{type: Number},
-	reciver_name:{type: String},
-	order_notes:{type: String},
-	rate:{type: Number},
-	state:{type: String},
-	date:{type:Date},
-	price:{type: Number}
+    driver_id:{type: ObjectId},
+    user_id:{type: ObjectId}, 
+    order_details:{type: String},
+    location_start_lng:{type: Number},
+    location_start_lat:{type: Number},
+    location_end_lng:{type: Number},
+    location_end_lat:{type: Number},
+    reciver_name:{type: String},
+    order_notes:{type: String},
+    rate:{type: Number},
+    state:{type: String},
+    date:{type:Date},
+    price:{type: Number}
   })
   
   const Order= mongoose.model('Order',OrderSchema);
@@ -115,5 +113,5 @@ const DriverSchema= Schema({
     })
     order_model.save();
   }
-
+ 
   module.exports={User,Customer,save,Driver,save_driver,Order,save_order,save_user};

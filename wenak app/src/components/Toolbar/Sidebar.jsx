@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-
+import './Toolbar.css';
 // Be sure to include styles at some point, probably during your bootstraping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
@@ -9,7 +9,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 class Sidebar extends React.Component {
     render() {
         return(
-            <SideNav
+            <SideNav className="sideNav"
             onSelect={(selected) => {
                 // Add your code here
             }}

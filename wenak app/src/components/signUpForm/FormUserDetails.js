@@ -25,7 +25,8 @@ export class FormUserDetails extends Component {
     render() {
         const { values, handleChange } = this.props;
         return (
-            <MuiThemeProvider className="signUp">
+            <div className="signUp">
+            <MuiThemeProvider >
                 <React.Fragment>
                     {/* <AppBar title="Enter User Details"/> */}
                     <TextField 
@@ -36,6 +37,13 @@ export class FormUserDetails extends Component {
                     />
                     <br/>
                     <TextField 
+                        hintText="Enter Your Name"
+                        floatingLabelText="Name"
+                        onChange={handleChange('name')}
+                        defaultValue={values.name}
+                    />
+                    <br/>
+                    <TextField 
                         hintText="Enter Password"
                         floatingLabelText="Password"
                         type='password'
@@ -43,7 +51,8 @@ export class FormUserDetails extends Component {
                         defaultValue={values.password}
                     />
                     <br/>
-                    <RadioGroup aria-label="position" name="position" defaultValue={values.userType} onChange={handleChange('userType')} row>                    
+                    <div className="signUp">
+                     <RadioGroup aria-label="position" name="position" defaultValue={values.userType} onChange={handleChange('userType')} row>                    
                         <FormControlLabel
                             value="Driver"
                             control={<Radio color="primary" />}
@@ -56,7 +65,9 @@ export class FormUserDetails extends Component {
                             label="Customer"
                             labelPlacement="start"
                         />
-                    </RadioGroup>
+                    </RadioGroup>   
+                    </div>
+                    
                     <br/>
                     <RaisedButton 
                         label="Continue"
@@ -66,7 +77,7 @@ export class FormUserDetails extends Component {
                     />
                 </React.Fragment>
             </MuiThemeProvider>
-            
+            </div>
         )
     }
 }

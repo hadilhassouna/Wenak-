@@ -33,46 +33,15 @@ handleRate = (e, { rating, maxRating }) =>
         return (
 
             <div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
+           
                 <hr></hr>
-                <Header as='h3' content='Your Orders' style={style.h3} textAlign='left' />
+                <Header as='h3' content='Your Orders' style={style.h3} textAlign='center' />
 
-                <Button animated>
-                    <Button.Content visible>
-                    <Icon name='arrow left' />
-                    </Button.Content>
-                    <Button.Content hidden> Back </Button.Content>
-                </Button>
-
-                <Button.Group>
-                    <Button>Current Orders</Button>
-                    <Button>History</Button>
-                </Button.Group>
-
-                <Button color='yellow' size='large'>
-                    Order Now
-                </Button>
                 <br></br>
+                
                 <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <Image src={Logo} size='small'/>
-                <Container fluid>
+                <Image src={Logo} size='small' textAlign='center'/>
+                <Container fluid className='surrentOrder'>
                     <Header as='h2'>OrderID:</Header>
                     <Header as='h2'>Location:</Header>
                     <Header as='h2'>Status:</Header>
@@ -83,11 +52,9 @@ handleRate = (e, { rating, maxRating }) =>
                     <Image src={Logo} size='small'/>
                 </Container>
                 <br></br>
+                
                 <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <Container fluid>
+                <Container fluid className='surrentOrder'>
                     <Header as='h2'>OrderID:</Header>
                     <Header as='h2'>Location:</Header>
                     <Header as='h2'>Status:</Header>
@@ -97,23 +64,20 @@ handleRate = (e, { rating, maxRating }) =>
                     <Rating maxRating={5} onRate={this.handleRate} />
                     <Image src={Logo} size='small'/>
                 </Container>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <Container fluid>
-                    <Header as='h2'>OrderID:</Header>
-                    <Header as='h2'>Location:</Header>
-                    <Header as='h2'>Status:</Header>
-                    <Header as='h2'>Date:</Header>
-                    <Header as='h2'>Price:</Header>
-                    <Header as='h2'>Rating:</Header>
-                    <Rating maxRating={5} onRate={this.handleRate} />
-                </Container>
-                <br></br>
                 <br></br>
                
+                <br></br>
+                <Container fluid className='surrentOrder'>
+                    <Header as='h2'>OrderID:</Header>
+                    <Header as='h2'>Location:</Header>
+                    <Header as='h2'>Status:</Header>
+                    <Header as='h2'>Date:</Header>
+                    <Header as='h2'>Price:</Header>
+                    <Header as='h2'>Rating:</Header>
+                    <Rating maxRating={5} onRate={this.handleRate} />
+                </Container>
+                <br></br>
+                
                 <hr></hr>
 
             </div>
