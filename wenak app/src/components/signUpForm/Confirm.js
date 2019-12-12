@@ -35,13 +35,13 @@ export class FormUserDetails extends Component {
                   console.log(this.data)
                   console.log("sucess login the user");
                   alert("Hello " + name);
-                  window.location = './Home';
+                  window.location = './LoginForm';
         
               },
               error: function(request, status, error) {
                     console.log("error in register");
-
-                    alert("Error in register or the user is exists")
+                    alert("Error in register or the user is exists");
+                    window.location = './UserForm';
 
                   }
               });

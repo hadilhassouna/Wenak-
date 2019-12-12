@@ -75,12 +75,11 @@ handleSubmit(event) {
     data: data,
     datatype: "json",
     success: function(err) {
-      alert("User exists you can log in");
+      console.log("hi I'm inside error msj");
+      // alert("User exists you can log in");
     }
   });
 }
-
-
   render() {
     return (
       <div>

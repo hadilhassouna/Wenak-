@@ -1,6 +1,4 @@
 //screen 1
-
-
 import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
 import Confirm from './Confirm';

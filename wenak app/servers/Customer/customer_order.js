@@ -14,7 +14,9 @@ const ObjectId = require('mongodb').ObjectID;
 var VerifyToken = require('../authontication/AuthController.js');
 ///send order.
 router.post("/send_order", VerifyToken, function (req, res, next) {
+    console.log("Hi I'm inside post order");
     User.findById(req.userId, { password: 0 }, function (err, user) {
+        console.log("Hi I'm inside  function findById in post order");
         if (err)
             return res.status(500).send("There was a problem finding the user.");
         if (!user)
@@ -45,6 +47,7 @@ router.post("/send_order", VerifyToken, function (req, res, next) {
             }, function (err, req, res, next) {
                 if (err) {
                     console.log(err);
+                    console.log("Hi I'm err in post order");
                 }
                 console.log("success");
             });
