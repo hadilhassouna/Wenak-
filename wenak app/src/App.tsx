@@ -62,7 +62,7 @@ const App: React.FC = () => {
       <Settings/>
       <About/>
       <SocialFollow/>
-      {/* <ContactForm/> */}
+      <ContactForm/>
     </BrowserRouter>
   );
 };

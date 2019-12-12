@@ -84,3 +84,13 @@ a.linkedin {
 /* Social Follow Stuff Up */
 
 /* Contact form CSS */
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
