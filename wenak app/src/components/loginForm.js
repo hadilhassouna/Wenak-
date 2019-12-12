@@ -48,7 +48,7 @@ class LoginForm extends Component {
         var type = res.type;
         console.log(type);
         if(type === "Customer"){
-          window.location="/Home";
+          window.location="/NavbarUser";
         }
         else{
         console.log("I'm driver");
