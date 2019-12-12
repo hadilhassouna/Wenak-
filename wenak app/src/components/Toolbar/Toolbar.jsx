@@ -174,14 +174,14 @@ export default function NavBar() {
       <AppBar position="static">
         <Toolbar>
         
-          {/* <IconButton
+          <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <DrawerIcon /> 
-          </IconButton> */}
+          </IconButton>
           <DrawerIcon />
 
           <Typography className={classes.title} variant="h6" noWrap>

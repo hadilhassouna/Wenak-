@@ -64,7 +64,6 @@ handleSubmit(event) {
     location_end_lat: this.state.location_end_lat,
     order_details: this.state.item,
     reciver_name: this.state.recieverName,
-    reciver_name: this.state.recieverName,
     recieverPhone: this.state.recieverName,
     order_notes: this.state.additionalInfo,
     state: this.state.state
@@ -85,8 +84,6 @@ handleSubmit(event) {
   render() {
     return (
       <div>
-
-          
           <br></br>
           <br></br>
           <br></br>
