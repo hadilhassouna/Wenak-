@@ -52,7 +52,7 @@ export class FormUserDetails extends Component {
                     />
                     <br/>
                     <div className="signUp">
-                     <RadioGroup aria-label="position" name="position" defaultValue={values.userType} onChange={handleChange('userType')} row>                    
+                     <RadioGroup className="radio" aria-label="position" name="position" defaultValue={values.userType} onChange={handleChange('userType')} row>                    
                         <FormControlLabel
                             value="Driver"
                             control={<Radio color="primary" />}

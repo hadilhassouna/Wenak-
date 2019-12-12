@@ -180,9 +180,9 @@ export default function NavBar() {
             color="inherit"
             aria-label="open drawer"
           >
-
+            <DrawerIcon /> 
           </IconButton>
-          <DrawerIcon /> 
+          <DrawerIcon />
 
           <Typography className={classes.title} variant="h6" noWrap>
            Weenak!
