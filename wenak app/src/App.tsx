@@ -19,6 +19,11 @@ import NavbarUser from "./components/Toolbar/NavbarUser";
 import { BrowserRouter, Route } from "react-router-dom";
 import DrawerIcon from "./components/Toolbar/Drawer";
 
+import Settings from "./components/Settings";
+import About from "./components/About";
+import SocialFollow from './components/SocialFollow';
+import ContactForm from './components/contactForm/ContactForm';
+
 const App: React.FC = () => {
   return (
     <BrowserRouter>
@@ -38,13 +43,13 @@ const App: React.FC = () => {
         <main></main>
         <Route exact path={"/NavbarUser"} component={NavbarUser} />
         <Route exact path={"/DrawerIcon"} component={DrawerIcon} />
-        <Route exact path={"/LoginForm"} component={LoginForm} />
-        <Route
+        {/* <Route exact path={"/LoginForm"} component={LoginForm} /> */}
+        {/* <Route
           exact
           path={"/UserForm"}
           component={UserForm}
           className="signUp"
-        />
+        /> */}
         <Route exact path={"/Home"} component={Home} />
         {/* <Route exact path={"/HomePage"} component={HomePage} /> */}
         <Route exact path={"/Completion"} component={Completion} />
@@ -54,6 +59,10 @@ const App: React.FC = () => {
         {/* <Profile />
         <DriverOrders /> */}
       </div>
+      <Settings/>
+      <About/>
+      <SocialFollow/>
+      {/* <ContactForm/> */}
     </BrowserRouter>
   );
 };

@@ -4,6 +4,8 @@
 
 .signUp {
   align-items: center;
+  align-content: center;
+  align-self: center;
 }
 
 .test {
@@ -27,3 +29,58 @@ menu {
   text-align: center;
   padding: 20 px;
 }
+
+Settings{
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  text-align: center !important;
+  padding: 20 px !important;
+  margin-top: 150px !important;
+  margin-left: 370px !important;
+  margin-right: 370px !important;
+}
+
+/* Social Follow Stuff */
+.social-container {
+  background: #eee;
+  padding: 25px 50px;
+
+}
+
+.social-title {
+  font-size: 32px;
+  font-weight: 500;
+  font-style: italic;
+  color: #333;
+}
+
+a.social {
+  margin: 0 1rem;
+  transition: transform 250ms;
+  display: inline-block; /* Inline elements can't do translate, that's why we put this line */
+}
+
+a.social:hover {
+  transform: translateY(-2px);
+}
+
+a.youtube {
+  color: #eb3223;
+}
+a.facebook {
+  color: #4968ad;
+}
+a.instagram {
+  color: black;
+}
+a.twitter {
+  color: #49a1eb;
+}
+a.linkedin {
+  color: #0073b1;
+}
+
+/* Social Follow Stuff Up */
+
+/* Contact form CSS */
