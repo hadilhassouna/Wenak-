@@ -138,6 +138,7 @@ export default function NavbarUser() {
       </AppBar>
       <TabPanel value={value} index={0}>
       <Home/>
+      <Completion />
 
         {/* new Orders form customers pending status */}
         {/* <NestedGrid font /> */}

@@ -23,7 +23,7 @@ export class FormUserDetails extends Component {
 
             $.ajax({
               type: "POST",
-              url: "/api/auth/register",
+              url: "http://localhost:4000/api/auth/register",
               data:{
                 mobilenum:mobilenum,
                 password:password,

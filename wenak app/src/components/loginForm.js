@@ -27,8 +27,8 @@ class LoginForm extends Component {
   }
 
 //login user
-  login(event){
-    event.preventDefault();
+  login(){
+   // event.preventDefault();
     var mobilenum= this.state.mobile;
     var password = this.state.password;
     var that = this;
@@ -46,6 +46,9 @@ class LoginForm extends Component {
         console.log("Hi I'm inside login post")
         alert("Hello "+mobilenum);
         var type = res.type;
+        var token = localStorage.setItem('usertoken', res.token);
+        localStorage.setItem('usertoken',res.token);
+        console.log(localStorage.getItem('usertoken'));
         console.log(type);
         if(type === "Customer"){
           window.location="/NavbarUser";

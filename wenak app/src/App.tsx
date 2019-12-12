@@ -29,9 +29,14 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Sidebar />
-        <Toolbar />
-        <main></main>
+        {/* <Sidebar /> */}
+        <NavBar />
+        {/* <DrawerIcon /> */}
+        <main >
+        
+        </main>
+        
+        
         <Route exact path={"/LoginForm"} component={LoginForm} />
         <Route
           exact
@@ -59,13 +64,16 @@ const App: React.FC = () => {
         <Route exact path={"/Orders"} component={Orders} />
         <Route exact path={"/DriverOrd"} component={DriverOrd} />
         <Route exact path={"/CurrentOrders"} component={CurrentOrders} />
+        <Route exact path={"/Settings"} component={Settings} />
+        <Route exact path={"/About"} component={About} />
+        <Route exact path={"/SocialFollow"} component={SocialFollow} />
+        <Route exact path={"/ContactForm"} component={ContactForm} />
+
+      
         {/* <Profile />
         <DriverOrders /> */}
       </div>
-      <Settings/>
-      <About/>
-      <SocialFollow/>
-      <ContactForm/>
+     
     </BrowserRouter>
   );
 };
