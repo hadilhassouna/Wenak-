@@ -22,6 +22,10 @@ app.use('/api/customer', customer);
 const notifications= require('./notifications.js');
 app.use('/notifi', notifications);
 
+const twilio= require('./twilioServer.js');
+app.use('/twilio', twilio);
+
+
 module.exports = app;
 
 
