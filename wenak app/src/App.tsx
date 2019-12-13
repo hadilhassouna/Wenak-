@@ -25,6 +25,7 @@ import SocialFollow from './components/SocialFollow';
 import ContactForm from './components/contactForm/ContactForm';
 import Trial from './components/Trial';
 
+
 const App: React.FC = () => {
   return (
     <BrowserRouter>
