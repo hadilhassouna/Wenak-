@@ -12,6 +12,8 @@ import PersonIcon from "@material-ui/icons/Person";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BeenhereIcon from "@material-ui/icons/Beenhere";
 import ScheduleIcon from "@material-ui/icons/Schedule";
+import DoneIcon from "@material-ui/icons/Done";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
@@ -54,9 +56,11 @@ const useStyles = makeStyles(theme => ({
     width: "130px",
     height: " 40px"
   },
-  reject: {
+  view: {
     color: "#FFFFFF",
-    backgroundColor: "#e53935"
+    backgroundColor: "#cddc39",
+    width: "130px",
+    height: " 40px"
   },
   details: {
     padding: "10px",
@@ -70,6 +74,12 @@ const useStyles = makeStyles(theme => ({
   orderDetails: {
     //   padding:"",
     marginBottom: "5px"
+  },
+
+  iconTab: {
+    color: "#fafafa",
+    textAlign: "right",
+    marginLeft: "15px"
   }
 }));
 export default function ComplexGrid3() {
@@ -83,19 +93,20 @@ export default function ComplexGrid3() {
   //   const state = { pending, onWay };
   /////////////////////////hooks
   useEffect(() => {
-    document.title = ` Drivers Orders`;
+    document.title = `Drivers Orders`;
     console.log("I'm inside use effect");
 
     axios
-      .get(`http://localhost:3000/api/driver/allorder_d`)
+      .get(`http://localhost:3000/api/driver/current_order_d`)
       .then(res => {
         setOrder(res.data);
-        console.log("I'm inside axios", res.data);
+        console.log("I'm inside current order axios", res.data);
       })
       .catch(err => {
         console.log("I'm error", err);
       });
   }, []);
+
   return (
     //     <div>
     //       {" "}
@@ -204,8 +215,17 @@ export default function ComplexGrid3() {
                   color="#4caf50"
                   // onClick={() => setOrder((order.state: "onway"))}
                 >
-                  Accept
+                  Deliverd <DoneIcon className={classes.iconTab} />
                 </Button>
+                <Button
+                  className={classes.view}
+                  variant="contained"
+                  color="#cddc39"
+                  // onClick={() => setOrder((order.state: "onway"))}
+                >
+                  View <VisibilityIcon className={classes.iconTab} />
+                </Button>
+
                 {/* <Button
           className={classes.reject}
           variant="contained"

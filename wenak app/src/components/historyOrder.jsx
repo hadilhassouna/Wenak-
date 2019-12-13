@@ -11,6 +11,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BeenhereIcon from "@material-ui/icons/Beenhere";
 import ScheduleIcon from "@material-ui/icons/Schedule";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
 const useStyles = makeStyles(theme => ({
   root: {
@@ -191,11 +192,12 @@ export default function ComplexGrid2() {
 
               <div className={classes.button1}>
                 <Button
-                  className={classes.view}
+                  className={classes.accept}
                   variant="contained"
                   color="#4caf50"
+                  // onClick={() => setOrder((order.state: "onway"))}
                 >
-                  View Order
+                  View Order <VisibilityIcon className={classes.iconTab} />
                 </Button>
                 {/* <Button
 className={classes.reject}

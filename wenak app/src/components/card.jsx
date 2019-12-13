@@ -12,6 +12,8 @@ import PersonIcon from "@material-ui/icons/Person";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BeenhereIcon from "@material-ui/icons/Beenhere";
 import ScheduleIcon from "@material-ui/icons/Schedule";
+import DoneIcon from "@material-ui/icons/Done";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
@@ -54,9 +56,11 @@ const useStyles = makeStyles(theme => ({
     width: "130px",
     height: " 40px"
   },
-  reject: {
+  view: {
     color: "#FFFFFF",
-    backgroundColor: "#e53935"
+    backgroundColor: "#cddc39",
+    width: "130px",
+    height: " 40px"
   },
   details: {
     padding: "10px",
@@ -70,6 +74,11 @@ const useStyles = makeStyles(theme => ({
   orderDetails: {
     //   padding:"",
     marginBottom: "5px"
+  },
+  iconTab: {
+    color: "#fafafa",
+    textAlign: "right",
+    marginLeft: "15px"
   }
 }));
 
@@ -82,31 +91,74 @@ export default function ComplexGrid() {
   //   const pending = "pending";
   //   const onWay = "onWay";
   //   const state = { pending, onWay };
-  /////////////////////////hooks
+
+  ///------------------------ Get pending Orders ------------------------------------
   useEffect(() => {
     document.title = ` Drivers Orders`;
     console.log("I'm inside use effect");
 
     axios
-      .get(`http://localhost:3000/api/driver/allorder_d`)
+      .get(`/api/driver/allorder_d`)
       .then(res => {
         setOrder(res.data);
-        console.log("I'm inside axios", res.data);
+        console.log("I'm inside axios to get pendding orders", res.data);
       })
       .catch(err => {
-        console.log("I'm error", err);
+        console.log("I'm error inside axios to get pendding orders", err);
       });
   }, []);
-  return (
-    //     <div>
-    //       {" "}
-    //       {orders.map(order => (
-    //         <p>{orders[0].state}</p>
-    //       ))}
-    //     </div>
-    //   );
-    //
 
+  ///------------------------ Accept pending Orders ------------------------------------
+  const handleAccept = id => {
+    // useEffect(() => {
+    //   document.title = ` Drivers Orders`;
+    //   console.log("I'm inside use effect Accept");
+    const orderId = id;
+    axios
+      .post(
+        `/api/driver/accept_order`,
+        { _id: orderId },
+        {
+          headers: {
+            "x-access-token": localStorage.getItem("usertoken")
+          }
+        }
+      )
+      .then(res => {
+        setOrder(res.data);
+        console.log("accept the order", orderId);
+      })
+      .catch(err => {
+        console.log("error accept the order", err);
+      });
+  };
+  // const handleAccept = event => {
+  //   set(event.target.value);
+  // };
+
+  // const handleAccept = event => {
+  //   const orderId = orders._id;
+  //   console.log(orderId)
+  //   $.ajax({
+  //     url: "/api/customer/send_order",
+  //     headers: {
+  //       "x-access-token": localStorage.getItem("usertoken")
+  //     },
+  //     type: "POST",
+  //     data: { _id: orderId },
+  //     datatype: "json",
+  //     success: function() {
+  //       console.log("The order has accepted");
+  //       alert("accept the order  successfully");
+  //     },
+  //     error: function() {
+  //       console.log("error in order");
+  //       alert("Error in  accept sending");
+  //     }
+  //   });
+  // };
+
+  return (
     <div className={classes.root}>
       {orders.map(order => (
         <Paper className={classes.paper}>
@@ -128,7 +180,7 @@ export default function ComplexGrid() {
                       <p>
                         {" "}
                         <PersonIcon className={classes.icons} />
-                        buser_id : {order.user_id}
+                        _id : {order._id}
                       </p>
                     </Typography>
                   </div>
@@ -148,7 +200,6 @@ export default function ComplexGrid() {
                     {/* {orders.map(order => ( */}
                     <Typography variant="body2">
                       <p>
-                        {" "}
                         <ScheduleIcon className={classes.icons} /> Time:
                         {order.date}
                       </p>
@@ -202,12 +253,21 @@ export default function ComplexGrid() {
 
               <div className={classes.button1}>
                 <Button
-                  className={classes.accept}
+                  // type="submit"
                   variant="contained"
                   color="#4caf50"
+                  // onSubmit={this.handleSubmit}
+                  onClick={() => handleAccept(order._id)}
+                >
+                  Accept <DoneIcon className={classes.iconTab} />
+                </Button>
+                <Button
+                  className={classes.view}
+                  variant="contained"
+                  color="#cddc39"
                   // onClick={() => setOrder((order.state: "onway"))}
                 >
-                  Accept
+                  View <VisibilityIcon className={classes.iconTab} />
                 </Button>
                 {/* <Button
           className={classes.reject}

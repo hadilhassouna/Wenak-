@@ -91,11 +91,11 @@ sendorder(event){
   render() {
     return (
       <div>
+          {/* <br></br>
           <br></br>
           <br></br>
           <br></br>
-          <br></br>
-          <hr></hr>
+          <hr></hr> */}
 
         <Header as='h3' content='Complete Your Order Please' style={style.h3} textAlign='left' />
 
