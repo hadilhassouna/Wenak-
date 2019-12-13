@@ -3,20 +3,24 @@
 
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import Logo2 from '../assets/logo2.png';
-import { Link } from "react-router-dom";
-import Completion from './Completion';
+import { InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import Logo2 from '../assets/logo2.png'
+import Trial from "./Trial"
 
-
-
-class Home extends React.Component {
+class home extends React.Component {
   render() {
     return (
       <div>
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='bottom'>
           <Grid.Column style={{ maxWidth: 450 }}>
-          
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           <br></br>
           <br></br>
           <br></br>
@@ -27,14 +31,16 @@ class Home extends React.Component {
               Assign your Pickup point
             </Header>
             <Image src={Logo2} size='small'/>
+            <div style={{ margin: '100px' }}>
+				
+			</div>
             
             <Form size='large'>
               <Segment stacked>
-              <Link to={'/Completion'}>  
+                
                 <Button color='yellow' size='large'>
                   After assigning The Pickup Point Press Here To Continue
                 </Button>
-                </Link>
 
               </Segment>
             </Form>
@@ -42,14 +48,16 @@ class Home extends React.Component {
           </Grid.Column>
         </Grid>
 
+          
+  
+         
+        {/* <Map google={this.props.google}
 
-        <Map google={this.props.google}
-          initialCenter={{
+          center={{
             lat: 31.9478,
             lng: 35.2296
           }}
-          zoom={7}
-          onClick={this.onMapClicked}>
+          zoom={14}>
 
           <Marker onClick={this.onMarkerClick}
             name={'Current location'}
@@ -57,19 +65,29 @@ class Home extends React.Component {
           />
 
 
-
           <InfoWindow onClose={this.onInfoWindowClose}>
 
           </InfoWindow>
-        </Map>
+        </Map> */}
+
+
+        <div style={{margin: '50px'}}>
+          <Trial
+        google={this.props.google}
+        center={{lat: 31.9478, lng: 35.2296}}
+        height='500px'
+        zoom={7}
+      />
+      </div>
+
+      
       </div>
     )
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: ("AIzaSyBwVhZGkweHHX618TDXpOsGMWWSJ2VA7Ug")
-})(Home)
+export default home
+ 
 
 
 
