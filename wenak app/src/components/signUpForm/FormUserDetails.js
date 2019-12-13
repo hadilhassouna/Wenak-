@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import AppBar from 'material-ui/AppBar';
+import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 //
@@ -12,7 +12,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import './signUp.css';
 
 export class FormUserDetails extends Component {
     continue = e => {
@@ -25,10 +24,9 @@ export class FormUserDetails extends Component {
     render() {
         const { values, handleChange } = this.props;
         return (
-            <div className="signUp">
-            <MuiThemeProvider >
+            <MuiThemeProvider>
                 <React.Fragment>
-                    {/* <AppBar title="Enter User Details"/> */}
+                    <AppBar title="Enter User Details"/>
                     <TextField 
                         hintText="Enter Your Mobile Number"
                         floatingLabelText="Mobile"
@@ -37,22 +35,13 @@ export class FormUserDetails extends Component {
                     />
                     <br/>
                     <TextField 
-                        hintText="Enter Your Name"
-                        floatingLabelText="Name"
-                        onChange={handleChange('name')}
-                        defaultValue={values.name}
-                    />
-                    <br/>
-                    <TextField 
                         hintText="Enter Password"
                         floatingLabelText="Password"
-                        type='password'
                         onChange={handleChange('password')}
                         defaultValue={values.password}
                     />
                     <br/>
-                    <div className="signUp">
-                     <RadioGroup aria-label="position" name="position" defaultValue={values.userType} onChange={handleChange('userType')} row>                    
+                    <RadioGroup aria-label="position" name="position" defaultValue={values.userType} onChange={handleChange('userType')} row>                    
                         <FormControlLabel
                             value="Driver"
                             control={<Radio color="primary" />}
@@ -65,9 +54,7 @@ export class FormUserDetails extends Component {
                             label="Customer"
                             labelPlacement="start"
                         />
-                    </RadioGroup>   
-                    </div>
-                    
+                    </RadioGroup>
                     <br/>
                     <RaisedButton 
                         label="Continue"
@@ -77,7 +64,7 @@ export class FormUserDetails extends Component {
                     />
                 </React.Fragment>
             </MuiThemeProvider>
-            </div>
+            
         )
     }
 }

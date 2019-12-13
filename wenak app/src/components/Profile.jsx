@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Form, Button, Rating, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
+import { Form, Button, Rating, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
 import ProfilePicture from '../assets/ProfilePicture.png'
 
 
@@ -21,36 +21,8 @@ const style = {
 }
 
 class Profile extends React.Component {
- constructor(props){
-    super(props)
-    this.state={
-      name:"",
-      phoneNumber:"",
-      email:"",
-      password:""   
-    }
-    //bind methods here
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  } 
-//methods
-handleChange(event) {
-  const target = event.target;
-  const value = target.value;
-  const name = target.name;
-  this.setState({
-    [name]: value
-  })
-};
 
-handleSubmit(event) {    
-    event.preventDefault();
-    console.log(this.state)
-    //  console.log("mobile ",this.state.mobile, 'pw', this.state.password)
-    //Requests go here
-  }
-  
-    // state = {}
+    state = {}
     handleRate = (e, { rating, maxRating }) =>
         this.setState({ rating, maxRating })
 
@@ -59,7 +31,7 @@ handleSubmit(event) {
 
             <div>
                 <Header as='h3' content='Profile' style={style.h3} textAlign='left' />
-                <Image src = 'ProfilePicture' size='medium' circular/>
+                <Image src={ProfilePicture} size='medium' circular/>
                  
 
                 <Button animated>
@@ -93,14 +65,14 @@ handleSubmit(event) {
                 <br></br>
                 <br></br>
                 
-                <Input name = "name" onChange={this.handleChange} value= {this.state.name} placeholder="Name"/> 
-                <Input name = "phoneNumber" onChange={this.handleChange} value= {this.state.phoneNumber} placeholder="Phone Number"/> 
-                <Input name = "email" onChange={this.handleChange} value= {this.state.email} placeholder="email"/> 
-                <Input name = "password" onChange={this.handleChange} value= {this.state.password} placeholder="Password"/> 
+                <input type="text" placeholder="Name"></input>
+                <input type="text" placeholder="Phone Number"></input>
+                <input type="text" placeholder="Email"></input>
+                <input type="text" placeholder="Password"></input>
                 <br></br>
 
                 
-                <Button onClick={this.handleSubmit} color='yellow' size='large'>
+                <Button color='yellow' size='large'>
                     Update  
                 </Button>
 

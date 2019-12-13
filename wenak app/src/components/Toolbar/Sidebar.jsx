@@ -42,6 +42,38 @@ class Sidebar extends React.Component {
                         </NavText>
                     </NavItem>
                 </NavItem>
+                <NavItem eventKey="settings">
+                    <NavIcon src>
+                        <i className="fa fa-fw fa-settings" style={{ fontSize: '2em' }} />
+                    </NavIcon>
+                    <NavText>
+                        Settings
+                    </NavText>
+                </NavItem>
+                <NavItem eventKey="contact">
+                    <NavIcon src>
+                        <i className="fa fa-fw fa-contact" style={{ fontSize: '2em' }} />
+                    </NavIcon>
+                    <NavText>
+                        Contact
+                    </NavText>
+                </NavItem>
+                <NavItem eventKey="share">
+                    <NavIcon src>
+                        <i className="fa fa-fw fa-share" style={{ fontSize: '2em' }} />
+                    </NavIcon>
+                    <NavText>
+                        Share
+                    </NavText>
+                </NavItem>
+                <NavItem eventKey="about">
+                    <NavIcon src>
+                        <i className="fa fa-fw fa-about" style={{ fontSize: '2em' }} />
+                    </NavIcon>
+                    <NavText>
+                        About us
+                    </NavText>
+                </NavItem>
             </SideNav.Nav>
         </SideNav>
         );
