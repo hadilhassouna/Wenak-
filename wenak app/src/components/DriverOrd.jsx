@@ -15,7 +15,12 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import NestedGrid from "./NewOrder";
 import NestedGrid2 from "./historyCard";
+
+import Toolbar2 from './Toolbar/Toolbar2';
+
+
 import NestedGrid3 from "./onwayCard";
+
 import { textAlign } from "@material-ui/system";
 
 function TabPanel(props) {
@@ -56,26 +61,28 @@ const useStyles = makeStyles(theme => ({
     color: "red",
     textAlign: "center",
     indicatorColor: "Primary",
-    padding: "120px 420px 420px 420px"
+    padding: "50px 100px 50px 100px"
   },
   iconTab: {
-    color: "#fafafa",
+    color: "#FAFAFA",
     textAlign: "center"
   },
   tab: {
-    indicatorColor: "#ffca28",
+    indicatorColor: "#FFCA28",
     fontSize: "14px",
     textColor: "#212121",
-    marginLeft: "100px",
-    // marginRight: "90px",
+    marginLeft: "50px",
+    marginRight: "50px",
     textAlign: "center",
     // paddingLeft: "20px",
     width: "1000px"
   },
   navcolor: {
-    backgroundColor: "#aed581",
-    borderRadius: "10px"
-  }
+
+    backgroundColor: "#FFC400"
+  },
+
+   
 }));
 
 export default function ScrollableTabsButtonForce() {
@@ -87,6 +94,10 @@ export default function ScrollableTabsButtonForce() {
   };
 
   return (
+    <div>
+    <div>
+      <Toolbar2 />
+      </div>
     <div className={classes.root}>
       <AppBar
         className={classes.navcolor}
@@ -145,6 +156,7 @@ export default function ScrollableTabsButtonForce() {
       <TabPanel value={value} index={2}>
         <NestedGrid2 />
       </TabPanel>
+    </div>
     </div>
   );
 }
