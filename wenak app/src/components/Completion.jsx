@@ -160,9 +160,9 @@ class Completion extends React.Component {
 
           
                    
-          {/* <Button color='yellow' size='large'>
+          <Button >
             Send Your Order
-          </Button> */}
+          </Button>
 
 </Grid>
 

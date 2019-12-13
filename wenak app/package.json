@@ -41,6 +41,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "node-sass": "^4.13.0",
     "nodemon": "^2.0.1",
+    "pino": "^5.14.0",
     "pusher": "^3.0.0",
     "pusher-js": "^5.0.3",
     "react": "^16.12.0",
