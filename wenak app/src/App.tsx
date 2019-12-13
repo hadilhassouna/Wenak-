@@ -32,6 +32,7 @@ const App: React.FC = () => {
       <div className="App">
         {/* <Sidebar /> */}
         <NavBar />
+
         {/* <DrawerIcon /> */}
         <main >
         
