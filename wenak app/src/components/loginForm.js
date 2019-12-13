@@ -139,6 +139,7 @@ class LoginForm extends Component {
           <Message>
             <Link to={"/UserForm"}>Sign Up</Link>
           </Message>
+          
         </Grid.Column>
       </Grid>
     )
