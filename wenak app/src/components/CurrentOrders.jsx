@@ -37,7 +37,11 @@ class CurrentOrders extends React.Component {
       var that = this;
       $.ajax({
         type: "GET",
-        url: "/api/driver/order_d",
+        url: "/api/customer/get_current_order",
+        headers: {
+          //'x-access-token': localStorage.getItem('usertoken')
+          'x-access-token': localStorage.getItem("usertoken")
+        },
         success: function(collection) {
           console.log(collection);
           that.setState({
@@ -107,12 +111,12 @@ class CurrentOrders extends React.Component {
                 <br></br>
 
                 <Form size='small'>
-              <Segment stacked>
+              {/* <Segment stacked>
               <Header as='h2'>Order Status:</Header>
               <Header as='h2'>Preparing</Header>
               <Header as='h2'>On The Way</Header>
               <Header as='h2'>Completed Order</Header>
-              </Segment>
+              </Segment> */}
             </Form>
             
             </div>

@@ -72,6 +72,23 @@ router.get("/get_current_order",VerifyToken ,function(req: any, res: any, next: 
     });
 });
 
+//get the previous orders
+router.get("/get_previous",VerifyToken ,function(req: any, res: any, next: any) {
+    User.findById(req.userId, { password: 0 }, function (err:any, user:any) {
+        if (err) return res.status(500).send("There was a problem finding the user.");
+        if (!user) return res.status(404).send("No user found.");
+         var id = user._id;
+
+    Order.find({state: "delivered",user_id:ObjectId(id)}).exec((err:any,order:any) => { 
+        if(err){
+          console.log(err);
+          req.send()
+        }
+        res.json(order)});
+    });
+});
+
+
 
 export {}
 module.exports = router;

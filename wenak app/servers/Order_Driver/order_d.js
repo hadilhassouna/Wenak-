@@ -47,13 +47,14 @@ router.post('/accept_order', VerifyToken, function (req, res, next) {
         if (!user)
             return res.status(404).send("No user found.");
         var id = user._id;
+        var name = user.name;
         // var order = {
         //   driver_id:id
         // }
         var id_order = req.body._id;
         console.log(id_order);
         console.log(id);
-        Order.findOneAndUpdate({ _id: ObjectId(id_order) }, { $set: { driver_id: ObjectId(id) } }, { useFindAndModify: false }).then((data) => {
+        Order.findOneAndUpdate({ _id: ObjectId(id_order) }, { $set: { driver_id: ObjectId(id), state: "current", driver_name: name } }, { useFindAndModify: false }).then((data) => {
             if (data === null) {
                 throw new Error('Order Not Found');
             }
