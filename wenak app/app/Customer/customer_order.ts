@@ -15,13 +15,13 @@ var VerifyToken = require('../authontication/AuthController.js');
 
 ///send order.
 router.post("/send_order",VerifyToken ,function(req: any, res: any, next: any) {
-
-    User.findById(req.userId, { password: 0 }, function (err:any, user:any) {
+    //var myId = JSON.parse(req.userId);
+    User.findById(req.userId), { password: 0 }, function (err:any, user:any) {
         if (err) return res.status(500).send("There was a problem finding the user.");
         if (!user) return res.status(404).send("No user found.");
         console.log(req);
 
-   var id = user._id;
+   var id = ObjectId(JSON.parse(req.userId));
     console.log(id);
     const myorder = req.body;
     console.log(myorder);
@@ -29,7 +29,7 @@ router.post("/send_order",VerifyToken ,function(req: any, res: any, next: any) {
         return res.status(400).json({ msg: "problem in order" });
     else if (myorder) {
         Order.create({
-            user_id: ObjectId(id),
+            user_id: id,
             driver_id:ObjectId("0"),
             order_details: myorder.order_details,
             location_start_lng: myorder.location_start_lng,
@@ -46,12 +46,14 @@ router.post("/send_order",VerifyToken ,function(req: any, res: any, next: any) {
         }, function (err:any, req:any, res:any, next:any){
             if (err) {
                 console.log(err);
+                res.send("error")
                
             }
              console.log("success")
-        });
-     }
-  });
+             res.send("success in order")
+            });
+        }
+    }
 });
 ///get the current order to the specific customer.
 router.get("/get_current_order",VerifyToken ,function(req: any, res: any, next: any) {

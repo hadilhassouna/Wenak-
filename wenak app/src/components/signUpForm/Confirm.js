@@ -7,6 +7,9 @@ import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import $ from 'jquery';
 import './signUp.css';
+import NavBar from '../Toolbar/Toolbar';
+
+
 export class FormUserDetails extends Component {
     continue = e => {
         e.preventDefault();
@@ -23,7 +26,7 @@ export class FormUserDetails extends Component {
 
             $.ajax({
               type: "POST",
-              url: "/api/auth/register",
+              url: "http://localhost:4000/api/auth/register",
               data:{
                 mobilenum:mobilenum,
                 password:password,
@@ -35,13 +38,13 @@ export class FormUserDetails extends Component {
                   console.log(this.data)
                   console.log("sucess login the user");
                   alert("Hello " + name);
-                  window.location = './Home';
+                  window.location = './LoginForm';
         
               },
               error: function(request, status, error) {
                     console.log("error in register");
-
-                    alert("Error in register or the user is exists")
+                    alert("Error in register or the user is exists");
+                    window.location = './UserForm';
 
                   }
               });
@@ -57,7 +60,10 @@ export class FormUserDetails extends Component {
     render() {
         const { values: { mobile, password, userType,name } } = this.props;
         return (
+ 
             <MuiThemeProvider >
+                            <NavBar />
+
                 <React.Fragment>
                     {/* <AppBar title="Confirm User Data"/> */}
                     <List className="signUp">
