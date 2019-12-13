@@ -33,12 +33,14 @@
 
 // AIzaSyDpbTFDpUCq7ny1MS4io2tBZA1AjKx1e8s
 
+// AIzaSyDfnYu1_y7srLbBw5pKqBDPh5zdLc0_UZ4
+
 import React, { Component } from 'react'
 import { GoogleMap, withScriptjs, withGoogleMap, InfoWindow, Marker } from 'react-google-maps';
 import Geocode from "react-geocode"
 import Autocomplete from "react-google-autocomplete"
 import { Button, Input, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react';
-Geocode.setApiKey("AIzaSyDpbTFDpUCq7ny1MS4io2tBZA1AjKx1e8s");
+Geocode.setApiKey("AIzaSyBuqgFsDLy0e_a-OaI-MwzZI6HXfMwigvc");
 Geocode.enableDebug();
 
 
@@ -309,7 +311,7 @@ class Trial extends Component{
 				</div>
 
 				<AsyncMap
-					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0&libraries=places"
+					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuqgFsDLy0e_a-OaI-MwzZI6HXfMwigvc&libraries=places"
 					loadingElement={
 						<div style={{ height: `100%` }} />
 					}
@@ -323,7 +325,7 @@ class Trial extends Component{
 			</div>
 		} else {
 			map = <div style={{height: this.props.height}} />
-		}
+		}	
 		return( map )
 	}
 }

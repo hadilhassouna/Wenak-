@@ -37,7 +37,7 @@ class home extends React.Component {
             
             <Form size='large'>
               <Segment stacked>
-                
+
                 <Button color='yellow' size='large'>
                   After assigning The Pickup Point Press Here To Continue
                 </Button>
