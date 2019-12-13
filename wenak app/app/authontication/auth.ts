@@ -68,7 +68,7 @@ router.post('/register', [
       .create({
         from: +18574454640,
         to: mobilenum,
-        body:"Hello from wenak app, hope you be our client"
+        body:"Hello from wenak app, hope you become our client"
       })
       .then(() => {
         res.send(JSON.stringify({ success: true }));
