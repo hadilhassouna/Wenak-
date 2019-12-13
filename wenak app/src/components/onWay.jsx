@@ -1,3 +1,4 @@
+// import React from "react";
 import React, { Fragment, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -12,6 +13,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BeenhereIcon from "@material-ui/icons/Beenhere";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import axios from "axios";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -46,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: "auto",
     maxHeight: "auto"
   },
-  view: {
+  accept: {
     color: "#FFFFFF",
     backgroundColor: "#4caf50",
     width: "130px",
@@ -56,7 +58,6 @@ const useStyles = makeStyles(theme => ({
     color: "#FFFFFF",
     backgroundColor: "#e53935"
   },
-
   details: {
     padding: "10px",
     marginTop: "15px"
@@ -71,8 +72,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "5px"
   }
 }));
-
-export default function ComplexGrid2() {
+export default function ComplexGrid3() {
   const classes = useStyles();
   const [orders, setOrder] = React.useState([]);
   const [userId, setUserId] = React.useState("");
@@ -87,7 +87,7 @@ export default function ComplexGrid2() {
     console.log("I'm inside use effect");
 
     axios
-      .get(`http://localhost:3000/api/driver/previous_order_d`)
+      .get(`http://localhost:3000/api/driver/allorder_d`)
       .then(res => {
         setOrder(res.data);
         console.log("I'm inside axios", res.data);
@@ -97,6 +97,15 @@ export default function ComplexGrid2() {
       });
   }, []);
   return (
+    //     <div>
+    //       {" "}
+    //       {orders.map(order => (
+    //         <p>{orders[0].state}</p>
+    //       ))}
+    //     </div>
+    //   );
+    //
+
     <div className={classes.root}>
       {orders.map(order => (
         <Paper className={classes.paper}>
@@ -116,7 +125,6 @@ export default function ComplexGrid2() {
                   <div className={classes.orderDetails}>
                     <Typography gutterBottom variant="subtitle1">
                       <p>
-                        {" "}
                         <PersonIcon className={classes.icons} />
                         buser_id : {order.user_id}
                       </p>
@@ -126,7 +134,6 @@ export default function ComplexGrid2() {
                     {/* {orders.map(order => ( */}
                     <Typography variant="body2" gutterBottom>
                       <p>
-                        {" "}
                         <LocationOnIcon className={classes.icons} /> Location :{" "}
                         {order.order_details}
                       </p>
@@ -169,41 +176,43 @@ export default function ComplexGrid2() {
             </Grid> */}
               </Grid>
             </Grid>
-            <div style={{ marginBottom: "5px" }}>
-              <SimpleRating />
+            {/* <div style={{ marginBottom: "10px" }}>
+          <SimpleRating /> */}
 
-              <div
-                style={{
-                  float: "right",
-                  marginRight: "31px",
-                  fontSize: "39px"
-                }}
-              >
-                <Grid item>
-                  <Typography
-                    variant="subtitle1"
-                    style={{ marginRight: "26px", fontSize: "25px" }}
-                  >
-                    $19.00
-                  </Typography>
-                </Grid>
-              </div>
+            <div
+              style={{ float: "right", marginRight: "31px", fontSize: "39px" }}
+            >
+              <Grid item>
+                <Typography
+                  variant="subtitle1"
+                  style={{
+                    paddingTop: "20px",
+                    marginRight: "26px",
+                    fontSize: "25px"
+                  }}
+                >
+                  <p>$ {order.price}</p>
+                  {/* price */}
+                </Typography>
+              </Grid>
+              {/* </div> */}
 
               <div className={classes.button1}>
                 <Button
-                  className={classes.view}
+                  className={classes.accept}
                   variant="contained"
                   color="#4caf50"
+                  // onClick={() => setOrder((order.state: "onway"))}
                 >
-                  View Order
+                  Accept
                 </Button>
                 {/* <Button
-className={classes.reject}
-variant="contained"
-color="#e53935"
->
-Reject
-</Button> */}
+          className={classes.reject}
+          variant="contained"
+          color="#e53935"
+        >
+          Reject
+        </Button> */}
               </div>
             </div>
           </Grid>
@@ -212,3 +221,4 @@ Reject
     </div>
   );
 }
+//
