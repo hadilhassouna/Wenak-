@@ -23,6 +23,7 @@ import Settings from "./components/Settings";
 import About from "./components/About";
 import SocialFollow from './components/SocialFollow';
 import ContactForm from './components/contactForm/ContactForm';
+import Trial from './components/Trial';
 
 const App: React.FC = () => {
   return (
@@ -55,6 +56,8 @@ const App: React.FC = () => {
           component={UserForm}
           className="signUp"
         /> */}
+                <Route exact path={"/Trial"} component={Trial} />
+
         <Route exact path={"/Home"} component={Home} />
         {/* <Route exact path={"/HomePage"} component={HomePage} /> */}
         <Route exact path={"/Completion"} component={Completion} />
