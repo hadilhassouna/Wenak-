@@ -37,7 +37,7 @@ class Completion extends React.Component {
     }
     //bind methods here
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.sendorder = this.sendorder.bind(this);
   }
 //methods
 handleChange(event) {
@@ -49,7 +49,7 @@ handleChange(event) {
   })
 };
 
-handleSubmit(event) {
+sendorder(event){
   event.preventDefault();
   console.log(this.state);
   //  console.log("mobile ",this.state.mobile, 'pw', this.state.password)
@@ -71,16 +71,23 @@ handleSubmit(event) {
   console.log(data);
   $.ajax({
     url: "/api/customer/send_order",
+    headers: {
+      //'x-access-token': localStorage.getItem('usertoken')
+      'x-access-token': localStorage.getItem("usertoken")
+    },
     type: "POST",
     data: data,
     datatype: "json",
-    success: function(err) {
-      alert("User exists you can log in");
+    success: function() {
+      console.log("The order has sent successfully");
+      alert("The order sent successfully");
+    },
+    error: function() {
+      console.log("error in order");
+      alert("Error in order sending");
     }
   });
 }
-
-
   render() {
     return (
       <div>
@@ -140,26 +147,6 @@ handleSubmit(event) {
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
 
             <Header as='h3' content="Add More Details (Optional):" style={style.h3} textAlign='left' />
             <Input name = "additionalInfo" onChange={this.handleChange} value= {this.state.additionalInfo} placeholder="enter any additional info (optional)"/> 
@@ -173,7 +160,7 @@ handleSubmit(event) {
             <br></br>
             <br></br>
             <Link to={'/CurrentOrders'}>
-            <Button color='yellow' size='large'>
+            <Button color='yellow' size='large' onClick={this.sendorder}>
             Send Your Order
             </Button>  
             </Link>
@@ -203,4 +190,11 @@ export default GoogleApiWrapper({
 
 // handleRate = (e, { rating, maxRating }) =>
 //   this.setState({ rating, maxRating })
+
+
+// var token = localStorage.getItem("usertoken");
+// console.log(token);
+// const decoded = jwt_decode(token);
+// var email = decoded.email;
+// var username = decoded.userName
 

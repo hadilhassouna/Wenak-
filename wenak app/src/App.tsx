@@ -19,13 +19,24 @@ import NavbarUser from "./components/Toolbar/NavbarUser";
 import { BrowserRouter, Route } from "react-router-dom";
 import DrawerIcon from "./components/Toolbar/Drawer";
 
+import Settings from "./components/Settings";
+import About from "./components/About";
+import SocialFollow from './components/SocialFollow';
+import ContactForm from './components/contactForm/ContactForm';
+import Trial from './components/Trial';
+
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Sidebar />
-        <Toolbar />
-        <main></main>
+        {/* <Sidebar /> */}
+        <NavBar />
+        {/* <DrawerIcon /> */}
+        <main >
+        
+        </main>
+        
+        
         <Route exact path={"/LoginForm"} component={LoginForm} />
         <Route
           exact
@@ -38,22 +49,31 @@ const App: React.FC = () => {
         <main></main>
         <Route exact path={"/NavbarUser"} component={NavbarUser} />
         <Route exact path={"/DrawerIcon"} component={DrawerIcon} />
-        <Route exact path={"/LoginForm"} component={LoginForm} />
-        <Route
+        {/* <Route exact path={"/LoginForm"} component={LoginForm} /> */}
+        {/* <Route
           exact
           path={"/UserForm"}
           component={UserForm}
           className="signUp"
-        />
+        /> */}
+                <Route exact path={"/Trial"} component={Trial} />
+
         <Route exact path={"/Home"} component={Home} />
         {/* <Route exact path={"/HomePage"} component={HomePage} /> */}
         <Route exact path={"/Completion"} component={Completion} />
         <Route exact path={"/Orders"} component={Orders} />
         <Route exact path={"/DriverOrd"} component={DriverOrd} />
         <Route exact path={"/CurrentOrders"} component={CurrentOrders} />
+        <Route exact path={"/Settings"} component={Settings} />
+        <Route exact path={"/About"} component={About} />
+        <Route exact path={"/SocialFollow"} component={SocialFollow} />
+        <Route exact path={"/ContactForm"} component={ContactForm} />
+
+      
         {/* <Profile />
         <DriverOrders /> */}
       </div>
+     
     </BrowserRouter>
   );
 };

@@ -17,6 +17,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link } from "react-router-dom";
 import NavbarUser from './NavbarUser';
 import DrawerIcon from './Drawer';
+import $ from 'jquery';
 
 
 const useStyles = makeStyles(theme => ({
@@ -102,6 +103,24 @@ export default function NavBar() {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+  const handleMenuCloselogout = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+    $.ajax({
+      type: "GET",
+      url: "/api/auth/logout",
+      datatype: "json",
+      success:function(res){
+          console.log(res);
+          window.location = './LoginForm';
+      },
+      error: function(request, status, error) {
+            console.log("error in logout");
+            alert("Error in logout");
+          }
+      });
+  };
+
 
   const handleMobileMenuOpen = event => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -124,7 +143,8 @@ export default function NavBar() {
 
       <Link to={"/UserForm"}>
         <MenuItem onClick={handleMenuClose}>Sign Up</MenuItem> 
-      </Link>     
+      </Link>  
+        <MenuItem onClick={handleMenuCloselogout}>Log Out</MenuItem> 
     </Menu>
   );
 
@@ -180,9 +200,9 @@ export default function NavBar() {
             color="inherit"
             aria-label="open drawer"
           >
-
+            <DrawerIcon /> 
           </IconButton>
-          <DrawerIcon /> 
+          <DrawerIcon />
 
           <Typography className={classes.title} variant="h6" noWrap>
            Weenak!
@@ -241,9 +261,11 @@ export default function NavBar() {
       <div>
         {/* <NavbarUser /> */}
       </div>
+      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     </div>
   );
 }
+
 
 // <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
 //             {/* <MenuIcon /> */}

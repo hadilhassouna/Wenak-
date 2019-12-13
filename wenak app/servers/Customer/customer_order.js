@@ -14,13 +14,17 @@ const ObjectId = require('mongodb').ObjectID;
 var VerifyToken = require('../authontication/AuthController.js');
 ///send order.
 router.post("/send_order", VerifyToken, function (req, res, next) {
+    console.log("Hi I'm inside post order");
     User.findById(req.userId, { password: 0 }, function (err, user) {
+        console.log("Hi I'm inside  function findById in post order");
         if (err)
             return res.status(500).send("There was a problem finding the user.");
         if (!user)
             return res.status(404).send("No user found.");
         console.log(req);
-        var id = user._id;
+       var id = req.userId;
+       var name = user.name;
+
         console.log(id);
         const myorder = req.body;
         console.log(myorder);
@@ -29,7 +33,8 @@ router.post("/send_order", VerifyToken, function (req, res, next) {
         else if (myorder) {
             Order.create({
                 user_id: ObjectId(id),
-                driver_id: ObjectId("0"),
+                driver_id:ObjectId(0),
+                name:name,
                 order_details: myorder.order_details,
                 location_start_lng: myorder.location_start_lng,
                 location_start_lat: myorder.location_start_lat,
@@ -38,6 +43,7 @@ router.post("/send_order", VerifyToken, function (req, res, next) {
                 reciver_name: myorder.reciver_name,
                 recieverPhone: myorder.recieverPhone,
                 order_notes: myorder.order_notes,
+                driver_name:"",
                 rate: myorder.rate,
                 state: "pending",
                 date: Date.now(),
@@ -45,8 +51,11 @@ router.post("/send_order", VerifyToken, function (req, res, next) {
             }, function (err, req, res, next) {
                 if (err) {
                     console.log(err);
+                    console.log("Hi I'm err in post order");
+                   // res.send("error")
                 }
                 console.log("success");
+                //res.send("success")
             });
         }
     });
