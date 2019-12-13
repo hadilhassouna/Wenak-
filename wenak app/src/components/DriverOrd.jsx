@@ -15,7 +15,11 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import NestedGrid from "./NewOrder";
 import NestedGrid2 from "./historyCard";
+
 import Toolbar2 from './Toolbar/Toolbar2';
+
+
+import NestedGrid3 from "./onwayCard";
 
 import { textAlign } from "@material-ui/system";
 
@@ -74,8 +78,11 @@ const useStyles = makeStyles(theme => ({
     width: "1000px"
   },
   navcolor: {
+
     backgroundColor: "#FFC400"
   },
+
+   
 }));
 
 export default function ScrollableTabsButtonForce() {
@@ -92,8 +99,13 @@ export default function ScrollableTabsButtonForce() {
       <Toolbar2 />
       </div>
     <div className={classes.root}>
-      <AppBar position="relative" color="default" backgroundColor=" #d4e157">
-        <div className={classes.navcolor}>
+      <AppBar
+        className={classes.navcolor}
+        position="relative"
+        color="default"
+        backgroundColor=" #d4e157"
+      >
+        <div>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -138,8 +150,8 @@ export default function ScrollableTabsButtonForce() {
         <NestedGrid font />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {/* <NestedGrid /> */}
-        ola Mhanna
+        <NestedGrid3 />
+        {/* ola Mhanna */}
       </TabPanel>
       <TabPanel value={value} index={2}>
         <NestedGrid2 />

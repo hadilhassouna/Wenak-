@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,17 +14,23 @@ import DrawerIcon from './Drawer';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   title: {
-    flexGrow: 1,
+
   },
+  barColor: {
+    backgroundColor: "#424242",
+    height: "80px"
+  }
 }));
 
 export default function NavBar() {
   const classes = useStyles();
+
 
   return (
     <div className={classes.root}>
