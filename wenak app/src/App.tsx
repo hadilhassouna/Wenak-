@@ -26,7 +26,7 @@ import About from "./components/About";
 import SocialFollow from './components/SocialFollow';
 import ContactForm from './components/contactForm/ContactForm';
 import Trial from './components/Trial';
-
+import Checkout from './components/Checkout';
 
 const App: React.FC = () => {
   return (
