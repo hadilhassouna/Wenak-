@@ -21,6 +21,7 @@ import Home from '../home';
 import Completion from '../Completion';  
 import CurrentOrders from '../CurrentOrders';    
 import Orders from '../YourOrders';
+import Toolbar2 from './Toolbar2';
 
 
 
@@ -95,6 +96,8 @@ export default function NavbarUser() {
   };
   return (
       <BrowserRouter>
+          <Toolbar2 />
+
     <div className={classes.root}>
       <AppBar className={classes.colornav}  position="relative" color="default" backgroundColor=" #D4E157">
         <div >

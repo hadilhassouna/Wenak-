@@ -14,10 +14,10 @@ const ObjectId = require('mongodb').ObjectID;
 var VerifyToken = require('../authontication/AuthController.js');
 //
 ///send order.
-////
+
 router.post("/send_order", VerifyToken, function (req, res, next) {
     //var myId = JSON.parse(req.userId);
-    User.findById(req.userId), { password: 0 }, function (err, user) {
+    User.findById((req.userId), { password: 0 }, function (err, user) {
         if (err)
             return res.status(500).send("There was a problem finding the user.");
         if (!user)
@@ -54,7 +54,7 @@ router.post("/send_order", VerifyToken, function (req, res, next) {
                 res.send("success in order");
             });
         }
-    };
+   })
 });
 ///get the current order to the specific customer.
 router.get("/get_current_order", VerifyToken, function (req, res, next) {

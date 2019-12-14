@@ -1,6 +1,7 @@
+
 //Screen 3
 // import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import React, { Component } from "react";
+import React from "react";
 import {
   Button,
   Container,
@@ -20,20 +21,13 @@ import Trial from "./Trial";
 import  "../../src/App.css";
 import $ from 'jquery';
 const style = {
-  h1: {
-    marginTop: "3em"
-  },
-  h2: {
-    margin: "4em 0em 2em"
-  },
-  h3: {
-    marginTop: "2em",
-    padding: "2em 0em"
-  },
-  last: {
-    marginBottom: "300px"
-  }
-};
+    marginTop: '2em',
+    padding: '2em 0em',
+}
+  // last: {
+  //   marginBottom: '300px',
+  // },
+
 
 
 class Completion extends React.Component {
@@ -41,6 +35,7 @@ class Completion extends React.Component {
     super(props);
     this.state = {};
     // this.onSignUp = this.onSignUp.bind(this);
+    this.handleSend =this.handleSend.bind(this);
   }
   handleSend() {
     // event.preventDefault();
@@ -50,13 +45,22 @@ class Completion extends React.Component {
       Items: $("#Items").val(),
       reciverPhone : $("reciverPhone").val(),
       details: $("#details").val(),
-    
+      location_start_lng: "50.6",
+      location_start_lat:"906",
+      location_end_lng: "8888",
+      location_end_lat:"89",
+      order_notes:"nothing",
+      rate: 0,
+      state:"pending",
+      date: Date.now(),
+      price:5
     };
     console.log(data);
     $.ajax({
       type: "POST",
-      url: "api/customer/send_order",
-      headers: {"x-access-token": localStorage.getItem("usertoken")},
+      url: "/api/customer/send_order",
+      headers: {
+        "x-access-token": localStorage.getItem("usertoken")},
       data: data,
       datatype: "json",
       success: function() {
@@ -65,7 +69,6 @@ class Completion extends React.Component {
         console.log("success send order")
       }, error:
       function() {
- 
         console.log("errrrroooorrrr ");}
     })
   }
@@ -148,11 +151,14 @@ class Completion extends React.Component {
           </div>
         </Grid>
       </div>
-    );
+    )
   }
 }
 
-export default Completion;
+export default Completion
 
-// handleRate = (e, { rating, maxRating }) =>
-//   this.setState({ rating, maxRating })
+
+
+
+
+

@@ -40,12 +40,7 @@ export default function NestedGrid3() {
         <Grid container item xs={8} spacing={3}>
           <FormRow />
         </Grid>
-        <Grid container item xs={8} spacing={3}>
-          <FormRow />
-        </Grid>
-        <Grid container item xs={8} spacing={3}>
-          <FormRow />
-        </Grid>
+     
       </Grid>
     </div>
   );
