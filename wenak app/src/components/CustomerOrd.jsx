@@ -13,22 +13,14 @@ import ThumbDown from "@material-ui/icons/ThumbDown";
 import ThumbUp from "@material-ui/icons/ThumbUp";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-// import NestedGrid from "./orderGrid";
+import NestedGrid from "./NewOrder";
+import NestedCustom from "./NewCustomet_order";
+import NestedCurrent from "./CurrentOrders";
 import { textAlign } from "@material-ui/system";
-import { BrowserRouter, Route } from "react-router-dom";
-
-import Home from '../home';
-import Completion from '../Completion';  
-import CurrentOrders from '../CurrentOrders';    
-import Orders from '../YourOrders';
-import Toolbar2 from './Toolbar2';
-
-
-
-
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+
   return (
     <Typography
       component="div"
@@ -42,6 +34,7 @@ function TabPanel(props) {
     </Typography>
   );
 }
+
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
@@ -54,6 +47,7 @@ function a11yProps(index) {
     "aria-controls": `scrollable-force-tabpanel-${index}`
   };
 }
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -62,45 +56,39 @@ const useStyles = makeStyles(theme => ({
     color: "red",
     textAlign: "center",
     indicatorColor: "Primary",
-    padding: "50px 100px 50px 100px"
+    padding: "120px 420px 420px 420px"
   },
   iconTab: {
-    color: "#FAFAFA",
+    color: "#fafafa",
     textAlign: "center"
   },
   tab: {
-    indicatorColor: "#FFCA28",
+    indicatorColor: "#ffca28",
     fontSize: "14px",
     textColor: "#212121",
-    marginLeft: "50px",
-    marginRight: "50px",
+    marginLeft: "100px",
+    // marginRight: "90px",
     textAlign: "center",
     // paddingLeft: "20px",
     width: "1000px"
   },
   navcolor: {
-    backgroundColor: "#FFC400"
-  },
-colornav:{
-
-  backgroundColor: "#aed581",
-  borderRadius: "10px"
-}
+    backgroundColor: "#ffc400"
+  }
 }));
 
-export default function NavbarUser() {
+export default function ScrollableTabsButtonForce() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  return (
-      <BrowserRouter>
-          <Toolbar2 />
 
+  return (
     <div className={classes.root}>
-      <AppBar className={classes.colornav}  position="relative" color="default" backgroundColor=" #D4E157">
-        <div >
+      <AppBar position="relative" color="default" backgroundColor=" #d4e157">
+        <div className={classes.navcolor}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -112,7 +100,7 @@ export default function NavbarUser() {
           >
             <Tab
               className={classes.tab}
-              label="Order Now"
+              label="New"
               icon={
                 <FiberNewIcon fontSize="large" className={classes.iconTab} />
               }
@@ -120,7 +108,7 @@ export default function NavbarUser() {
             />
             <Tab
               className={classes.tab}
-              label="Current Order"
+              label="OnWay"
               icon={
                 <DirectionsBikeIcon
                   fontSize="large"
@@ -131,7 +119,7 @@ export default function NavbarUser() {
             />
             <Tab
               className={classes.tab}
-              label="Previous Orders"
+              label="History"
               icon={
                 <RestoreIcon fontSize="large" className={classes.iconTab} />
               }
@@ -141,23 +129,16 @@ export default function NavbarUser() {
         </div>
       </AppBar>
       <TabPanel value={value} index={0}>
-      <Home/>
-      <Completion />
-
         {/* new Orders form customers pending status */}
-        {/* <NestedGrid font /> */}
+        <NestedCustom font />
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <CurrentOrders />
-
         {/* <NestedGrid /> */}
+        ola Mhanna
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <Orders />
-
-        {/* <NestedGrid /> */}
+        <NestedCurrent />
       </TabPanel>
     </div>
-    </BrowserRouter>
   );
 }
