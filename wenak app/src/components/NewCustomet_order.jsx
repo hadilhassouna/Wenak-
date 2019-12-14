@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function NestedGrid() {
+export default function NestedCustom() {
   const classes = useStyles();
 
   function FormRow() {

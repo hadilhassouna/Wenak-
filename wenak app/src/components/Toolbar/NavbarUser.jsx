@@ -80,10 +80,11 @@ const useStyles = makeStyles(theme => ({
   navcolor: {
     backgroundColor: "#FFC400"
   },
+colornav:{
 
-  Bar2: {
-    
-  }
+  backgroundColor: "#aed581",
+  borderRadius: "10px"
+}
 }));
 
 export default function NavbarUser() {
@@ -95,8 +96,8 @@ export default function NavbarUser() {
   return (
       <BrowserRouter>
     <div className={classes.root}>
-      <AppBar className={classes.Bar2} position="relative" color="default" backgroundColor=" #D4E157">
-        <div className={classes.navcolor}>
+      <AppBar className={classes.colornav}  position="relative" color="default" backgroundColor=" #D4E157">
+        <div >
           <Tabs
             value={value}
             onChange={handleChange}

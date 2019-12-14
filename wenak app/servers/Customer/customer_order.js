@@ -74,6 +74,8 @@ router.get("/get_current_order", VerifyToken, function (req, res, next) {
 
 //get the previous orders
 router.get("/get_previous",VerifyToken ,function(req, res, next) {
+
+    console.log("i'm inside get previous customer server")
     User.findById(req.userId, { password: 0 }, function (err, user) {
         if (err) return res.status(500).send("There was a problem finding the user.");
         if (!user) return res.status(404).send("No user found.");
@@ -85,6 +87,7 @@ router.get("/get_previous",VerifyToken ,function(req, res, next) {
           req.send()
         }
         res.json(order)});
+        console.log("i'm inside gert previous customer server")
     });
 });
 

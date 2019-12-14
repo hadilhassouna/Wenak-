@@ -15,7 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import NestedGrid from "./NewOrder";
 import NestedGrid2 from "./historyCard";
-import NestedGrid3 from "./onwayCard";
+// import NestedGrid3 from "./onwayCard";
 import { textAlign } from "@material-ui/system";
 
 function TabPanel(props) {
@@ -139,7 +139,7 @@ export default function ScrollableTabsButtonForce() {
         <NestedGrid font />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <NestedGrid3 />
+        {/* <NestedGrid3 /> */}
         {/* ola Mhanna */}
       </TabPanel>
       <TabPanel value={value} index={2}>
