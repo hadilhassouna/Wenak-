@@ -24,7 +24,7 @@ import About from "./components/About";
 import SocialFollow from './components/SocialFollow';
 import ContactForm from './components/contactForm/ContactForm';
 import Trial from './components/Trial';
-
+import Checkout from './components/Checkout';
 
 const App: React.FC = () => {
   return (
@@ -70,6 +70,8 @@ const App: React.FC = () => {
         <Route exact path={"/About"} component={About} />
         <Route exact path={"/SocialFollow"} component={SocialFollow} />
         <Route exact path={"/ContactForm"} component={ContactForm} />
+        <Route exact path={"/Checkout"} component={Checkout} />
+
 
       
         {/* <Profile />

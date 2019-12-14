@@ -3,7 +3,9 @@
 import React, { Component } from 'react'
 import { Button, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
 import { InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import Trial from "./Trial"
+import Trial from "./Trial";
+import { Link } from "react-router-dom";
+
 
 const style = {
   h1: {
@@ -159,13 +161,15 @@ class Completion extends React.Component {
           </Grid.Column>
 
           
-                   
-          {/* <Button color='yellow' size='large'>
-            Send Your Order
-          </Button> */}
+          
 
 </Grid>
 
+  <Link to={'/Checkout'}>        
+    <Button color='yellow' size='large'>
+      Send Your Order
+    </Button>
+  </Link>
 
 
       </div>

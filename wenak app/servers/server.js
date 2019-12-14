@@ -24,6 +24,8 @@ const notifications = require('./notifications.js');
 app.use('/notifi', notifications);
 const twilio = require('./twilioServer.js');
 app.use('/twilio', twilio);
+const payment = require('./payment.js');
+app.use('/payment', payment);
 module.exports = app;
 app.get('/', function (req, res) {
     res.send('Hello world');
