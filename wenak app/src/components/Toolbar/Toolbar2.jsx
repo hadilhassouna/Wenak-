@@ -177,7 +177,8 @@ export default function Toolbar2() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+                        <DrawerIcon />
+
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             Weenak!
