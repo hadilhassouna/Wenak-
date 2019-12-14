@@ -7,9 +7,11 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import SettingsIcon from '@material-ui/icons/Settings';
+import PhoneIcon from '@material-ui/icons/Phone';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from "react-router-dom";
+import InfoIcon from '@material-ui/icons/Info';
 
 const useStyles = makeStyles({
   list: {
@@ -42,24 +44,44 @@ export default function DrawerIcon() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
+      <Link to={'/Settings'}>
       <List>
         {['Settings'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ?  <SettingsIcon /> :  <SettingsIcon /> }</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
+      </Link>
+
       <Divider />
+
+      <Link to={'/About'}>
       <List>
-        {['About Us', 'Contact us'].map((text, index) => (
+        {['About Us'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ? <InfoIcon />  : <Link to={'/About'}><InfoIcon /></Link>}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
+      </Link>
+
+      <Divider />
+
+      <Link to={'/ContactForm'}>
+      <List>
+        {['Contact Us'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <PhoneIcon />   :  <PhoneIcon /> }</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      </Link>
     </div>
+  
   );
 
   const fullList = side => (
@@ -69,23 +91,42 @@ export default function DrawerIcon() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
+      <Link to={'/Settings'}>
       <List>
         {['Settings'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ?  <SettingsIcon /> :  <SettingsIcon /> }</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
+      </Link>
+
       <Divider />
+
+      <Link to={'/About'}>
       <List>
-        {['About Us', 'Contact Us'].map((text, index) => (
+        {['About Us'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ? <InfoIcon />  : <Link to={'/About'}><InfoIcon /></Link>}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
+      </Link>
+
+      <Divider />
+
+      <Link to={'/ContactForm'}>
+      <List>
+        {['Contact Us'].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <PhoneIcon />   :  <PhoneIcon /> }</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      </Link>
     </div>
   );
 

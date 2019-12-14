@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Input, Form, Button, Rating, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
 import ProfilePicture from '../assets/ProfilePicture.png'
+import Toolbar2 from './Toolbar/Toolbar2';
 
 
 
@@ -58,6 +59,7 @@ handleSubmit(event) {
         return (
 
             <div>
+                <Toolbar2 />
                 <Header as='h3' content='Profile' style={style.h3} textAlign='left' />
                 <Image src = 'ProfilePicture' size='medium' circular/>
                  
