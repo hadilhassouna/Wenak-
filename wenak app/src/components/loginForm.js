@@ -3,6 +3,7 @@ import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown } f
 import Logo2 from '../assets/logo2.png'
 import $ from 'jquery';
 import { Link } from "react-router-dom";
+import NavBar from './Toolbar/Toolbar';
 
 
 
@@ -27,8 +28,8 @@ class LoginForm extends Component {
   }
 
 //login user
-  login(event){
-    event.preventDefault();
+  login(){
+   // event.preventDefault();
     var mobilenum= this.state.mobile;
     var password = this.state.password;
     var that = this;
@@ -46,12 +47,15 @@ class LoginForm extends Component {
         console.log("Hi I'm inside login post")
         alert("Hello "+mobilenum);
         var type = res.type;
+        var token = localStorage.setItem('usertoken', res.token);
+        localStorage.setItem('usertoken',res.token);
+        console.log(localStorage.getItem('usertoken'));
         console.log(type);
         if(type === "Customer"){
-          window.location="/Home";
+          window.location="/NavbarUser";
         }
         else{
-        console.log("I'm driver");
+          window.location="/DriverOrd";
         }
       },
     error: function(request, status, error) {
@@ -103,6 +107,8 @@ class LoginForm extends Component {
 
   render() {
     return (
+      <div>
+        <NavBar />
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='yellow' textAlign='center'>
@@ -136,8 +142,10 @@ class LoginForm extends Component {
           <Message>
             <Link to={"/UserForm"}>Sign Up</Link>
           </Message>
+          
         </Grid.Column>
       </Grid>
+      </div>
     )
   }
 }

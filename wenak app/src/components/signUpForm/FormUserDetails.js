@@ -13,6 +13,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import './signUp.css';
+import NavBar from '../Toolbar/Toolbar';
 
 export class FormUserDetails extends Component {
     continue = e => {
@@ -25,6 +26,8 @@ export class FormUserDetails extends Component {
     render() {
         const { values, handleChange } = this.props;
         return (
+            <div> 
+                <NavBar />
             <div className="signUp">
             <MuiThemeProvider >
                 <React.Fragment>
@@ -52,7 +55,7 @@ export class FormUserDetails extends Component {
                     />
                     <br/>
                     <div className="signUp">
-                     <RadioGroup aria-label="position" name="position" defaultValue={values.userType} onChange={handleChange('userType')} row>                    
+                     <RadioGroup className="radio" aria-label="position" name="position" defaultValue={values.userType} onChange={handleChange('userType')} row>                    
                         <FormControlLabel
                             value="Driver"
                             control={<Radio color="primary" />}
@@ -78,6 +81,8 @@ export class FormUserDetails extends Component {
                 </React.Fragment>
             </MuiThemeProvider>
             </div>
+            </div>
+
         )
     }
 }

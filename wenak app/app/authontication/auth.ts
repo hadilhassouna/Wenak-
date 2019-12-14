@@ -10,6 +10,16 @@ const config = require('../config');
 var VerifyToken = require('./AuthController.js');
 const { check, validationResult } = require('express-validator');
 
+const pino = require('express-pino-logger')();
+const client = require('twilio')(
+    'ACec49a638f1063d9909e19325c1cd3247',
+    '190ffee0620ff3a9b93d93d562eeea78'
+);
+router.use(pino);
+require('dotenv').config();
+
+
+
 
 //user register
 router.post('/register', [
@@ -52,6 +62,22 @@ router.post('/register', [
       // });
       const hello="hello user"
       res.status(200).send({ auth: true, hello:hello});
+
+      // res.header('Content-Type', 'application/json');
+      client.messages
+      .create({
+        from: +18574454640,
+        to: mobilenum,
+        body:"Hello from wenak app, hope you become our client"
+      })
+      .then(() => {
+        res.send(JSON.stringify({ success: true }));
+      })
+      .catch((err:any) => {
+        console.log(err);
+        res.send(JSON.stringify({ success: false }));
+      });
+
     });
   })
   });
