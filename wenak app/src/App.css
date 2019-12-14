@@ -84,6 +84,7 @@ a.linkedin {
 }
 .mapInput{
 margin-right:21px
+
 }
 .mapLable{
   margin-right:8px
@@ -92,6 +93,7 @@ margin-right:21px
   margin-bottom:10px
 }
 .mapStyle{
+
   border-radius: 15px;
   margin-bottom:30px
 }
@@ -109,6 +111,7 @@ inputDetails{
 }
 .header1{
   margin-right:10px
+
 }
 .butSend{
   margin-top: 100px;
@@ -123,3 +126,4 @@ inputDetails{
 .trial{  width: 970px;
   height: 450px;
 }
+

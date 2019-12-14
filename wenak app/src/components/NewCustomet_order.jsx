@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import ComplexGrid from "./card";
+import CustomGird from "./YourOrders";
 import ComplexGrid2 from "./historyOrder";
 import { width } from "@material-ui/system";
 const useStyles = makeStyles(theme => ({
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function NestedGrid2() {
+export default function NestedCustom() {
   const classes = useStyles();
 
   function FormRow() {
@@ -26,7 +26,7 @@ export default function NestedGrid2() {
       <React.Fragment>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
-            <ComplexGrid2 />
+            <CustomGird />
           </Paper>
         </Grid>
       </React.Fragment>
@@ -36,6 +36,12 @@ export default function NestedGrid2() {
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
+        <Grid container item xs={8} spacing={3}>
+          <FormRow />
+        </Grid>
+        <Grid container item xs={8} spacing={3}>
+          <FormRow />
+        </Grid>
         <Grid container item xs={8} spacing={3}>
           <FormRow />
         </Grid>

@@ -7,10 +7,11 @@ import Completion from "./components/Completion";
 import "./app.scss";
 import LoginForm from "./components/loginForm";
 import UserForm from "./components/signUpForm/UserForm";
-import Orders from "./components/YourOrders";
+// import Orders from "./components/YourOrders";
+import CustomerOrd from "./components/CustomerOrd";
 import CurrentOrders from "./components/CurrentOrders";
 import Profile from "./components/Profile";
-import DriverOrders from "./components/DriverOrders";
+// import DriverOrders from "./components/DriverOrders";
 import DriverOrd from "./components/DriverOrd";
 import NavBar from "./components/Toolbar/Toolbar.jsx";
 import Toolbar2 from "./components/Toolbar/Toolbar2.jsx";
@@ -59,7 +60,7 @@ const App: React.FC = () => {
         <Route exact path={"/Home"} component={Home} />
         {/* <Route exact path={"/HomePage"} component={HomePage} /> */}
         <Route exact path={"/Completion"} component={Completion} />
-        <Route exact path={"/Orders"} component={Orders} />
+        <Route exact path={"/CustomerOrd"} component={CustomerOrd} />
         <Route exact path={"/DriverOrd"} component={DriverOrd} />
         <Route exact path={"/CurrentOrders"} component={CurrentOrders} />
         <Route exact path={"/Settings"} component={Settings} />

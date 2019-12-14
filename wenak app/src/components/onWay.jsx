@@ -14,8 +14,8 @@ import BeenhereIcon from "@material-ui/icons/Beenhere";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import DoneIcon from "@material-ui/icons/Done";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import axios from "axios";
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -52,13 +52,13 @@ const useStyles = makeStyles(theme => ({
   },
   accept: {
     color: "#FFFFFF",
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4CAF50",
     width: "130px",
     height: " 40px"
   },
   view: {
     color: "#FFFFFF",
-    backgroundColor: "#cddc39",
+    backgroundColor: "#CDDC39",
     width: "130px",
     height: " 40px"
   },
@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: "15px"
   },
   icons: {
-    color: "#bdbdbd",
+    color: "#BDBDBD",
     marginRight: "9px",
     marginTop: "5px"
   },
@@ -75,9 +75,8 @@ const useStyles = makeStyles(theme => ({
     //   padding:"",
     marginBottom: "5px"
   },
-
   iconTab: {
-    color: "#fafafa",
+    color: "#FAFAFA",
     textAlign: "right",
     marginLeft: "15px"
   }
@@ -86,37 +85,58 @@ export default function ComplexGrid3() {
   const classes = useStyles();
   const [orders, setOrder] = React.useState([]);
   const [userId, setUserId] = React.useState("");
-  //   const [state, setState] = useState((order.state: "onway"));
   const [reciver_name, setReciver_name] = useState([]);
-  //   const pending = "pending";
-  //   const onWay = "onWay";
-  //   const state = { pending, onWay };
   /////////////////////////hooks
   useEffect(() => {
     document.title = `Drivers Orders`;
     console.log("I'm inside use effect");
-
+    fetchPosts();
+  }, []);
+  const fetchPosts = () => {
     axios
-      .get(`http://localhost:3000/api/driver/current_order_d`)
-      .then(res => {
-        setOrder(res.data);
-        console.log("I'm inside current order axios", res.data);
+      .get(`/api/driver/current_order_d`, {
+        headers: {
+          "x-access-token": localStorage.getItem("usertoken")
+        }
       })
+      .then(
+        res => setOrder(res.data)
+        // console.log("I'm inside current order axios", res.data);
+      )
       .catch(err => {
         console.log("I'm error", err);
       });
-  }, []);
-
+  };
+  console.log("I'm inside current order axios", orders);
+  // useEffect(() => {
+  //   const updateInvoiceData = async () => {
+  //     const results = await api.invoice.findData();
+  //     setInvoiceData(results);
+  //   };
+  //   updateInvoiceData();
+  // }, []);
+  ///------------------------ Deliver the order ------------------------------------
+  const deliverOrder = id => {
+    const orderId = id;
+    axios
+      .post(
+        `/api/driver/deliver_order`,
+        { _id: orderId },
+        {
+          headers: {
+            "x-access-token": localStorage.getItem("usertoken")
+          }
+        }
+      )
+      .then(res => {
+        //setOrder(res.data);
+        console.log("deliverd the order", orderId);
+      })
+      .catch(err => {
+        console.log("error  deliver the order", err);
+      });
+  };
   return (
-    //     <div>
-    //       {" "}
-    //       {orders.map(order => (
-    //         <p>{orders[0].state}</p>
-    //       ))}
-    //     </div>
-    //   );
-    //
-
     <div className={classes.root}>
       {orders.map(order => (
         <Paper className={classes.paper}>
@@ -136,8 +156,17 @@ export default function ComplexGrid3() {
                   <div className={classes.orderDetails}>
                     <Typography gutterBottom variant="subtitle1">
                       <p>
-                        <PersonIcon className={classes.icons} />
-                        buser_id : {order.user_id}
+                        <LocalOfferIcon className={classes.icons} />
+                        Order_id : {order._id}
+                      </p>
+                    </Typography>
+                  </div>
+                  <div className={classes.orderDetails}>
+                    <Typography variant="body2">
+                      <p>
+                        {" "}
+                        <PersonIcon className={classes.icons} /> Name:
+                        {order.name}
                       </p>
                     </Typography>
                   </div>
@@ -149,11 +178,8 @@ export default function ComplexGrid3() {
                         {order.order_details}
                       </p>
                     </Typography>
-                    {/* ))} */}
                   </div>
-
                   <div className={classes.orderDetails}>
-                    {/* {orders.map(order => ( */}
                     <Typography variant="body2">
                       <p>
                         {" "}
@@ -161,35 +187,21 @@ export default function ComplexGrid3() {
                         {order.date}
                       </p>
                     </Typography>
-                    {/* ))} */}
                   </div>
-
                   <div className={classes.orderDetails}>
-                    {/* {orders.map(order => ( */}
                     <Typography variant="body2">
                       <p>
                         <BeenhereIcon className={classes.icons} /> state :{" "}
                         {order.state}
                       </p>
                     </Typography>
-                    {/* ))} */}
                   </div>
                   <div className={classes.orderDetails}>
-                    <Typography variant="body2">
-                      {/* <DirectionsBikeIcon /> */}
-                    </Typography>
+                    <Typography variant="body2"></Typography>
                   </div>
                 </Grid>
-                {/* <Grid item>
-              <Typography variant="body2" style={{ cursor: "pointer" }}>
-                Remove
-              </Typography>
-            </Grid> */}
               </Grid>
             </Grid>
-            {/* <div style={{ marginBottom: "10px" }}>
-          <SimpleRating /> */}
-
             <div
               style={{ float: "right", marginRight: "31px", fontSize: "39px" }}
             >
@@ -203,36 +215,25 @@ export default function ComplexGrid3() {
                   }}
                 >
                   <p>$ {order.price}</p>
-                  {/* price */}
                 </Typography>
               </Grid>
-              {/* </div> */}
-
               <div className={classes.button1}>
                 <Button
                   className={classes.accept}
                   variant="contained"
-                  color="#4caf50"
-                  // onClick={() => setOrder((order.state: "onway"))}
+                  color="#4CAF50"
+                  onClick={() => deliverOrder(order._id)}
                 >
                   Deliverd <DoneIcon className={classes.iconTab} />
                 </Button>
                 <Button
                   className={classes.view}
                   variant="contained"
-                  color="#cddc39"
+                  color="#CDDC39"
                   // onClick={() => setOrder((order.state: "onway"))}
                 >
                   View <VisibilityIcon className={classes.iconTab} />
                 </Button>
-
-                {/* <Button
-          className={classes.reject}
-          variant="contained"
-          color="#e53935"
-        >
-          Reject
-        </Button> */}
               </div>
             </div>
           </Grid>
@@ -241,4 +242,3 @@ export default function ComplexGrid3() {
     </div>
   );
 }
-//
