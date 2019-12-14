@@ -96,22 +96,22 @@ export default function ComplexGrid3() {
     fetchPosts();
   }, []);
 
-  const fetchPosts = () => dispatch => {
+  const fetchPosts = () => {
     axios
       .get(`/api/driver/current_order_d`, {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
       })
-      .then((data => dispatch({
-        type: FETCH_POSTS,
-        payload: data
-        //console.log("I'm inside current order axios", res.data);
-      })
+      .then(
+        res => setOrder(res.data)
+        // console.log("I'm inside current order axios", res.data);
+      )
       .catch(err => {
         console.log("I'm error", err);
-      })
-  }}
+      });
+  };
+  console.log("I'm inside current order axios", orders);
 
   // useEffect(() => {
   //   const updateInvoiceData = async () => {
@@ -141,7 +141,6 @@ export default function ComplexGrid3() {
         console.log("error  deliver the order", err);
       });
   };
-
   return (
     <div className={classes.root}>
       {orders.map(order => (

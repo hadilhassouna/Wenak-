@@ -12,6 +12,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BeenhereIcon from "@material-ui/icons/Beenhere";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import axios from "axios";
 const useStyles = makeStyles(theme => ({
   root: {
@@ -117,8 +118,8 @@ export default function ComplexGrid2() {
                     <Typography gutterBottom variant="subtitle1">
                       <p>
                         {" "}
-                        <PersonIcon className={classes.icons} />
-                        buser_id : {order.user_id}
+                        <LocalOfferIcon className={classes.icons} />
+                        user_id : {order.user_id}
                       </p>
                     </Typography>
                   </div>
@@ -126,7 +127,7 @@ export default function ComplexGrid2() {
                     <Typography variant="body2">
                       <p>
                         {" "}
-                        <ScheduleIcon className={classes.icons} /> Name:
+                        <PersonIcon className={classes.icons} /> Name:
                         {order.name}
                       </p>
                     </Typography>
