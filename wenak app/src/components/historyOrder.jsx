@@ -12,6 +12,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BeenhereIcon from "@material-ui/icons/Beenhere";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import axios from "axios";
 const useStyles = makeStyles(theme => ({
   root: {
@@ -77,21 +78,20 @@ export default function ComplexGrid2() {
   const classes = useStyles();
   const [orders, setOrder] = React.useState([]);
   const [userId, setUserId] = React.useState("");
-  //   const [state, setState] = useState((order.state: "onway"));
   const [reciver_name, setReciver_name] = useState([]);
-  //   const pending = "pending";
-  //   const onWay = "onWay";
-  //   const state = { pending, onWay };
-  /////////////////////////hooks
   useEffect(() => {
-    document.title = ` Drivers Orders`;
+    document.title = `Drivers Orders`;
     console.log("I'm inside use effect");
 
     axios
-      .get(`http://localhost:3000/api/driver/previous_order_d`)
+      .get(`/api/driver/previous_order_d`, {
+        headers: {
+          "x-access-token": localStorage.getItem("usertoken")
+        }
+      })
       .then(res => {
         setOrder(res.data);
-        console.log("I'm inside axios", res.data);
+        console.log("I'm inside history order axios", res.data);
       })
       .catch(err => {
         console.log("I'm error", err);
@@ -118,13 +118,21 @@ export default function ComplexGrid2() {
                     <Typography gutterBottom variant="subtitle1">
                       <p>
                         {" "}
-                        <PersonIcon className={classes.icons} />
-                        buser_id : {order.user_id}
+                        <LocalOfferIcon className={classes.icons} />
+                        user_id : {order.user_id}
                       </p>
                     </Typography>
                   </div>
                   <div className={classes.orderDetails}>
-                    {/* {orders.map(order => ( */}
+                    <Typography variant="body2">
+                      <p>
+                        {" "}
+                        <PersonIcon className={classes.icons} /> Name:
+                        {order.name}
+                      </p>
+                    </Typography>
+                  </div>
+                  <div className={classes.orderDetails}>
                     <Typography variant="body2" gutterBottom>
                       <p>
                         {" "}
@@ -132,11 +140,9 @@ export default function ComplexGrid2() {
                         {order.order_details}
                       </p>
                     </Typography>
-                    {/* ))} */}
                   </div>
 
                   <div className={classes.orderDetails}>
-                    {/* {orders.map(order => ( */}
                     <Typography variant="body2">
                       <p>
                         {" "}
@@ -144,30 +150,19 @@ export default function ComplexGrid2() {
                         {order.date}
                       </p>
                     </Typography>
-                    {/* ))} */}
                   </div>
-
                   <div className={classes.orderDetails}>
-                    {/* {orders.map(order => ( */}
                     <Typography variant="body2">
                       <p>
                         <BeenhereIcon className={classes.icons} /> state :{" "}
                         {order.state}
                       </p>
                     </Typography>
-                    {/* ))} */}
                   </div>
                   <div className={classes.orderDetails}>
-                    <Typography variant="body2">
-                      {/* <DirectionsBikeIcon /> */}
-                    </Typography>
+                    <Typography variant="body2"></Typography>
                   </div>
                 </Grid>
-                {/* <Grid item>
-              <Typography variant="body2" style={{ cursor: "pointer" }}>
-                Remove
-              </Typography>
-            </Grid> */}
               </Grid>
             </Grid>
             <div style={{ marginBottom: "5px" }}>
@@ -199,13 +194,6 @@ export default function ComplexGrid2() {
                 >
                   View Order <VisibilityIcon className={classes.iconTab} />
                 </Button>
-                {/* <Button
-className={classes.reject}
-variant="contained"
-color="#e53935"
->
-Reject
-</Button> */}
               </div>
             </div>
           </Grid>

@@ -1,4 +1,3 @@
-
 //Screen 3
 // import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React from "react";
@@ -151,14 +150,11 @@ class Completion extends React.Component {
           </div>
         </Grid>
       </div>
-    )
+    );
   }
 }
 
-export default Completion
+export default Completion;
 
-
-
-
-
-
+// handleRate = (e, { rating, maxRating }) =>
+//   this.setState({ rating, maxRating })
