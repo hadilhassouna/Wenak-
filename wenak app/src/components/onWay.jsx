@@ -16,7 +16,6 @@ import DoneIcon from "@material-ui/icons/Done";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import axios from "axios";
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -53,13 +52,13 @@ const useStyles = makeStyles(theme => ({
   },
   accept: {
     color: "#FFFFFF",
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4CAF50",
     width: "130px",
     height: " 40px"
   },
   view: {
     color: "#FFFFFF",
-    backgroundColor: "#cddc39",
+    backgroundColor: "#CDDC39",
     width: "130px",
     height: " 40px"
   },
@@ -68,7 +67,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: "15px"
   },
   icons: {
-    color: "#bdbdbd",
+    color: "#BDBDBD",
     marginRight: "9px",
     marginTop: "5px"
   },
@@ -76,9 +75,8 @@ const useStyles = makeStyles(theme => ({
     //   padding:"",
     marginBottom: "5px"
   },
-
   iconTab: {
-    color: "#fafafa",
+    color: "#FAFAFA",
     textAlign: "right",
     marginLeft: "15px"
   }
@@ -88,14 +86,12 @@ export default function ComplexGrid3() {
   const [orders, setOrder] = React.useState([]);
   const [userId, setUserId] = React.useState("");
   const [reciver_name, setReciver_name] = useState([]);
-
   /////////////////////////hooks
   useEffect(() => {
     document.title = `Drivers Orders`;
     console.log("I'm inside use effect");
     fetchPosts();
   }, []);
-
   const fetchPosts = () => {
     axios
       .get(`/api/driver/current_order_d`, {
@@ -112,7 +108,6 @@ export default function ComplexGrid3() {
       });
   };
   console.log("I'm inside current order axios", orders);
-
   // useEffect(() => {
   //   const updateInvoiceData = async () => {
   //     const results = await api.invoice.findData();
@@ -184,7 +179,6 @@ export default function ComplexGrid3() {
                       </p>
                     </Typography>
                   </div>
-
                   <div className={classes.orderDetails}>
                     <Typography variant="body2">
                       <p>
@@ -194,7 +188,6 @@ export default function ComplexGrid3() {
                       </p>
                     </Typography>
                   </div>
-
                   <div className={classes.orderDetails}>
                     <Typography variant="body2">
                       <p>
@@ -228,7 +221,7 @@ export default function ComplexGrid3() {
                 <Button
                   className={classes.accept}
                   variant="contained"
-                  color="#4caf50"
+                  color="#4CAF50"
                   onClick={() => deliverOrder(order._id)}
                 >
                   Deliverd <DoneIcon className={classes.iconTab} />
@@ -236,7 +229,7 @@ export default function ComplexGrid3() {
                 <Button
                   className={classes.view}
                   variant="contained"
-                  color="#cddc39"
+                  color="#CDDC39"
                   // onClick={() => setOrder((order.state: "onway"))}
                 >
                   View <VisibilityIcon className={classes.iconTab} />
@@ -249,4 +242,3 @@ export default function ComplexGrid3() {
     </div>
   );
 }
-//
