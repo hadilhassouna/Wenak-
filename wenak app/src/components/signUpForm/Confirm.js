@@ -7,6 +7,9 @@ import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import $ from 'jquery';
 import './signUp.css';
+import NavBar from '../Toolbar/Toolbar';
+
+
 export class FormUserDetails extends Component {
     continue = e => {
         e.preventDefault();
@@ -57,7 +60,10 @@ export class FormUserDetails extends Component {
     render() {
         const { values: { mobile, password, userType,name } } = this.props;
         return (
+ 
             <MuiThemeProvider >
+                            <NavBar />
+
                 <React.Fragment>
                     {/* <AppBar title="Confirm User Data"/> */}
                     <List className="signUp">

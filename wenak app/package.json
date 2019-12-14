@@ -17,6 +17,7 @@
     "@react-google-maps/api": "^1.8.0",
     "@stardust-ui/docs-components": "^0.40.0",
     "@trendmicro/react-sidenav": "^0.4.5",
+    "@types/express-pino-logger": "^4.0.2",
     "@types/jest": "24.0.23",
     "@types/node": "12.12.14",
     "@types/react-dom": "16.9.4",

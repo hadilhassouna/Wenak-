@@ -1,7 +1,6 @@
-
 //Screen 3
 // import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import React from "react";
+import React, { Component } from "react";
 import {
   Button,
   Container,
@@ -21,57 +20,83 @@ import Trial from "./Trial";
 import  "../../src/App.css";
 import $ from 'jquery';
 const style = {
-    marginTop: '2em',
-    padding: '2em 0em',
-}
-  // last: {
-  //   marginBottom: '300px',
-  // },
-
+  h1: {
+    marginTop: "3em"
+  },
+  h2: {
+    margin: "4em 0em 2em"
+  },
+  h3: {
+    marginTop: "2em",
+    padding: "2em 0em"
+  },
+  last: {
+    marginBottom: "300px"
+  }
+};
 
 
 class Completion extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    // this.onSignUp = this.onSignUp.bind(this);
-    this.handleSend =this.handleSend.bind(this);
-  }
-  handleSend() {
-    // event.preventDefault();
-    console.log("I'm inside send function");
-    var data = {
-      reciverName: $("#reciverName").val(),
-      Items: $("#Items").val(),
-      reciverPhone : $("reciverPhone").val(),
-      details: $("#details").val(),
-      location_start_lng: "50.6",
-      location_start_lat:"906",
-      location_end_lng: "8888",
-      location_end_lat:"89",
-      order_notes:"nothing",
-      rate: 0,
-      state:"pending",
-      date: Date.now(),
-      price:5
-    };
-    console.log(data);
-    $.ajax({
-      type: "POST",
-      url: "/api/customer/send_order",
-      headers: {
-        "x-access-token": localStorage.getItem("usertoken")},
-      data: data,
-      datatype: "json",
-      success: function() {
-        // window.open("http://localhost:3000", "_self");
-        // alert("YOU ARE LOGED IN");
-        console.log("success send order")
-      }, error:
-      function() {
-        console.log("errrrroooorrrr ");}
-    })
-  }
+constructor(props){
+  super(props)
+  this.state = {
+    order_details:"",
+    location_start_lng:35.5,
+    location_start_lat: 30.55,
+    location_end_lat: 98.33,
+    location_end_lng:88.32,
+    reciver_name: '',
+    recieverPhone:'',
+    order_notes:'',
+    rate:0,
+    state:"pending",
+    date: Date.now()
+
+}
+}
+  
+ handleSend(){
+  // event.preventDefault();
+  var order_details = this.state.order_details;
+  var location_start_lng= this.state.location_start_lng;
+  var location_start_lat= this.state.location_start_lat;
+  var location_end_lng= this.state.location_end_lng;
+  var location_end_lat= this.state.location_end_lat;
+  var reciver_name= this.state.reciver_name;
+  var recieverPhone= this.state.recieverPhone;
+  var order_notes= this.state.order_notes;
+  var rate= this.state.rate;
+  var state= this.state.state;
+  var date=this.state.date;
+  var that = this;
+   console.log("Hi I'm inside send orders")
+ $.ajax({
+   type: "POST",
+   url: "/api/customer/send_order",
+   headers: 
+   {"x-access-token": localStorage.getItem("usertoken")},
+   data:{
+    order_details:order_details,
+    location_start_lng:location_start_lng,
+    location_start_lat: location_start_lat,
+    location_end_lat: location_end_lat,
+    location_end_lng:location_end_lng,
+    reciver_name:reciver_name,
+    recieverPhone:recieverPhone,
+    order_notes:order_notes,
+    rate:rate,
+    state:state,
+    date:date
+   }, 
+   datatype: "json",
+   success:function(res){
+       console.log("sucess send the order");
+     },
+   error: function(request, status, error) {
+         console.log("error in mobilenumor password");
+         alert("Error in send ordr")}
+       });
+     }
     
 
   render() {
@@ -93,14 +118,14 @@ class Completion extends React.Component {
               content="Enter Your Order/Item:"
               textAlign="left"
             />
-            <input  id="Items" type="text" placeholder="Enter Your Order/Item"></input>
+            <input   type="text" placeholder="Enter Your Order/Item">{this.state.order_details}</input>
             <Header className="header1"
               as="h3"
               content="Reciever's Name:"
               style={style.h3}
               textAlign="left" 
             />
-            <input   id="reciverName"   type="text" placeholder="Reciever's Name">{this.state.reciver_name}</input>
+            <input   type="text" placeholder="Reciever's Name">{this.state.reciver_name}</input>
          
             <Header className="header1" 
               as="h3"
@@ -108,7 +133,7 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left"
             />
-            <input  id="reciverPhone" type="text" placeholder="Reciever's Phone">{this.state.recieverPhone}</input>
+            <input  type="text" placeholder="Reciever's Phone">{this.state.recieverPhone}</input>
             <Header className="header1"
               as="h3"
               content="Assign The Reciever's Location"
@@ -136,7 +161,7 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left"
             />
-            <input  id="details"
+            <input
               type="text"
               placeholder="Add More Details (Optional)"
             >{this.state.order_notes}</input>
@@ -151,14 +176,11 @@ class Completion extends React.Component {
           </div>
         </Grid>
       </div>
-    )
+    );
   }
 }
 
-export default Completion
+export default Completion;
 
-
-
-
-
-
+// handleRate = (e, { rating, maxRating }) =>
+//   this.setState({ rating, maxRating })

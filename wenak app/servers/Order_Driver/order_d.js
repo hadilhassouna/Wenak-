@@ -71,7 +71,6 @@ router.post('/accept_order', VerifyToken, function (req, res, next) {
 });
 //get the current order
 router.get('/current_order_d', VerifyToken, function (req, res) {
-  console.log("I'm inside current request");
     Order.find({ state: "prepared" }).exec((err, order) => {
         if (err) {
             console.log(err);
