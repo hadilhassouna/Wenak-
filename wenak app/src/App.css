@@ -94,3 +94,49 @@ a.linkedin {
 .App-intro {
   font-size: large;
 }
+.mapInput{
+margin-right:21px
+
+}
+.mapLable{
+  margin-right:8px
+}
+.formDetails{
+  margin-bottom:10px
+}
+.mapStyle{
+
+  border-radius: 15px;
+  margin-bottom:30px
+}
+.iconStyle{
+  font-size:large;
+  size: 50px;
+}
+inputDetails{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.header1{
+  margin-right:10px
+
+}
+.butSend{
+  margin-top: 100px;
+  margin-right:850px ;
+  /* float: center; */
+  /* margin-right: 35px; */
+  text-align: right;
+  margin-left: 50px;
+  width: 170px;
+  height: 40px;
+}
+.trial{  width: 970px;
+  height: 450px;
+}
+
+ 
