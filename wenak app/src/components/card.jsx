@@ -125,7 +125,8 @@ export default function ComplexGrid() {
         }
       )
       .then(res => {
-        setOrder(res.data);
+        // console.log(res.data);
+        // setOrder(res.data);
         console.log("accept the order", orderId);
       })
       .catch(err => {
@@ -253,6 +254,7 @@ export default function ComplexGrid() {
 
               <div className={classes.button1}>
                 <Button
+                  className={classes.accept}
                   // type="submit"
                   variant="contained"
                   color="#4caf50"
