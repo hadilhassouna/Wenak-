@@ -24,7 +24,7 @@ import DrawerIcon from "./components/Toolbar/Drawer";
 
 import Settings from "./components/Settings";
 import About from "./components/About";
-import SocialFollow from './components/SocialFollow';
+
 import ContactForm from './components/contactForm/ContactForm';
 import Trial from './components/Trial';
 
@@ -65,7 +65,7 @@ const App: React.FC = () => {
         <Route exact path={"/CurrentOrders"} component={CurrentOrders} />
         <Route exact path={"/Settings"} component={Settings} />
         <Route exact path={"/About"} component={About} />
-        <Route exact path={"/SocialFollow"} component={SocialFollow} />
+        {/* <Route exact path={"/SocialFollow"} component={SocialFollow} /> */}
         <Route exact path={"/ContactForm"} component={ContactForm} />
         <Route exact path={"/Profile"} component={Profile} />
         <Route exact path={"/Toolbar2"} component={Toolbar2} />

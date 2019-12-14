@@ -27,16 +27,14 @@ export default function NavBar() {
   const classes = useStyles();
 
   return (
+   
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
+
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <DrawerIcon />
+
           </IconButton>
           <Typography variant="h5" className={classes.title}>
             Weenak!
