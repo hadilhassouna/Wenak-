@@ -13,6 +13,8 @@ import Profile from "./components/Profile";
 import DriverOrders from "./components/DriverOrders";
 import DriverOrd from "./components/DriverOrd";
 import NavBar from "./components/Toolbar/Toolbar.jsx";
+import Toolbar2 from "./components/Toolbar/Toolbar2.jsx";
+
 
 import NavbarUser from "./components/Toolbar/NavbarUser";
 
@@ -31,21 +33,16 @@ const App: React.FC = () => {
     <BrowserRouter>
       <div className="App">
         {/* <Sidebar /> */}
-        <NavBar />
+        {/* <NavBar /> */}
 
         {/* <DrawerIcon /> */}
         <main >
         
         </main>
         
-        
+        <Route exact path={"/"} component={NavBar} />
         <Route exact path={"/LoginForm"} component={LoginForm} />
-        <Route
-          exact
-          path={"/UserForm"}
-          component={UserForm}
-          className="signUp"
-        />
+        <Route exact path={"/UserForm"} component={UserForm} className="signUp" />
         {/* <NavBar /> */}
         {/* <DrawerIcon /> */}
         <main></main>
@@ -58,8 +55,7 @@ const App: React.FC = () => {
           component={UserForm}
           className="signUp"
         /> */}
-                <Route exact path={"/Trial"} component={Trial} />
-
+        <Route exact path={"/Trial"} component={Trial} />
         <Route exact path={"/Home"} component={Home} />
         {/* <Route exact path={"/HomePage"} component={HomePage} /> */}
         <Route exact path={"/Completion"} component={Completion} />
@@ -70,6 +66,10 @@ const App: React.FC = () => {
         <Route exact path={"/About"} component={About} />
         <Route exact path={"/SocialFollow"} component={SocialFollow} />
         <Route exact path={"/ContactForm"} component={ContactForm} />
+        <Route exact path={"/Profile"} component={Profile} />
+        <Route exact path={"/Toolbar2"} component={Toolbar2} />
+
+
 
       
         {/* <Profile />

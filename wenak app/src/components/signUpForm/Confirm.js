@@ -3,10 +3,13 @@
 import React, { Component } from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 // import AppBar from 'material-ui/AppBar';
-import { List, ListItem } from "material-ui/List";
-import RaisedButton from "material-ui/RaisedButton";
-import $ from "jquery";
-import "./signUp.css";
+import {List, ListItem} from 'material-ui/List';
+import RaisedButton from 'material-ui/RaisedButton';
+import $ from 'jquery';
+import './signUp.css';
+import NavBar from '../Toolbar/Toolbar';
+
+
 export class FormUserDetails extends Component {
   continue = e => {
     e.preventDefault();
@@ -47,46 +50,57 @@ export class FormUserDetails extends Component {
     this.props.nextStep();
   };
 
-  back = e => {
-    e.preventDefault();
-    this.props.prevStep();
-  };
+    render() {
+        const { values: { mobile, password, userType,name } } = this.props;
+        return (
+ 
+            <MuiThemeProvider >
+                            <NavBar />
 
-  render() {
-    const {
-      values: { mobile, password, userType, name }
-    } = this.props;
-    return (
-      <MuiThemeProvider>
-        <React.Fragment>
-          {/* <AppBar title="Confirm User Data"/> */}
-          <List className="signUp">
-            <ListItem primaryText="Mobile Number" secondaryText={mobile} />
-            <ListItem primaryText="Name" secondaryText={name} />
-            <ListItem primaryText="Password" secondaryText={password} />
-            <ListItem primaryText="User Type" secondaryText={userType} />
-          </List>
-          <br />
-          <div className="signUp">
-            <RaisedButton
-              label="Confirm & Continue"
-              primary={true}
-              style={styles.button}
-              onClick={this.continue}
-              className="signUp"
-            />
-            <RaisedButton
-              label="Back"
-              primary={false}
-              style={styles.button}
-              onClick={this.back}
-              className="signUp"
-            />
-          </div>
-        </React.Fragment>
-      </MuiThemeProvider>
-    );
-  }
+                <React.Fragment>
+                    {/* <AppBar title="Confirm User Data"/> */}
+                    <List className="signUp">
+                        <ListItem 
+                            primaryText="Mobile Number"
+                            secondaryText={ mobile }
+                        />
+                         <ListItem 
+                            primaryText="Name"
+                            secondaryText={ name }
+                        />
+                        <ListItem 
+                            primaryText="Password"
+                            secondaryText={ password }
+                        />
+                        <ListItem 
+                            primaryText="User Type"
+                            secondaryText={ userType }
+                        />
+                        
+                    </List>
+                    <br/>
+                    <div className="signUp">
+                     <RaisedButton 
+                        label="Confirm & Continue"
+                        primary={true}
+                        style={styles.button}
+                        onClick={this.continue}
+                        className="signUp"
+                    />
+                    <RaisedButton 
+                        label="Back"
+                        primary={false}
+                        style={styles.button}
+                        onClick={this.back}
+                        className="signUp"
+                    />   
+                    </div>
+                    
+                </React.Fragment>
+            </MuiThemeProvider>
+            
+        )
+    }
 }
 
 const styles = {

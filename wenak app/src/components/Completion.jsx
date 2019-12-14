@@ -35,57 +35,40 @@ const style = {
 };
 
 class Completion extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+    // this.onSignUp = this.onSignUp.bind(this);
+  }
+
+  handleSend() {
+    event.preventDefault();
+    console.log("I'm inside send function");
+    var data = {
+      email: $("#reciverName").val(),
+      details: $("#Items").val(),
+      details: $("reciverPhone").val(),
+      details: $("#details").val(),
+      details: $("#details").val()
+    };
+    console.log(data);
+    $.ajax({
+      type: "POST",
+      url: "/send",
+      data: "hi from send order ajax",
+      datatype: "json"
+      // success: function() {
+      //   window.open("http://localhost:3000", "_self");
+      //   alert("YOU ARE LOGED IN");
+      // }
+    }).catch(alert(" send Order ajax faild"));
+  }
   render() {
     return (
       <div>
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <hr></hr>
-
         <Header
           as="h3"
           content="Complete Your Order Please"
@@ -107,7 +90,7 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left"
             />
-            <input type="text" placeholder="Enter Your Order/Item"></input>
+            <input id="Items" type="text" placeholder="Enter Your Order/Item"></input>
           </Grid.Column>
           <Grid.Column width={4}>
             <Header
@@ -116,7 +99,7 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left"
             />
-            <input type="text" placeholder="Reciever's Name"></input>
+            <input id="reciverName" type="text" placeholder="Reciever's Name"></input>
           </Grid.Column>
           <Grid.Column computer={9} mobile={6} tablet={3}>
             <Header
@@ -125,7 +108,7 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left"
             />
-            <input type="text" placeholder="Reciever's Phone"></input>
+            <input id="reciverPhone" type="text" placeholder="Reciever's Phone"></input>
             <Header
               as="h3"
               content="Assign The Reciever's Location"
@@ -193,7 +176,7 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left"
             />
-            <input
+            <input id="details" 
               type="text"
               placeholder="Add More Details (Optional)"
             ></input>
