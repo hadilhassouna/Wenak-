@@ -17,7 +17,8 @@ import {
 } from "semantic-ui-react";
 import { InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import Trial from "./Trial";
-import  "../../src/App.css"
+import  "../../src/App.css";
+import $ from 'jquery';
 const style = {
   h1: {
     marginTop: "3em"
@@ -34,7 +35,42 @@ const style = {
   }
 };
 
+
 class Completion extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    // this.onSignUp = this.onSignUp.bind(this);
+  }
+  handleSend() {
+    // event.preventDefault();
+    console.log("I'm inside send function");
+    var data = {
+      reciverName: $("#reciverName").val(),
+      Items: $("#Items").val(),
+      reciverPhone : $("reciverPhone").val(),
+      details: $("#details").val(),
+    
+    };
+    console.log(data);
+    $.ajax({
+      type: "POST",
+      url: "api/customer/send_order",
+      headers: {"x-access-token": localStorage.getItem("usertoken")},
+      data: data,
+      datatype: "json",
+      success: function() {
+        // window.open("http://localhost:3000", "_self");
+        // alert("YOU ARE LOGED IN");
+        console.log("success send order")
+      }, error:
+      function() {
+ 
+        console.log("errrrroooorrrr ");}
+    })
+  }
+    
+
   render() {
     return (
       <div >
@@ -52,17 +88,16 @@ class Completion extends React.Component {
             <Header className="header1"
               as="h3"
               content="Enter Your Order/Item:"
-              
               textAlign="left"
             />
-            <input   type="text" placeholder="Enter Your Order/Item"></input>
+            <input  id="Items" type="text" placeholder="Enter Your Order/Item"></input>
             <Header className="header1"
               as="h3"
               content="Reciever's Name:"
               style={style.h3}
-              textAlign="left"
+              textAlign="left" 
             />
-            <input   type="text" placeholder="Reciever's Name"></input>
+            <input   id="reciverName"   type="text" placeholder="Reciever's Name">{this.state.reciver_name}</input>
          
             <Header className="header1" 
               as="h3"
@@ -70,7 +105,7 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left"
             />
-            <input  type="text" placeholder="Reciever's Phone"></input>
+            <input  id="reciverPhone" type="text" placeholder="Reciever's Phone">{this.state.recieverPhone}</input>
             <Header className="header1"
               as="h3"
               content="Assign The Reciever's Location"
@@ -79,11 +114,12 @@ class Completion extends React.Component {
             />
           
           
-            <div style={{ margin: "50px" }}>
+            <div className="trial">
               <Trial
                 google={this.props.google}
                 center={{ lat: 31.9478, lng: 35.2296 }}
-                height="500px"
+                height='450px'
+                width="900px"
                 zoom={7}
               />
             </div>
@@ -97,15 +133,19 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left"
             />
-            <input
+            <input  id="details"
               type="text"
               placeholder="Add More Details (Optional)"
-            ></input>
+            >{this.state.order_notes}</input>
           </Grid.Column>
 
-          {/* <Button color='yellow' size='large'>
+          <div className="butSend">
+
+     
+<Button  onClick={this.handleSend.bind(this)} className="butSend" color='yellow' size='large'>
             Send Your Order
-          </Button> */}
+          </Button> 
+          </div>
         </Grid>
       </div>
     );

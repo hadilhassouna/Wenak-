@@ -12,8 +12,9 @@ const config = require('../config');
 const Order = require('../database.js').Order;
 const ObjectId = require('mongodb').ObjectID;
 var VerifyToken = require('../authontication/AuthController.js');
-
+//
 ///send order.
+////
 router.post("/send_order",VerifyToken ,function(req: any, res: any, next: any) {
     //var myId = JSON.parse(req.userId);
     User.findById(req.userId), { password: 0 }, function (err:any, user:any) {

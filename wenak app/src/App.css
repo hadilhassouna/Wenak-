@@ -125,3 +125,18 @@ inputDetails{
   margin-right:10px
 
 }
+.butSend{
+  margin-top: 100px;
+  margin-right:850px ;
+  /* float: center; */
+  /* margin-right: 35px; */
+  text-align: right;
+  margin-left: 50px;
+  width: 170px;
+  height: 40px;
+}
+.trial{  width: 970px;
+  height: 450px;
+}
+
+ 
