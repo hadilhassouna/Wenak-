@@ -1,4 +1,3 @@
 module.exports = {
-    'secret': 'supersecr'
+    "secret": "supersecr",
   };
-
