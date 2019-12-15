@@ -1,49 +1,13 @@
-// import React, { Component } from 'react'
-// import {GoogleMap, withScriptjs, withGoogleMap} from 'react-google-maps';
 
-
-// function Map() {
-//     return (<GoogleMap defaultZoom = {10} defaultCenter = {{lat: 31.9478, lng: 35.2296}}/>); 
-// }
-
-// const wrappedMap = withScriptjs(withGoogleMap(Map)) 
-
-
-// class Trial extends React.Component {
-//     render() {
-//         return (
-//           <div style={{width: '100px', height: '100px'}}>
-//          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-//           process.env.REACT_APP_GOOGLE_KEY
-//         }`}
-//                   loadingElement={<div style={{ height: `100%` }} />}
-//                   containerElement={<div style={{ height: `100%` }} />}
-//                   mapElement={<div style={{ height: `100%` }} />}
-//                   />
-//           </div>
-//         );
-//     }
-// }
-
-// export default Trial
-
-
-
-
-
-// AIzaSyDpbTFDpUCq7ny1MS4io2tBZA1AjKx1e8s
-
-// AIzaSyDfnYu1_y7srLbBw5pKqBDPh5zdLc0_UZ4
 
 import React, { Component } from 'react'
 import { GoogleMap, withScriptjs, withGoogleMap, InfoWindow, Marker } from 'react-google-maps';
 import Geocode from "react-geocode"
 import Autocomplete from "react-google-autocomplete"
+import  "../../src/App.css"
 import { Button, Input, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react';
 Geocode.setApiKey("AIzaSyBuqgFsDLy0e_a-OaI-MwzZI6HXfMwigvc");
 Geocode.enableDebug();
-
-
 
 class Trial extends Component{
 
@@ -251,7 +215,7 @@ class Trial extends Component{
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
-					<GoogleMap google={ this.props.google }
+					<GoogleMap className="mapStyle"  google={ this.props.google }
 					           defaultZoom={ this.props.zoom }
 					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
 					>
@@ -273,7 +237,7 @@ class Trial extends Component{
 						/>
 						<Marker />
 						{/* For Auto complete Search Box */}
-						<Autocomplete
+						<Autocomplete className="mapStyle"
 							style={{
 								width: '100%',
 								height: '40px',
@@ -292,25 +256,19 @@ class Trial extends Component{
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
 				<div>
-					<div className="form-group">
-						<label htmlFor="">City</label>
-                        <Input name="city" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }placeholder='City' />
-                    </div>
-					<div className="form-group">
-						<label htmlFor="">Area</label>
-                        <Input name="area" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area } placeholder='Area' />
-                    </div>
-					<div className="form-group">
-						<label htmlFor="">State</label>
-                        <Input name="state" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state } placeholder='State' />
-                    </div>
-					<div className="form-group">
-						<label htmlFor="">Address</label>
-                        <Input name="address" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address } placeholder='Address' />
+					<div className="form-group"   className="formDetails" >
+						<label  className="mapLable" htmlFor="">City</label>
+                        <Input  className="mapInput" name="city" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }placeholder='City' />
+                		<label  className="mapLable" htmlFor="">Area</label>
+                        <Input  className="mapInput" name="area" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area } placeholder='Area' />
+                  		<label  className="mapLable" htmlFor="">State</label>
+                        <Input className="mapInput"  name="state" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state } placeholder='State' />
+                		<label  className="mapLable" htmlFor="">Address</label>
+                        <Input  className="mapInput" name="address" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address } placeholder='Address' />
                     </div>
 				</div>
 
-				<AsyncMap
+				<AsyncMap className="mapStyle"
 					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuqgFsDLy0e_a-OaI-MwzZI6HXfMwigvc&libraries=places"
 					loadingElement={
 						<div style={{ height: `100%` }} />
@@ -323,10 +281,12 @@ class Trial extends Component{
 					}
 				/>
 			</div>
+			
 		} else {
-			map = <div style={{height: this.props.height}} />
+			map = <div  className="mapStyle"  style={{height: this.props.height}} />
 		}	
 		return( map )
+		
 	}
 }
 export default Trial
