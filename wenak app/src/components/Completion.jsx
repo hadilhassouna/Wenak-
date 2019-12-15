@@ -42,7 +42,7 @@ class Completion extends React.Component {
     var data = {
       reciverName: $("#reciverName").val(),
       Items: $("#Items").val(),
-      reciverPhone : $("reciverPhone").val(),
+      reciverPhone : $("#reciverPhone").val(),
       details: $("#details").val(),
       location_start_lng: "50.6",
       location_start_lat:"906",
