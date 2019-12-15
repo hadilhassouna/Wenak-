@@ -82,6 +82,11 @@ a.linkedin {
 .App-intro {
   font-size: large;
 }
+
+
+.stripe-payment {
+  text-align: center;
+}
 .mapInput{
 margin-right:21px
 
@@ -126,4 +131,5 @@ inputDetails{
 .trial{  width: 970px;
   height: 450px;
 }
+
 
