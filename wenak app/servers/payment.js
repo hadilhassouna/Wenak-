@@ -17,7 +17,7 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 
 // router.use(bodyParser.json());
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 router.use(require("body-parser").text());
 router.post("/charge", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -36,7 +36,7 @@ router.post("/charge", (req, res) => __awaiter(void 0, void 0, void 0, function*
 }));
 
 router.use(bodyParser.json());
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 router.post('/api/doPayment/', (req, res) => {
     return stripe.charges
         .create({

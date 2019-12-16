@@ -16,6 +16,7 @@ import DoneIcon from "@material-ui/icons/Done";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import axios from "axios";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -90,24 +91,24 @@ export default function ComplexGrid3() {
   useEffect(() => {
     document.title = `Drivers Orders`;
     console.log("I'm inside use effect");
-    fetchPosts();
-  }, []);
-  const fetchPosts = () => {
     axios
       .get(`/api/driver/current_order_d`, {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
       })
-      .then(
-        res => setOrder(res.data)
-        // console.log("I'm inside current order axios", res.data);
-      )
+      .then(res => {
+        setOrder(res.data);
+        console.log("I'm inside current order nnnn axios", res.data);
+      })
       .catch(err => {
         console.log("I'm error", err);
       });
-  };
-  console.log("I'm inside current order axios", orders);
+  }, []);
+  // const fetchPosts = () => {
+   
+  // };
+  console.log("I’m inside current order axios", orders);
   // useEffect(() => {
   //   const updateInvoiceData = async () => {
   //     const results = await api.invoice.findData();
@@ -203,7 +204,7 @@ export default function ComplexGrid3() {
               </Grid>
             </Grid>
             <div
-              style={{ float: "right", marginRight: "31px", fontSize: "39px" }}
+              style={{ float: "right", marginRight: "31px", fontSize: "39px"}}
             >
               <Grid item>
                 <Typography
@@ -230,7 +231,7 @@ export default function ComplexGrid3() {
                   className={classes.view}
                   variant="contained"
                   color="#CDDC39"
-                  // onClick={() => setOrder((order.state: "onway"))}
+                  // onClick={() => setOrder((order.state: “onway”))}
                 >
                   View <VisibilityIcon className={classes.iconTab} />
                 </Button>
