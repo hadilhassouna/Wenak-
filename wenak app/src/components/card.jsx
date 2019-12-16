@@ -271,13 +271,7 @@ export default function ComplexGrid() {
                 >
                   View <VisibilityIcon className={classes.iconTab} />
                 </Button>
-                {/* <Button
-          className={classes.reject}
-          variant="contained"
-          color="#e53935"
-        >
-          Reject
-        </Button> */}
+              
               </div>
             </div>
           </Grid>
