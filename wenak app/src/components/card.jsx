@@ -1,4 +1,4 @@
-// import React from "react";
+
 import React, { Fragment, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -15,7 +15,6 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import DoneIcon from "@material-ui/icons/Done";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -52,13 +51,13 @@ const useStyles = makeStyles(theme => ({
   },
   accept: {
     color: "#FFFFFF",
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4CAF50",
     width: "130px",
     height: " 40px"
   },
   view: {
     color: "#FFFFFF",
-    backgroundColor: "#cddc39",
+    backgroundColor: "#CDDC39",
     width: "130px",
     height: " 40px"
   },
@@ -67,7 +66,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: "15px"
   },
   icons: {
-    color: "#bdbdbd",
+    color: "#BDBDBD",
     marginRight: "9px",
     marginTop: "5px"
   },
@@ -76,12 +75,11 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "5px"
   },
   iconTab: {
-    color: "#fafafa",
+    color: "#FAFAFA",
     textAlign: "right",
     marginLeft: "15px"
   }
 }));
-
 export default function ComplexGrid() {
   const classes = useStyles();
   const [orders, setOrder] = React.useState([]);
@@ -91,12 +89,10 @@ export default function ComplexGrid() {
   //   const pending = "pending";
   //   const onWay = "onWay";
   //   const state = { pending, onWay };
-
   ///------------------------ Get pending Orders ------------------------------------
   useEffect(() => {
     document.title = ` Drivers Orders`;
     console.log("I'm inside use effect");
-
     axios
       .get(`/api/driver/allorder_d`)
       .then(res => {
@@ -107,7 +103,6 @@ export default function ComplexGrid() {
         console.log("I'm error inside axios to get pendding orders", err);
       });
   }, []);
-
   ///------------------------ Accept pending Orders ------------------------------------
   const handleAccept = id => {
     // useEffect(() => {
@@ -125,7 +120,8 @@ export default function ComplexGrid() {
         }
       )
       .then(res => {
-        setOrder(res.data);
+        // console.log(res.data);
+        // setOrder(res.data);
         console.log("accept the order", orderId);
       })
       .catch(err => {
@@ -135,7 +131,6 @@ export default function ComplexGrid() {
   // const handleAccept = event => {
   //   set(event.target.value);
   // };
-
   // const handleAccept = event => {
   //   const orderId = orders._id;
   //   console.log(orderId)
@@ -157,7 +152,6 @@ export default function ComplexGrid() {
   //     }
   //   });
   // };
-
   return (
     <div className={classes.root}>
       {orders.map(order => (
@@ -195,7 +189,6 @@ export default function ComplexGrid() {
                     </Typography>
                     {/* ))} */}
                   </div>
-
                   <div className={classes.orderDetails}>
                     {/* {orders.map(order => ( */}
                     <Typography variant="body2">
@@ -206,7 +199,6 @@ export default function ComplexGrid() {
                     </Typography>
                     {/* ))} */}
                   </div>
-
                   <div className={classes.orderDetails}>
                     {/* {orders.map(order => ( */}
                     <Typography variant="body2">
@@ -232,7 +224,6 @@ export default function ComplexGrid() {
             </Grid>
             {/* <div style={{ marginBottom: "10px" }}>
           <SimpleRating /> */}
-
             <div
               style={{ float: "right", marginRight: "31px", fontSize: "39px" }}
             >
@@ -250,12 +241,12 @@ export default function ComplexGrid() {
                 </Typography>
               </Grid>
               {/* </div> */}
-
               <div className={classes.button1}>
                 <Button
+                  className={classes.accept}
                   // type="submit"
                   variant="contained"
-                  color="#4caf50"
+                  color="#4CAF50"
                   // onSubmit={this.handleSubmit}
                   onClick={() => handleAccept(order._id)}
                 >
@@ -264,18 +255,12 @@ export default function ComplexGrid() {
                 <Button
                   className={classes.view}
                   variant="contained"
-                  color="#cddc39"
+                  color="#CDDC39"
                   // onClick={() => setOrder((order.state: "onway"))}
                 >
                   View <VisibilityIcon className={classes.iconTab} />
                 </Button>
-                {/* <Button
-          className={classes.reject}
-          variant="contained"
-          color="#e53935"
-        >
-          Reject
-        </Button> */}
+              
               </div>
             </div>
           </Grid>

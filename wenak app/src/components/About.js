@@ -1,7 +1,10 @@
 import React from 'react'
 import { Container, Header } from 'semantic-ui-react'
+import NavBar from './Toolbar/Toolbar';
 
 const About = () => (
+  <div>
+  <NavBar />
   <Container text>
     <Header as='h2' textAlign='center' >About us</Header>
     <Container textAlign='justified'>
@@ -36,6 +39,7 @@ const About = () => (
     </Container>
     
   </Container>
+  </div>
 )
 
 export default About;

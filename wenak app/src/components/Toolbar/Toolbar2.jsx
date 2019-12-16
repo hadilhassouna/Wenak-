@@ -16,6 +16,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link } from "react-router-dom";
 import DrawerIcon from './Drawer';
+import axios from "axios";
+import $ from 'jquery';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -104,6 +106,37 @@ export default function Toolbar2() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleMenuCloselogout = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+
+    axios.get('/api/auth/logout')
+    .then(response => {
+      console.log(response);
+      var windowVar = window.localStorage.removeItem("usertoken");
+       alert("Success in logout");
+       window.location = "./LoginForm";
+    })
+    .catch(error => {
+      console.log(error.response)
+      alert("Error in logout");
+    });
+  }
+    // $.ajax({
+    //   type: 'GET',
+    //   url: "/api/auth/logout",
+    //   datatype:"json",
+    //   success:function(res){
+    //       console.log(res);
+    //       window.location = "./LoginForm";
+    //   },
+    //   error: function(request, status, error) {
+    //         console.log("error in logout");
+    //         alert("Error in logout");
+    //       }
+    //   });
+  
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -119,9 +152,9 @@ export default function Toolbar2() {
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </Link>
 
-      <Link to={'/LoginForm'}>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
-      </Link>
+      {/* <Link to={'/LoginForm'}> */}
+      <MenuItem onClick={handleMenuCloselogout}>Log Out</MenuItem>
+  
 
     </Menu>
   );
@@ -177,7 +210,8 @@ export default function Toolbar2() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+                        <DrawerIcon />
+
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             Weenak!

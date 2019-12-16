@@ -1,4 +1,3 @@
-
 //Screen 3
 // import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React from "react";
@@ -43,7 +42,7 @@ class Completion extends React.Component {
     var data = {
       reciverName: $("#reciverName").val(),
       Items: $("#Items").val(),
-      reciverPhone : $("reciverPhone").val(),
+      reciverPhone : $("#reciverPhone").val(),
       details: $("#details").val(),
       location_start_lng: "50.6",
       location_start_lat:"906",
@@ -151,14 +150,11 @@ class Completion extends React.Component {
           </div>
         </Grid>
       </div>
-    )
+    );
   }
 }
 
-export default Completion
+export default Completion;
 
-
-
-
-
-
+// handleRate = (e, { rating, maxRating }) =>
+//   this.setState({ rating, maxRating })
