@@ -27,7 +27,8 @@ menu {
   text-align: center;
   padding: 20 px;
 }
-Settings{
+
+Settings {
   align-items: center;
   align-content: center;
   align-self: center;
@@ -57,19 +58,19 @@ a.social:hover {
   transform: translateY(-2px);
 }
 a.youtube {
-  color: #EB3223;
+  color: #eb3223;
 }
 a.facebook {
-  color: #4968AD;
+  color: #4968ad;
 }
 a.instagram {
   color: black;
 }
 a.twitter {
-  color: #49A1EB;
+  color: #49a1eb;
 }
 a.linkedin {
-  color: #0073B1;
+  color: #0073b1;
 }
 /* Social Follow Stuff Up */
 /* Contact form CSS */
@@ -83,53 +84,72 @@ a.linkedin {
   font-size: large;
 }
 
+.slider {
+  width: 100%;
+  height: 500px;
+}
+.slideImg {
+  /* background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 100%;
+  height: 100%; */
+  /* margin-top: -300px; */
+  position: relative;
+  margin: 0 auto;
+  max-width: 970px;
+  font-family: "BebasNeueRegular", "Arial Narrow", Arial, sans-serif;
+  text-align: left;
+}
+.fontFamilyy {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.headerHome {
+  background-color: #d1e009 !important;
+}
 
-.stripe-payment {
+.slide-container {
+  width: 70%;
+  margin: auto;
+}
+
+h3 {
   text-align: center;
 }
-.mapInput{
-margin-right:21px
 
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 300px;
 }
-.mapLable{
-  margin-right:8px
-}
-.formDetails{
-  margin-bottom:10px
-}
-.mapStyle{
 
-  border-radius: 15px;
-  margin-bottom:30px
+.each-slide span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
 }
-.iconStyle{
-  font-size:large;
-  size: 50px;
+
+.each-fade {
+  display: flex;
 }
-inputDetails{
+
+.each-fade .image-container {
+  width: 75%;
+  overflow: hidden;
+}
+
+.each-fade .image-container img {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-  box-sizing: border-box;
-}
-.header1{
-  margin-right:10px
-
-}
-.butSend{
-  margin-top: 100px;
-  margin-right:850px ;
-  /* float: center; */
-  /* margin-right: 35px; */
-  text-align: right;
-  margin-left: 50px;
-  width: 170px;
-  height: 40px;
-}
-.trial{  width: 970px;
-  height: 450px;
 }
 
-
+.each-fade h2 {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: #adceed;
+}
