@@ -1,4 +1,134 @@
+// //Screen 5
 
+
+// import React, { Component } from 'react'
+// import { Form, Button, Rating, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
+// import Logo from '../assets/logo.png'
+// import $ from 'jquery';
+// import './components.css'
+
+
+
+// const style = {
+//     h1: {
+//         marginTop: '3em',
+//     },
+//     h2: {
+//         margin: '4em 0em 2em',
+//     },
+//     h3: {
+//         marginTop: '2em',
+//         padding: '2em 0em',
+//     },
+//     last: {
+//         marginBottom: '300px',
+//     },
+// }
+
+// class CurrentOrders extends React.Component {
+//     constructor(props){
+//         super(props)
+//     this.state = {
+//         orderData: {}
+//       };
+//       this.retreivData = this.retreivData.bind(this);
+//     }
+//     retreivData() {
+//       var that = this;
+//       $.ajax({
+//         type: "GET",
+//         url: "/api/customer/get_current_order",
+//         headers: {
+//           //'x-access-token': localStorage.getItem('usertoken')
+//           'x-access-token': localStorage.getItem("usertoken")
+//         },
+//         success: function(collection) {
+//           console.log(collection);
+//           that.setState({
+//             orderData: collection[0]
+//           });
+//         },
+//         error: function(request, status, error) {
+//           console.log(error);
+//         }
+//       });
+//     }
+//     componentDidMount() {
+//       this.retreivData();
+//     }
+//     // state = {}
+//     handleRate = (e, { rating, maxRating }) =>
+//         this.setState({ rating, maxRating })
+
+//     render() {
+//         return (
+
+//             <div className="surrentOrder">
+
+
+//                 <Header as='h3' content='Your Orders' style={style.h3} textAlign='center' />
+
+//                 {/* <Button animated>
+//                     <Button.Content visible>
+//                         <Icon name='arrow left' />
+//                     </Button.Content>
+//                     <Button.Content hidden> Back </Button.Content>
+//                 </Button>
+
+//                 <Button.Group>
+//                     <Button>Current Orders</Button>
+//                     <Button>History</Button>
+//                 </Button.Group>
+
+//                 <Button color='yellow' size='large'>
+//                     Cancel
+//                 </Button> */}
+                
+//                 <Image src={Logo} size='small' textAlign='center'/>
+
+//                 <Container fluid>
+//           <Header as="h2">OrderID: {this.state.orderData.user} </Header>
+//           <Header as="h2">
+//             Location:{this.state.orderData.location_start_lat}
+//           </Header>
+//           <Header as="h2">Status:{this.state.orderData.state}</Header>
+//           <Header as="h2">Date:{this.state.orderData.date}</Header>
+//           <Header as="h2">
+//             order_notes:{this.state.orderData.order_notes}
+//           </Header>
+//           <Header as="h2">
+//             reciver_name:{this.state.orderData.reciver_name}
+//           </Header>
+//           <Header as="h2">Price:{this.state.orderData.user}</Header>
+//           <Header as="h2">Rating:{this.state.orderData.rate}</Header>
+//           <Rating maxRating={5} onRate={this.handleRate} />
+//           <Image src={Logo} size="small" />
+//         </Container>
+//                 <br></br>
+//                 <br></br>
+//                 <br></br>
+//                 <br></br>
+//                 <br></br>
+
+//                 <Form size='small'>
+//               {/* <Segment stacked>
+//               <Header as='h2'>Order Status:</Header>
+//               <Header as='h2'>Preparing</Header>
+//               <Header as='h2'>On The Way</Header>
+//               <Header as='h2'>Completed Order</Header>
+//               </Segment> */}
+//             </Form>
+            
+//             </div>
+//         )
+//     }
+// }
+
+// export default CurrentOrders
+
+
+//----------------------------- Ola----------------------------------
+// import React from "react";
 import React, { Fragment, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -15,6 +145,7 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import DoneIcon from "@material-ui/icons/Done";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -51,13 +182,13 @@ const useStyles = makeStyles(theme => ({
   },
   accept: {
     color: "#FFFFFF",
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#4caf50",
     width: "130px",
     height: " 40px"
   },
   view: {
     color: "#FFFFFF",
-    backgroundColor: "#CDDC39",
+    backgroundColor: "#cddc39",
     width: "130px",
     height: " 40px"
   },
@@ -66,7 +197,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: "15px"
   },
   icons: {
-    color: "#BDBDBD",
+    color: "#bdbdbd",
     marginRight: "9px",
     marginTop: "5px"
   },
@@ -75,62 +206,58 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "5px"
   },
   iconTab: {
-    color: "#FAFAFA",
+    color: "#fafafa",
     textAlign: "right",
     marginLeft: "15px"
   }
 }));
-export default function ComplexGrid() {
+
+export default function ComplexGrid2() {
   const classes = useStyles();
-  const [orders, setOrder] = React.useState([]);
+  const [CuOrders, setCuOrders] = React.useState([]);
   const [userId, setUserId] = React.useState("");
-  //   const [state, setState] = useState((order.state: "onway"));
   const [reciver_name, setReciver_name] = useState([]);
-  //   const pending = "pending";
-  //   const onWay = "onWay";
-  //   const state = { pending, onWay };
+
+
   ///------------------------ Get pending Orders ------------------------------------
   useEffect(() => {
-    document.title = ` Drivers Orders`;
-    console.log("I'm inside use effect");
+    document.title = ` Customers Orders`;
+    console.log("I'm inside use effect")
     axios
-      .get(`/api/driver/allorder_d`)
+      .get(`/api/customer/get_current_order`,{headers: {"x-access-token": localStorage.getItem("usertoken")}})
       .then(res => {
-        setOrder(res.data);
-        console.log("I'm inside axios to get pendding orders", res.data);
+        setCuOrders(res.data);
+        console.log("I'm inside axios to get current_order customer orders", res.data);
       })
       .catch(err => {
-        console.log("I'm error inside axios to get pendding orders", err);
+        console.log("I'm error inside axios to get current_order customer orders", err);
       });
   }, []);
+
   ///------------------------ Accept pending Orders ------------------------------------
-  const handleAccept = id => {
-    // useEffect(() => {
-    //   document.title = ` Drivers Orders`;
-    //   console.log("I'm inside use effect Accept");
-    const orderId = id;
-    axios
-      .post(
-        `/api/driver/accept_order`,
-        { _id: orderId },
-        {
-          headers: {
-            "x-access-token": localStorage.getItem("usertoken")
-          }
-        }
-      )
-      .then(res => {
-        // console.log(res.data);
-        // setOrder(res.data);
-        console.log("accept the order", orderId);
-      })
-      .catch(err => {
-        console.log("error accept the order", err);
-      });
-  };
+//   const handleAccept = id => {
+//     // useEffect(() => {
+//     //   document.title = ` Drivers Orders`;
+//     //   console.log("I'm inside use effect Accept");
+//     const orderId = id;
+//     axios
+//       .post(
+//         `/api/driver/accept_order`,{ _id: orderId },{headers: {"x-access-token": localStorage.getItem("usertoken")}
+////
+//       )
+//       .then(res => {
+//         setOrder(res.data);
+//         console.log("accept the order", orderId);
+//       })
+//       .catch(err => {
+//         console.log("error accept the order", err);
+//       });
+//   };
+//---------------------------------------------------------------
   // const handleAccept = event => {
   //   set(event.target.value);
   // };
+
   // const handleAccept = event => {
   //   const orderId = orders._id;
   //   console.log(orderId)
@@ -152,9 +279,10 @@ export default function ComplexGrid() {
   //     }
   //   });
   // };
+
   return (
     <div className={classes.root}>
-      {orders.map(order => (
+      {CuOrders.map(CuOrder => (
         <Paper className={classes.paper}>
           <Grid container spacing={2}>
             <Grid item>
@@ -174,7 +302,7 @@ export default function ComplexGrid() {
                       <p>
                         {" "}
                         <PersonIcon className={classes.icons} />
-                        _id : {order._id}
+                        OrderId: {CuOrder._id}
                       </p>
                     </Typography>
                   </div>
@@ -184,27 +312,29 @@ export default function ComplexGrid() {
                       <p>
                         {" "}
                         <LocationOnIcon className={classes.icons} /> Location :{" "}
-                        {order.order_details}
+                        {CuOrder.order_details}
                       </p>
                     </Typography>
                     {/* ))} */}
                   </div>
+
                   <div className={classes.orderDetails}>
                     {/* {orders.map(order => ( */}
                     <Typography variant="body2">
                       <p>
                         <ScheduleIcon className={classes.icons} /> Time:
-                        {order.date}
+                        {CuOrder.date}
                       </p>
                     </Typography>
                     {/* ))} */}
                   </div>
+
                   <div className={classes.orderDetails}>
                     {/* {orders.map(order => ( */}
                     <Typography variant="body2">
                       <p>
                         <BeenhereIcon className={classes.icons} /> state :{" "}
-                        {order.state}
+                        {CuOrder.state}
                       </p>
                     </Typography>
                     {/* ))} */}
@@ -224,6 +354,7 @@ export default function ComplexGrid() {
             </Grid>
             {/* <div style={{ marginBottom: "10px" }}>
           <SimpleRating /> */}
+
             <div
               style={{ float: "right", marginRight: "31px", fontSize: "39px" }}
             >
@@ -236,32 +367,13 @@ export default function ComplexGrid() {
                     fontSize: "25px"
                   }}
                 >
-                  <p>$ {order.price}</p>
+                  <p>$ {CuOrders.price}</p>
                   {/* price */}
                 </Typography>
               </Grid>
               {/* </div> */}
-              <div className={classes.button1}>
-                <Button
-                  className={classes.accept}
-                  // type="submit"
-                  variant="contained"
-                  color="#4CAF50"
-                  // onSubmit={this.handleSubmit}
-                  onClick={() => handleAccept(order._id)}
-                >
-                  Accept <DoneIcon className={classes.iconTab} />
-                </Button>
-                <Button
-                  className={classes.view}
-                  variant="contained"
-                  color="#CDDC39"
-                  // onClick={() => setOrder((order.state: "onway"))}
-                >
-                  View <VisibilityIcon className={classes.iconTab} />
-                </Button>
+
               
-              </div>
             </div>
           </Grid>
         </Paper>

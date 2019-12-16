@@ -50,21 +50,20 @@ const useStyles = makeStyles(theme => ({
   },
   view: {
     color: "#FFFFFF",
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4CAF50",
     width: "130px",
     height: " 40px"
   },
   reject: {
     color: "#FFFFFF",
-    backgroundColor: "#e53935"
+    backgroundColor: "#E53935"
   },
-
   details: {
     padding: "10px",
     marginTop: "15px"
   },
   icons: {
-    color: "#bdbdbd",
+    color: "#BDBDBD",
     marginRight: "9px",
     marginTop: "5px"
   },
@@ -73,7 +72,6 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "5px"
   }
 }));
-
 export default function ComplexGrid2() {
   const classes = useStyles();
   const [orders, setOrder] = React.useState([]);
@@ -82,7 +80,6 @@ export default function ComplexGrid2() {
   useEffect(() => {
     document.title = `Drivers Orders`;
     console.log("I'm inside use effect");
-
     axios
       .get(`/api/driver/previous_order_d`, {
         headers: {
@@ -141,7 +138,6 @@ export default function ComplexGrid2() {
                       </p>
                     </Typography>
                   </div>
-
                   <div className={classes.orderDetails}>
                     <Typography variant="body2">
                       <p>
@@ -167,7 +163,6 @@ export default function ComplexGrid2() {
             </Grid>
             <div style={{ marginBottom: "5px" }}>
               <SimpleRating />
-
               <div
                 style={{
                   float: "right",
@@ -184,12 +179,11 @@ export default function ComplexGrid2() {
                   </Typography>
                 </Grid>
               </div>
-
               <div className={classes.button1}>
                 <Button
                   className={classes.accept}
                   variant="contained"
-                  color="#4caf50"
+                  color="#4CAF50"
                   // onClick={() => setOrder((order.state: "onway"))}
                 >
                   View Order <VisibilityIcon className={classes.iconTab} />
@@ -202,3 +196,14 @@ export default function ComplexGrid2() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
