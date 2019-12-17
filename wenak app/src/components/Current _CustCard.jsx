@@ -294,6 +294,8 @@ export default function ComplexGrid2() {
                     {/* ))} */}
                   </div>
                   <div className={classes.orderDetails}>
+
+                  
                     <Typography variant="body2">
                       {/* <DirectionsBikeIcon /> */}
                     </Typography>
