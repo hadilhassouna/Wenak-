@@ -15,27 +15,19 @@ import Profile from "./components/Profile";
 import DriverOrd from "./components/DriverOrd";
 import NavBar from "./components/Toolbar/Toolbar.jsx";
 import Toolbar2 from "./components/Toolbar/Toolbar2.jsx";
-
-
 import NavbarUser from "./components/Toolbar/NavbarUser";
-
 import { BrowserRouter, Route } from "react-router-dom";
 import DrawerIcon from "./components/Toolbar/Drawer";
-
 import Settings from "./components/Settings";
 import About from "./components/About";
-
 import ContactForm from './components/contactForm/ContactForm';
 import Trial from './components/Trial';
-import Checkout from './components/Checkout';
-
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="App">
         {/* <Sidebar /> */}
         {/* <NavBar /> */}
-
         {/* <DrawerIcon /> */}
         <main >
         
@@ -69,9 +61,6 @@ const App: React.FC = () => {
         <Route exact path={"/ContactForm"} component={ContactForm} />
         <Route exact path={"/Profile"} component={Profile} />
         <Route exact path={"/Toolbar2"} component={Toolbar2} />
-
-
-
       
         {/* <Profile />
         <DriverOrders /> */}
