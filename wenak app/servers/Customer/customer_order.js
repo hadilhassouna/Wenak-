@@ -58,6 +58,52 @@ router.post("/send_order", VerifyToken, function (req, res, next) {
           }
       });
     });
+////////
+    router.post("/send_latlng", VerifyToken, function (req, res, next) {
+        //var myId = JSON.parse(req.userId);
+        User.findById((req.userId), { password: 0 }, function (err, user) {
+            if (err)
+                return res.status(500).send("There was a problem finding the user.");
+            if (!user)
+                return res.status(404).send("No user found.");
+            console.log(req);
+            //var id = ObjectId(JSON.parse(req.userId));
+            var id =user._id
+            var name = user.name;
+            console.log(id);
+            const myorder = req.body;
+            console.log(myorder);
+            if (!myorder)
+                return res.status(400).json({ msg: "problem in order" });
+            else if (myorder) {
+                Order.create({
+                    user_id: id,
+                    driver_id:"0",
+                    order_details: "Ammmmmmmm",
+                    location_start_lng: myorder.location_start_lng,
+                    location_start_lat: myorder.location_start_lat,
+                    // location_end_lng: myorder.location_end_lng,
+                    // location_end_lat: myorder.location_end_lat,
+                    reciver_name: "Kareem",
+                    recieverPhone: "05555555",
+                    order_notes:"eeee",
+                    name:name,
+                    rate: myorder.rate,
+                    state: "pending",
+                    date: Date.now(),
+                    price: myorder.price
+                }, function (err, req, res, next) {
+                    if (err) {
+                        console.log(err);
+                        //res.send("error");
+                    }
+                    console.log("success",res);
+                    //res.send("success in order");
+                  });
+              }
+          });
+        });
+      
   
     // User.findById((req.userId), { password: 0 }, function (err, user) {
     //     if (err)
