@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Divider, Dropdown, Radio, Segment, Button } from 'semantic-ui-react'
+import NavBar from './Toolbar/Toolbar';
 
 
 const languageOptions = [
@@ -28,7 +29,7 @@ const NotificationsToggle = () => <Radio style={{margin: 15}} toggle label="On"/
 
 const Settings = () => (
   <div>
-    
+    <NavBar />
     <Container textAlign='center' >
       <b>Settings</b>
       <Divider />

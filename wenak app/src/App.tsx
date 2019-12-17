@@ -7,12 +7,15 @@ import Completion from "./components/Completion";
 import "./app.scss";
 import LoginForm from "./components/loginForm";
 import UserForm from "./components/signUpForm/UserForm";
-import Orders from "./components/YourOrders";
+// import Orders from "./components/YourOrders";
+import CustomerOrd from "./components/CustomerOrd";
 import CurrentOrders from "./components/CurrentOrders";
 import Profile from "./components/Profile";
-import DriverOrders from "./components/DriverOrders";
+// import DriverOrders from "./components/DriverOrders";
 import DriverOrd from "./components/DriverOrd";
 import NavBar from "./components/Toolbar/Toolbar.jsx";
+import Toolbar2 from "./components/Toolbar/Toolbar2.jsx";
+
 
 import NavbarUser from "./components/Toolbar/NavbarUser";
 
@@ -21,29 +24,26 @@ import DrawerIcon from "./components/Toolbar/Drawer";
 
 import Settings from "./components/Settings";
 import About from "./components/About";
-import SocialFollow from './components/SocialFollow';
+
 import ContactForm from './components/contactForm/ContactForm';
 import Trial from './components/Trial';
+import Checkout from './components/Checkout';
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div className="App">
         {/* <Sidebar /> */}
-        <NavBar />
+        {/* <NavBar /> */}
+
         {/* <DrawerIcon /> */}
         <main >
         
         </main>
         
-        
+        <Route exact path={"/"} component={NavBar} />
         <Route exact path={"/LoginForm"} component={LoginForm} />
-        <Route
-          exact
-          path={"/UserForm"}
-          component={UserForm}
-          className="signUp"
-        />
+        <Route exact path={"/UserForm"} component={UserForm} className="signUp" />
         {/* <NavBar /> */}
         {/* <DrawerIcon /> */}
         <main></main>
@@ -56,18 +56,21 @@ const App: React.FC = () => {
           component={UserForm}
           className="signUp"
         /> */}
-                <Route exact path={"/Trial"} component={Trial} />
-
+        <Route exact path={"/Trial"} component={Trial} />
         <Route exact path={"/Home"} component={Home} />
         {/* <Route exact path={"/HomePage"} component={HomePage} /> */}
         <Route exact path={"/Completion"} component={Completion} />
-        <Route exact path={"/Orders"} component={Orders} />
+        <Route exact path={"/CustomerOrd"} component={CustomerOrd} />
         <Route exact path={"/DriverOrd"} component={DriverOrd} />
         <Route exact path={"/CurrentOrders"} component={CurrentOrders} />
         <Route exact path={"/Settings"} component={Settings} />
         <Route exact path={"/About"} component={About} />
-        <Route exact path={"/SocialFollow"} component={SocialFollow} />
+        {/* <Route exact path={"/SocialFollow"} component={SocialFollow} /> */}
         <Route exact path={"/ContactForm"} component={ContactForm} />
+        <Route exact path={"/Profile"} component={Profile} />
+        <Route exact path={"/Toolbar2"} component={Toolbar2} />
+
+
 
       
         {/* <Profile />

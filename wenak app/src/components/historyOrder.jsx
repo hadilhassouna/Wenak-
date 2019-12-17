@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -11,6 +11,9 @@ import PersonIcon from "@material-ui/icons/Person";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import BeenhereIcon from "@material-ui/icons/Beenhere";
 import ScheduleIcon from "@material-ui/icons/Schedule";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import axios from "axios";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -19,7 +22,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     margin: "auto",
     maxWidth: "auto",
-    textAlign: "left"
+    textAlign: "left",
+    marginBottom: "12px"
   },
   image: {
     width: 128,
@@ -46,114 +50,160 @@ const useStyles = makeStyles(theme => ({
   },
   view: {
     color: "#FFFFFF",
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4CAF50",
     width: "130px",
     height: " 40px"
   },
   reject: {
     color: "#FFFFFF",
-    backgroundColor: "#e53935"
+    backgroundColor: "#E53935"
   },
   details: {
     padding: "10px",
     marginTop: "15px"
   },
   icons: {
-    color: "#bdbdbd"
+    color: "#BDBDBD",
+    marginRight: "9px",
+    marginTop: "5px"
   },
   orderDetails: {
     //   padding:"",
     marginBottom: "5px"
   }
 }));
-
 export default function ComplexGrid2() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(2);
+  const [orders, setOrder] = React.useState([]);
+  const [userId, setUserId] = React.useState("");
+  const [reciver_name, setReciver_name] = useState([]);
+  useEffect(() => {
+    document.title = `Drivers Orders`;
+    console.log("I'm inside use effect");
+    axios
+      .get(`/api/driver/previous_order_d`, {
+        headers: {
+          "x-access-token": localStorage.getItem("usertoken")
+        }
+      })
+      .then(res => {
+        setOrder(res.data);
+        console.log("I'm inside history order axios", res.data);
+      })
+      .catch(err => {
+        console.log("I'm error", err);
+      });
+  }, []);
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Grid container spacing={2}>
-          <Grid item>
-            <ButtonBase className={classes.image}>
-              <img
-                className={classes.img}
-                alt="complex"
-                src="https://image.flaticon.com/icons/svg/713/713342.svg"
-              />
-            </ButtonBase>
-          </Grid>
-          <Grid className={classes.details} item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <div className={classes.orderDetails}>
-                  <Typography gutterBottom variant="subtitle1">
-                    <PersonIcon className={classes.icons} /> user_id:
-                  </Typography>
-                </div>
-                <div className={classes.orderDetails}>
-                  <Typography variant="body2" gutterBottom>
-                    <LocationOnIcon className={classes.icons} /> Location:
-                  </Typography>
-                </div>
-                <div className={classes.orderDetails}>
-                  <Typography variant="body2">
-                    <ScheduleIcon className={classes.icons} /> Time:
-                  </Typography>
-                </div>
-                <div className={classes.orderDetails}>
-                  <Typography variant="body2">
-                    <BeenhereIcon className={classes.icons} /> state:
-                  </Typography>
-                </div>
-                <div className={classes.orderDetails}>
-                  <Typography variant="body2">
-                    {/* <DirectionsBikeIcon /> */}
-                  </Typography>
-                </div>
-              </Grid>
-              {/* <Grid item>
-                <Typography variant="body2" style={{ cursor: "pointer" }}>
-                  Remove
-                </Typography>
-              </Grid> */}
+      {orders.map(order => (
+        <Paper className={classes.paper}>
+          <Grid container spacing={2}>
+            <Grid item>
+              <ButtonBase className={classes.image}>
+                <img
+                  className={classes.img}
+                  alt="complex"
+                  src="https://image.flaticon.com/icons/svg/713/713342.svg"
+                />
+              </ButtonBase>
             </Grid>
-          </Grid>
-          <div style={{ marginBottom: "5px" }}>
-            <SimpleRating />
-
-            <div
-              style={{ float: "right", marginRight: "31px", fontSize: "39px" }}
-            >
-              <Grid item>
-                <Typography
-                  variant="subtitle1"
-                  style={{ marginRight: "26px", fontSize: "25px" }}
-                >
-                  $19.00
-                </Typography>
+            <Grid className={classes.details} item xs={12} sm container>
+              <Grid item xs container direction="column" spacing={2}>
+                <Grid item xs>
+                  <div className={classes.orderDetails}>
+                    <Typography gutterBottom variant="subtitle1">
+                      <p>
+                        {" "}
+                        <LocalOfferIcon className={classes.icons} />
+                        user_id : {order.user_id}
+                      </p>
+                    </Typography>
+                  </div>
+                  <div className={classes.orderDetails}>
+                    <Typography variant="body2">
+                      <p>
+                        {" "}
+                        <PersonIcon className={classes.icons} /> Name:
+                        {order.name}
+                      </p>
+                    </Typography>
+                  </div>
+                  <div className={classes.orderDetails}>
+                    <Typography variant="body2" gutterBottom>
+                      <p>
+                        {" "}
+                        <LocationOnIcon className={classes.icons} /> Location :{" "}
+                        {order.order_details}
+                      </p>
+                    </Typography>
+                  </div>
+                  <div className={classes.orderDetails}>
+                    <Typography variant="body2">
+                      <p>
+                        {" "}
+                        <ScheduleIcon className={classes.icons} /> Time:
+                        {order.date}
+                      </p>
+                    </Typography>
+                  </div>
+                  <div className={classes.orderDetails}>
+                    <Typography variant="body2">
+                      <p>
+                        <BeenhereIcon className={classes.icons} /> state :{" "}
+                        {order.state}
+                      </p>
+                    </Typography>
+                  </div>
+                  <div className={classes.orderDetails}>
+                    <Typography variant="body2"></Typography>
+                  </div>
+                </Grid>
               </Grid>
-            </div>
-
-            <div className={classes.button1}>
-              <Button
-                className={classes.view}
-                variant="contained"
-                color="#4caf50"
+            </Grid>
+            <div style={{ marginBottom: "5px" }}>
+              <SimpleRating />
+              <div
+                style={{
+                  float: "right",
+                  marginRight: "31px",
+                  fontSize: "39px"
+                }}
               >
-                View Order
-              </Button>
-              {/* <Button
-            className={classes.reject}
-            variant="contained"
-            color="#e53935"
-          >
-            Reject
-          </Button> */}
+                <Grid item>
+                  <Typography
+                    variant="subtitle1"
+                    style={{ marginRight: "26px", fontSize: "25px" }}
+                  >
+                    $19.00
+                  </Typography>
+                </Grid>
+              </div>
+              <div className={classes.button1}>
+                <Button
+                  className={classes.accept}
+                  variant="contained"
+                  color="#4CAF50"
+                  // onClick={() => setOrder((order.state: "onway"))}
+                >
+                  View Order <VisibilityIcon className={classes.iconTab} />
+                </Button>
+              </div>
             </div>
-          </div>
-        </Grid>
-      </Paper>
+          </Grid>
+        </Paper>
+      ))}
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+

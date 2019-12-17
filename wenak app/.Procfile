@@ -1,0 +1,1 @@
+web: nodemon ./servers/server.js

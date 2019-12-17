@@ -3,6 +3,7 @@ import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown } f
 import Logo2 from '../assets/logo2.png'
 import $ from 'jquery';
 import { Link } from "react-router-dom";
+import NavBar from './Toolbar/Toolbar';
 
 
 
@@ -106,6 +107,8 @@ class LoginForm extends Component {
 
   render() {
     return (
+      <div>
+        <NavBar />
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='yellow' textAlign='center'>
@@ -139,8 +142,10 @@ class LoginForm extends Component {
           <Message>
             <Link to={"/UserForm"}>Sign Up</Link>
           </Message>
+          
         </Grid.Column>
       </Grid>
+      </div>
     )
   }
 }

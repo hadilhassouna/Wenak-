@@ -25,6 +25,8 @@ app.use('/notifi', notifications);
 const twilio= require('./twilioServer.js');
 app.use('/twilio', twilio);
 
+const payment= require('./payment.js');
+app.use('/payment', payment);
 
 module.exports = app;
 

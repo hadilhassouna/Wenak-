@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import AppBar from 'material-ui/AppBar';
+import NavBar from '../Toolbar/Toolbar';
 
 
 export class Success extends Component {
@@ -21,6 +21,7 @@ export class Success extends Component {
     render() {
         return (
             <MuiThemeProvider >
+                <NavBar />
                 <React.Fragment>
                     {/* <AppBar title="Registeration was Successful!"/> */}
                     <h1  className="signUp">Thank You For Your Submission</h1>

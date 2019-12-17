@@ -1,63 +1,62 @@
 //screen 1
 
-import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React, { Component } from "react";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 // import AppBar from 'material-ui/AppBar';
 import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import $ from 'jquery';
 import './signUp.css';
+import NavBar from '../Toolbar/Toolbar';
+
+
 export class FormUserDetails extends Component {
-    continue = e => {
-        e.preventDefault();
-        // Process form //
-            let mobilenum= this.props.values.mobile;
-            let password =this.props.values.password;
-            let type =this.props.values.userType;
-            let name =this.props.values.name;
-            
-            console.log("hi I'm from e function");
-            console.log(mobilenum);
-            console.log(type);
-            console.log(name);
+  continue = e => {
+    e.preventDefault();
+    // Process form //
+    let mobilenum = this.props.values.mobile;
+    let password = this.props.values.password;
+    let type = this.props.values.userType;
+    let name = this.props.values.name;
 
-            $.ajax({
-              type: "POST",
-              url: "http://localhost:4000/api/auth/register",
-              data:{
-                mobilenum:mobilenum,
-                password:password,
-                type:type,
-                name:name,
-              }, 
-              datatype: "json",
-              success:function(){
-                  console.log(this.data)
-                  console.log("sucess login the user");
-                  alert("Hello " + name);
-                  window.location = './LoginForm';
-        
-              },
-              error: function(request, status, error) {
-                    console.log("error in register");
-                    alert("Error in register or the user is exists");
-                    window.location = './UserForm';
+    console.log("hi I'm from e function");
+    console.log(mobilenum);
+    console.log(type);
+    console.log(name);
 
-                  }
-              });
-            
-        this.props.nextStep();
-    }
+    $.ajax({
+      type: "POST",
+      url: "/api/auth/register",
+      data: {
+        mobilenum: mobilenum,
+        password: password,
+        type: type,
+        name: name
+      },
+      datatype: "json",
+      success: function() {
+        console.log(this.data);
+        console.log("sucess login the user");
+        alert("Hello " + name);
+        window.location = "./LoginForm";
+      },
+      error: function(request, status, error) {
+        console.log(error);
+        alert("Error in register or the user is exists");
+        window.location = "./UserForm";
+      }
+    });
 
-    back = e => {
-        e.preventDefault();
-        this.props.prevStep();
-    }
+    this.props.nextStep();
+  };
 
     render() {
         const { values: { mobile, password, userType,name } } = this.props;
         return (
+ 
             <MuiThemeProvider >
+                            <NavBar />
+
                 <React.Fragment>
                     {/* <AppBar title="Confirm User Data"/> */}
                     <List className="signUp">
@@ -105,9 +104,9 @@ export class FormUserDetails extends Component {
 }
 
 const styles = {
-    button: {
-        margin: 15
-    }
-}
+  button: {
+    margin: 15
+  }
+};
 
-export default FormUserDetails
+export default FormUserDetails;

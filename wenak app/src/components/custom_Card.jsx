@@ -1,4 +1,4 @@
-
+// import React from "react";
 import React, { Fragment, useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -15,6 +15,7 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import DoneIcon from "@material-ui/icons/Done";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -51,13 +52,13 @@ const useStyles = makeStyles(theme => ({
   },
   accept: {
     color: "#FFFFFF",
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#4caf50",
     width: "130px",
     height: " 40px"
   },
   view: {
     color: "#FFFFFF",
-    backgroundColor: "#CDDC39",
+    backgroundColor: "#cddc39",
     width: "130px",
     height: " 40px"
   },
@@ -66,7 +67,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: "15px"
   },
   icons: {
-    color: "#BDBDBD",
+    color: "#bdbdbd",
     marginRight: "9px",
     marginTop: "5px"
   },
@@ -75,12 +76,13 @@ const useStyles = makeStyles(theme => ({
     marginBottom: "5px"
   },
   iconTab: {
-    color: "#FAFAFA",
+    color: "#fafafa",
     textAlign: "right",
     marginLeft: "15px"
   }
 }));
-export default function ComplexGrid() {
+
+export default function CustomGrid() {
   const classes = useStyles();
   const [orders, setOrder] = React.useState([]);
   const [userId, setUserId] = React.useState("");
@@ -89,69 +91,25 @@ export default function ComplexGrid() {
   //   const pending = "pending";
   //   const onWay = "onWay";
   //   const state = { pending, onWay };
-  ///------------------------ Get pending Orders ------------------------------------
+
+  ///------------------------ Get previous Orders ------------------------------------
   useEffect(() => {
-    document.title = ` Drivers Orders`;
+    document.title = ` CustomerOrders`;
     console.log("I'm inside use effect");
+
     axios
-      .get(`/api/driver/allorder_d`)
+      .get(`/api/customer/get_previous`)
       .then(res => {
         setOrder(res.data);
-        console.log("I'm inside axios to get pendding orders", res.data);
+        console.log("I'm inside axios to get previous customer orders", res.data);
       })
       .catch(err => {
-        console.log("I'm error inside axios to get pendding orders", err);
+        console.log("I'm error inside axios to get previous customerorders", err);
       });
   }, []);
-  ///------------------------ Accept pending Orders ------------------------------------
-  const handleAccept = id => {
-    // useEffect(() => {
-    //   document.title = ` Drivers Orders`;
-    //   console.log("I'm inside use effect Accept");
-    const orderId = id;
-    axios
-      .post(
-        `/api/driver/accept_order`,
-        { _id: orderId },
-        {
-          headers: {
-            "x-access-token": localStorage.getItem("usertoken")
-          }
-        }
-      )
-      .then(res => {
-        // console.log(res.data);
-        // setOrder(res.data);
-        console.log("accept the order", orderId);
-      })
-      .catch(err => {
-        console.log("error accept the order", err);
-      });
-  };
-  // const handleAccept = event => {
-  //   set(event.target.value);
-  // };
-  // const handleAccept = event => {
-  //   const orderId = orders._id;
-  //   console.log(orderId)
-  //   $.ajax({
-  //     url: "/api/customer/send_order",
-  //     headers: {
-  //       "x-access-token": localStorage.getItem("usertoken")
-  //     },
-  //     type: "POST",
-  //     data: { _id: orderId },
-  //     datatype: "json",
-  //     success: function() {
-  //       console.log("The order has accepted");
-  //       alert("accept the order  successfully");
-  //     },
-  //     error: function() {
-  //       console.log("error in order");
-  //       alert("Error in  accept sending");
-  //     }
-  //   });
-  // };
+
+  ///-------------------------------- return ------------------------------------
+  
   return (
     <div className={classes.root}>
       {orders.map(order => (
@@ -189,6 +147,7 @@ export default function ComplexGrid() {
                     </Typography>
                     {/* ))} */}
                   </div>
+
                   <div className={classes.orderDetails}>
                     {/* {orders.map(order => ( */}
                     <Typography variant="body2">
@@ -199,6 +158,7 @@ export default function ComplexGrid() {
                     </Typography>
                     {/* ))} */}
                   </div>
+
                   <div className={classes.orderDetails}>
                     {/* {orders.map(order => ( */}
                     <Typography variant="body2">
@@ -224,6 +184,7 @@ export default function ComplexGrid() {
             </Grid>
             {/* <div style={{ marginBottom: "10px" }}>
           <SimpleRating /> */}
+
             <div
               style={{ float: "right", marginRight: "31px", fontSize: "39px" }}
             >
@@ -241,12 +202,12 @@ export default function ComplexGrid() {
                 </Typography>
               </Grid>
               {/* </div> */}
+
               <div className={classes.button1}>
                 <Button
-                  className={classes.accept}
                   // type="submit"
                   variant="contained"
-                  color="#4CAF50"
+                  color="#4caf50"
                   // onSubmit={this.handleSubmit}
                   onClick={() => handleAccept(order._id)}
                 >
@@ -255,12 +216,18 @@ export default function ComplexGrid() {
                 <Button
                   className={classes.view}
                   variant="contained"
-                  color="#CDDC39"
+                  color="#cddc39"
                   // onClick={() => setOrder((order.state: "onway"))}
                 >
                   View <VisibilityIcon className={classes.iconTab} />
                 </Button>
-              
+                {/* <Button
+          className={classes.reject}
+          variant="contained"
+          color="#e53935"
+        >
+          Reject
+        </Button> */}
               </div>
             </div>
           </Grid>

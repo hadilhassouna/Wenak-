@@ -78,8 +78,8 @@ const DriverSchema= Schema({
 
   //order schema
   const OrderSchema= Schema({
-    driver_id:{type: ObjectId},
-    user_id:{type: ObjectId}, 
+    driver_id:{type: String},
+    user_id:{type: String}, 
     order_details:{type: String},
     name:{type: String},
     driver_name:{type: String},
