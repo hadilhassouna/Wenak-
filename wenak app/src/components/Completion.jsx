@@ -1,43 +1,50 @@
 //Screen 3
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import React, { Component } from 'react'
-import { Button, Input, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
+// import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import React from "react";
+import {
+  Button,
+  Container,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Item,
+  Label,
+  Menu,
+  Segment,
+  Step,
+  Table 
+} from "semantic-ui-react";
+import axios from "axios";
+import { InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import Trial from "./Trial";
+import  "../../src/App.css";
 import $ from 'jquery';
-import { Link } from "react-router-dom";
-
+import jwt_decode from 'jwt-decode';
 const style = {
-  h1: {
-    marginTop: '3em',
-  },
-  h2: {
-    margin: '4em 0em 2em',
-  },
-  h3: {
     marginTop: '2em',
     padding: '2em 0em',
-  },
-  last: {
-    marginBottom: '300px',
-  },
 }
+  
 
 class Completion extends React.Component {
   constructor(props){
     super(props)
-    this.state={
-      item: "",
-      location_start_lng: "14.7555",
-      location_start_lat: "-45.544",
-      location_end_lng: "11.5855",
-      location_end_lat: "-13.352",
-      recieverName: "",
-      recieverPhone: "",
-      additionalInfo: "",
-      state: "pending"
-    }
+    // this.state={
+    //   item: "",
+    //   location_start_lng: "14.7555",
+    //   location_start_lat: "-45.544",
+    //   location_end_lng: "11.5855",
+    //   location_end_lat: "-13.352",
+    //   recieverName: "",
+    //   recieverPhone: "",
+    //   additionalInfo: "",
+    //   state: "pending",
+    //   note:"",
+    // }
     //bind methods here
     this.handleChange = this.handleChange.bind(this);
-    this.sendorder = this.sendorder.bind(this);
+    this.handleSend= this.handleSend.bind(this);
   }
 //methods
 handleChange(event) {
@@ -48,153 +55,157 @@ handleChange(event) {
     [name]: value
   })
 };
-
-sendorder(event){
-  event.preventDefault();
-  console.log(this.state);
-  //  console.log("mobile ",this.state.mobile, 'pw', this.state.password)
-  //Requests go here  event.preventDefault();
-  console.log("hi I'm inside submit order");
-  var data = {
-    // userName: $("#name").val(),
-    // email: $("#email").val(),
-    location_start_lng: this.state.location_start_lng,
-    location_start_lat: this.state.location_start_lat,
-    location_end_lng: this.state.location_end_lng,
-    location_end_lat: this.state.location_end_lat,
-    order_details: this.state.item,
-    reciver_name: this.state.recieverName,
-    recieverPhone: this.state.recieverName,
-    order_notes: this.state.additionalInfo,
-    state: this.state.state
-  };
-  console.log(data);
-  $.ajax({
-    url: "/api/customer/send_order",
-    headers: {
-      //'x-access-token': localStorage.getItem('usertoken')
-      'x-access-token': localStorage.getItem("usertoken")
-    },
-    type: "POST",
-    data: data,
-    datatype: "json",
-    success: function() {
-      console.log("The order has sent successfully");
-      alert("The order sent successfully");
-    },
-    error: function() {
-      console.log("error in order");
-      alert("Error in order sending");
-    }
-  });
+ 
+  handleSend(){
+    // event.preventDefault();
+    console.log("I'm inside send function");
+    var token = localStorage.getItem('usertoken');
+    var userIdFromToken;
+    if (token) {
+    const decoded = jwt_decode(token);
+     userIdFromToken = decoded._id;
+	 console.log(userIdFromToken);
 }
+    var data = {
+      //user_id:userIdFromToken,
+      reciverName: $("#reciverName").val(),
+      //reciverName:this.state.recieverName,
+       Items: $("#Items").val(),
+       reciverPhone : $("#recieverPhone").val(),
+      //details: this.state.note,
+      location_start_lng: "50.6",
+      location_start_lat:"906",
+      location_end_lng: "8888",
+      location_end_lat:"89",
+      order_notes:$("#details").val(),
+      rate: 0,
+      state:"pending",
+      date: Date.now(),
+      price:5
+    };
+    //event.preventDefault();
+    console.log("hi I’m inside submit order");
+    console.log(data);
+
+    $.ajax({
+      url: "/api/customer/send_order",
+      headers: {
+        'x-access-token': localStorage.getItem("usertoken")
+      },
+      type: "POST",
+      data: data,
+      dataType:"json",
+      success: function() {
+        console.log("The order has sent successfully");
+        alert("The order sent successfully");
+      },
+      error: function() {
+        console.log("error in order");
+        alert("Error in order sending");
+      }
+    });
+  }
+//     axios
+//     .post(
+//       `/api/customer/send_order`,
+//       {data: data},
+//       {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           "x-access-token": localStorage.getItem("usertoken")
+//         }
+//       }
+//     )
+//     .then(res => {
+//       console.log("The order has sent successfully");
+//       alert("The order sent successfully");
+//     })
+//     .catch(err => {
+//       console.log("error in order");
+//       alert("Error in order sending");
+//     });
+// };
+
   render() {
     return (
-      <div>
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
-          <hr></hr>
+      <div >
+        <Grid >
+        <div className="inputDetails">
+        <Header
+          as="h3"
+          content="Details"
+          style={style.h3}
+          textAlign="left"
+        />
 
-        <Header as='h3' content='Complete Your Order Please' style={style.h3} textAlign='left' />
-
-        <Button animated>
-          <Button.Content visible>
-            <Icon name='arrow left' />
-          </Button.Content>
-          <Button.Content hidden> Back </Button.Content>
-        </Button>
-        <Grid>
           <Grid.Column computer={3} mobile={6} tablet={9}>
-            <Header as='h3' content="Enter Your Order/Item:" style={style.h3} textAlign='left' />
-            <Input name = "item" onChange={this.handleChange} value= {this.state.item} placeholder="Order/Item"/> 
-          </Grid.Column>
-          <Grid.Column width={4}>
-            <Header as='h3' content="Reciever's Name" style={style.h3} textAlign='left' />
-            <Input name = "recieverName" onChange={this.handleChange} value= {this.state.recieverName} placeholder="reciever's name"/> 
-          </Grid.Column>
-          <Grid.Column computer={9} mobile={6} tablet={3}>
-            <Header as='h3' content="Reciever's Phone:" style={style.h3} textAlign='left' />
-            <Input name = "recieverPhone" onChange={this.handleChange} value= {this.state.recieverPhone} placeholder="reciever's phone number"/> 
-
-
-
-
-            <Map google={this.props.google}
-              initialCenter={{
-                lat: 31.9478,
-                lng: 35.2296
-              }}
-              zoom={7}
-              onClick={this.onMapClicked}>
-
-              <Marker onClick={this.onMarkerClick}
-                name={'Current location'}
-                position={{ lat: 31.9478, lng: 35.2296 }}
+            <Header className="header1"
+              as="h3"
+              content="Enter Your Order/Item:"
+              textAlign="left"
+            />
+            <input  id="Items" type="text" placeholder="Enter Your Order/Item"></input>
+            <Header className="header1"
+              as="h3"
+              content="Reciever's Name:"
+              style={style.h3}
+              textAlign="left" 
+            />
+            <input id="reciverName"   type="text" placeholder="Reciever's Name"></input>
+         
+            <Header className="header1" 
+              as="h3"
+              content="Reciever's Phone:"
+              style={style.h3}
+              textAlign="left"
+            />
+            <input  id="reciverPhone" type="text" placeholder="Reciever's Phone"></input>
+            <Header className="header1"
+              as="h3"
+              content="Assign The Reciever's Location"
+              style={style.h3}
+              textAlign="left"
+            />
+          
+            <div className="trial">
+              <Trial
+                google={this.props.google}
+                center={{ lat: 31.9478, lng: 35.2296 }}
+                height='450px'
+                width="900px"
+                zoom={7}
               />
-
-
-              <InfoWindow onClose={this.onInfoWindowClose}>
-
-              </InfoWindow>
-            </Map>
-
+            </div>
           </Grid.Column>
+          </div>
           <Grid.Column computer={9} mobile={6} tablet={3}>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-
-            <Header as='h3' content="Add More Details (Optional):" style={style.h3} textAlign='left' />
-            <Input name = "additionalInfo" onChange={this.handleChange} value= {this.state.additionalInfo} placeholder="enter any additional info (optional)"/> 
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <Link to={'/CurrentOrders'}>
-            <Button color='yellow' size='large' onClick={this.sendorder}>
-            Send Your Order
-            </Button>  
-            </Link>
-            
+          
+            <Header
+              as="h3"
+              content="Add More Details (Optional):"
+              style={style.h3}
+              textAlign="left"
+            />
+            <input  id="details"
+              type="text"
+              placeholder="Add More Details (Optional)"
+            ></input>
           </Grid.Column>
+
+          <div className="butSend">
+
+     
+<Button  onClick={this.handleSend.bind(this)} className="butSend" color='yellow' size='large'>
+            Send Your Order
+          </Button> 
+          </div>
         </Grid>
-
-
-
       </div>
-    )
+    );
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: ("AIzaSyBwVhZGkweHHX618TDXpOsGMWWSJ2VA7Ug")
-})(Completion)
-
-
-
-
-
-
-
-
-
+export default Completion;
 
 // handleRate = (e, { rating, maxRating }) =>
 //   this.setState({ rating, maxRating })
-
-
-// var token = localStorage.getItem("usertoken");
-// console.log(token);
-// const decoded = jwt_decode(token);
-// var email = decoded.email;
-// var username = decoded.userName
-

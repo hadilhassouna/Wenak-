@@ -14,14 +14,8 @@ import ThumbUp from "@material-ui/icons/ThumbUp";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import NestedGrid from "./NewOrder";
-import NestedGrid2 from "./historyCard";
-// import NestedGrid3 from "./onwayCard";
-
-import Toolbar2 from './Toolbar/Toolbar2';
-
-
-import NestedGrid3 from "./onwayCard";
-
+import NestedCustom from "./NewCustomet_order";
+import NestedCurrent from "./CurrentOrders";
 import { textAlign } from "@material-ui/system";
 
 function TabPanel(props) {
@@ -62,28 +56,25 @@ const useStyles = makeStyles(theme => ({
     color: "red",
     textAlign: "center",
     indicatorColor: "Primary",
-    padding: "50px 100px 50px 100px"
+    padding: "120px 420px 420px 420px"
   },
   iconTab: {
-    color: "#FAFAFA",
+    color: "#fafafa",
     textAlign: "center"
   },
   tab: {
-    indicatorColor: "#FFCA28",
+    indicatorColor: "#ffca28",
     fontSize: "14px",
     textColor: "#212121",
-    marginLeft: "50px",
-    marginRight: "50px",
+    marginLeft: "100px",
+    // marginRight: "90px",
     textAlign: "center",
     // paddingLeft: "20px",
     width: "1000px"
   },
   navcolor: {
-
-    backgroundColor: "#FFC400"
-  },
-
-   
+    backgroundColor: "#ffc400"
+  }
 }));
 
 export default function ScrollableTabsButtonForce() {
@@ -95,18 +86,9 @@ export default function ScrollableTabsButtonForce() {
   };
 
   return (
-    <div>
-    <div>
-      <Toolbar2 />
-      </div>
     <div className={classes.root}>
-      <AppBar
-        className={classes.navcolor}
-        position="relative"
-        color="default"
-        backgroundColor=" #d4e157"
-      >
-        <div>
+      <AppBar position="relative" color="default" backgroundColor=" #d4e157">
+        <div className={classes.navcolor}>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -148,16 +130,15 @@ export default function ScrollableTabsButtonForce() {
       </AppBar>
       <TabPanel value={value} index={0}>
         {/* new Orders form customers pending status */}
-        <NestedGrid font />
+        <NestedCustom font />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <NestedGrid3 />
-        {/* ola Mhanna */}
+        {/* <NestedGrid /> */}
+        ola Mhanna
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <NestedGrid2 />
+        <NestedCurrent />
       </TabPanel>
-    </div>
     </div>
   );
 }
