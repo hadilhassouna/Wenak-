@@ -62,7 +62,7 @@ router.post("/accept_order", VerifyToken, function(req, res, next) {
     Order.findOneAndUpdate(
       { _id: ObjectId(id_order) },
       {
-        $set: { driver_id: ObjectId(id), state: "current", driver_name: name }
+        $set: { driver_id: id, state: "current", driver_name: name }
       },
       { useFindAndModify: false }
     )
@@ -98,7 +98,7 @@ router.post("/deliver_order", VerifyToken, function(req, res, next) {
     console.log(id_order);
     console.log(id);
     Order.findOneAndUpdate(
-      { _id: ObjectId(id_order) },
+      { _id: ObjectId(id_order)},
       {
         $set: { state: "delivered" }
       },
