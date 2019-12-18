@@ -1,37 +1,37 @@
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
-const express = require('express');
-var mongoose = require('mongoose');
-const router= express.Router();
-const bodyParser = require('body-parser');
+const express = require("express");
+const mongoose = require("mongoose");
+const router = express.Router();
+const bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
-const User = require('../database.js').User;
-const jwt = require('jsonwebtoken');
-const config = require('../config');
-const Order = require('../database.js').Order;
-const ObjectId = require('mongodb').ObjectID;
-var VerifyToken = require('../authontication/AuthController.js');
+const User = require("../database.js").User;
+const jwt = require("jsonwebtoken");
+const config = require("../config");
+const Order = require("../database.js").Order;
+const ObjectId = require("mongodb").ObjectID;
+const VerifyToken = require("../authontication/AuthController.js");
 //
-///send order.
+/// send order.
 ////
-router.post("/send_order",VerifyToken ,function(req: any, res: any, next: any) {
-    //var myId = JSON.parse(req.userId);
-    User.findById(req.userId), { password: 0 }, function (err:any, user:any) {
-        if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!user) return res.status(404).send("No user found.");
+router.post("/send_order", VerifyToken , function(req: any, res: any, next: any) {
+    // var myId = JSON.parse(req.userId);
+    User.findById(req.userId), { password: 0 }, function(err: any, user: any) {
+        if (err) { return res.status(500).send("There was a problem finding the user."); }
+        if (!user) { return res.status(404).send("No user found."); }
         console.log(req);
 
-   var id = ObjectId(JSON.parse(req.userId));
-    console.log(id);
-    const myorder = req.body;
-    console.log(myorder);
-    if (!myorder)
+        const id = ObjectId(JSON.parse(req.userId));
+        console.log(id);
+        const myorder = req.body;
+        console.log(myorder);
+        if (!myorder) {
         return res.status(400).json({ msg: "problem in order" });
-    else if (myorder) {
+        } else if (myorder) {
         Order.create({
             user_id: id,
-            driver_id:ObjectId("0"),
+            driver_id: ObjectId("0"),
             order_details: myorder.order_details,
             location_start_lng: myorder.location_start_lng,
             location_start_lat: myorder.location_start_lat,
@@ -41,57 +41,53 @@ router.post("/send_order",VerifyToken ,function(req: any, res: any, next: any) {
             recieverPhone: myorder.recieverPhone,
             order_notes: myorder.order_notes,
             rate: myorder.rate,
-            state:"pending",
+            state: "pending",
             date: Date.now(),
             price: myorder.price
-        }, function (err:any, req:any, res:any, next:any){
+        }, function(err: any, req: any, res: any, next: any) {
             if (err) {
                 console.log(err);
-                res.send("error")
-               
+                res.send("error");
+
             }
-             console.log("success")
-             res.send("success in order")
+            console.log("success");
+            res.send("success in order");
             });
         }
-    }
+    };
 });
-///get the current order to the specific customer.
-router.get("/get_current_order",VerifyToken ,function(req: any, res: any, next: any) {
-    User.findById(req.userId, { password: 0 }, function (err:any, user:any) {
-        if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!user) return res.status(404).send("No user found.");
-         var id = user._id;
+/// get the current order to the specific customer.
+router.get("/get_current_order", VerifyToken , function(req: any, res: any, next: any) {
+    User.findById(req.userId, { password: 0 }, function(err: any, user: any) {
+        if (err) { return res.status(500).send("There was a problem finding the user."); }
+        if (!user) { return res.status(404).send("No user found."); }
+        const id = user._id;
 
-    Order.find({state: "current",user_id:ObjectId(id)}).exec((err:any,order:any) => { 
-        if(err){
+        Order.find({state: "current", user_id: ObjectId(id)}).exec((err: any, order: any) => {
+        if (err) {
           console.log(err);
-          req.send()
+          req.send();
         }
-        res.json(order)});
-      
+        res.json(order); });
+
     });
 });
 
-//get the previous orders
-router.get("/get_previous",VerifyToken ,function(req: any, res: any, next: any) {
-    User.findById(req.userId, { password: 0 }, function (err:any, user:any) {
-        if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!user) return res.status(404).send("No user found.");
-         var id = user._id;
+// get the previous orders
+router.get("/get_previous", VerifyToken , function(req: any, res: any, next: any) {
+    User.findById(req.userId, { password: 0 }, function(err: any, user: any) {
+        if (err) { return res.status(500).send("There was a problem finding the user."); }
+        if (!user) { return res.status(404).send("No user found."); }
+        const id = user._id;
 
-    Order.find({state: "delivered",user_id:ObjectId(id)}).exec((err:any,order:any) => { 
-        if(err){
+        Order.find({state: "delivered", user_id: ObjectId(id)}).exec((err: any, order: any) => {
+        if (err) {
           console.log(err);
-          req.send()
+          req.send();
         }
-        res.json(order)});
+        res.json(order); });
     });
 });
 
-
-
-export {}
+export {};
 module.exports = router;
-
-
