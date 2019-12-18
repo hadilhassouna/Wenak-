@@ -30,7 +30,6 @@ import SendOrder from './components/sendOrder/SendOrder'
 const App: React.FC = () => {
   return ( 
   <BrowserRouter>
-  <Splash />
   <div className="App">
     {/* <Sidebar /> */}
     {/* <NavBar /> */}
@@ -40,13 +39,13 @@ const App: React.FC = () => {
     
     </main>
     
-    <Route exact path={"/"} component={NavBar} />
+    <Route exact path={"/"} component={Splash} />
     <Route exact path={"/LoginForm"} component={LoginForm} />
     <Route exact path={"/UserForm"} component={UserForm} className="signUp" />
     {/* <NavBar /> */}
     {/* <DrawerIcon /> */}
     <main></main>
-    <Route exact path={"/NavbarUser"} component={NavbarUser} />
+    {/* <Route exact path={"/NavbarUser"} component={NavbarUser} /> */}
     <Route exact path={"/DrawerIcon"} component={DrawerIcon} />
      <Route exact path={"/LoginForm"} component={LoginForm}/>
     <Route
