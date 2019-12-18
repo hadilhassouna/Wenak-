@@ -22,51 +22,56 @@ import Settings from "./components/Settings";
 import About from "./components/About";
 import ContactForm from './components/contactForm/ContactForm';
 import Trial from './components/Trial';
+import Splash from './components/splash/Splash'
+
+
 const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        {/* <Sidebar /> */}
-        {/* <NavBar /> */}
-        {/* <DrawerIcon /> */}
-        <main >
+  return ( 
+  <Splash />
+    
+    // <BrowserRouter>
+    //   <div className="App">
+    //     {/* <Sidebar /> */}
+    //     {/* <NavBar /> */}
+    //     {/* <DrawerIcon /> */}
+    //     <main >
         
-        </main>
+    //     </main>
         
-        <Route exact path={"/"} component={NavBar} />
-        <Route exact path={"/LoginForm"} component={LoginForm} />
-        <Route exact path={"/UserForm"} component={UserForm} className="signUp" />
-        {/* <NavBar /> */}
-        {/* <DrawerIcon /> */}
-        <main></main>
-        <Route exact path={"/NavbarUser"} component={NavbarUser} />
-        <Route exact path={"/DrawerIcon"} component={DrawerIcon} />
-        {/* <Route exact path={"/LoginForm"} component={LoginForm} /> */}
-        {/* <Route
-          exact
-          path={"/UserForm"}
-          component={UserForm}
-          className="signUp"
-        /> */}
-        <Route exact path={"/Trial"} component={Trial} />
-        <Route exact path={"/Home"} component={Home} />
-        {/* <Route exact path={"/HomePage"} component={HomePage} /> */}
-        <Route exact path={"/Completion"} component={Completion} />
-        <Route exact path={"/CustomerOrd"} component={CustomerOrd} />
-        <Route exact path={"/DriverOrd"} component={DriverOrd} />
-        <Route exact path={"/CurrentOrders"} component={CurrentOrders} />
-        <Route exact path={"/Settings"} component={Settings} />
-        <Route exact path={"/About"} component={About} />
-        {/* <Route exact path={"/SocialFollow"} component={SocialFollow} /> */}
-        <Route exact path={"/ContactForm"} component={ContactForm} />
-        <Route exact path={"/Profile"} component={Profile} />
-        <Route exact path={"/Toolbar2"} component={Toolbar2} />
+    //     <Route exact path={"/"} component={NavBar} />
+    //     <Route exact path={"/LoginForm"} component={LoginForm} />
+    //     <Route exact path={"/UserForm"} component={UserForm} className="signUp" />
+    //     {/* <NavBar /> */}
+    //     {/* <DrawerIcon /> */}
+    //     <main></main>
+    //     <Route exact path={"/NavbarUser"} component={NavbarUser} />
+    //     <Route exact path={"/DrawerIcon"} component={DrawerIcon} />
+    //     {/* <Route exact path={"/LoginForm"} component={LoginForm} /> */}
+    //     {/* <Route
+    //       exact
+    //       path={"/UserForm"}
+    //       component={UserForm}
+    //       className="signUp"
+    //     /> */}
+    //     <Route exact path={"/Trial"} component={Trial} />
+    //     <Route exact path={"/Home"} component={Home} />
+    //     {/* <Route exact path={"/HomePage"} component={HomePage} /> */}
+    //     <Route exact path={"/Completion"} component={Completion} />
+    //     <Route exact path={"/CustomerOrd"} component={CustomerOrd} />
+    //     <Route exact path={"/DriverOrd"} component={DriverOrd} />
+    //     <Route exact path={"/CurrentOrders"} component={CurrentOrders} />
+    //     <Route exact path={"/Settings"} component={Settings} />
+    //     <Route exact path={"/About"} component={About} />
+    //     {/* <Route exact path={"/SocialFollow"} component={SocialFollow} /> */}
+    //     <Route exact path={"/ContactForm"} component={ContactForm} />
+    //     <Route exact path={"/Profile"} component={Profile} />
+    //     <Route exact path={"/Toolbar2"} component={Toolbar2} />
       
-        {/* <Profile />
-        <DriverOrders /> */}
-      </div>
+    //     {/* <Profile />
+    //     <DriverOrders /> */}
+    //   </div>
      
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 };
 export default App;
