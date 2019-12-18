@@ -224,7 +224,8 @@ export default function ComplexGrid2() {
     document.title = ` Customers Orders`;
     console.log("I'm inside use effect")
     axios
-      .get(`/api/customer/get_current_order`,{headers: {"x-access-token": localStorage.getItem("usertoken")}})
+      .get(`/api/customer/get_current_order`,
+      {headers: {"x-access-token": localStorage.getItem("usertoken")}})
       .then(res => {
         setCuOrders(res.data);
         console.log("I'm inside axios to get current_order customer orders", res.data);
@@ -233,53 +234,6 @@ export default function ComplexGrid2() {
         console.log("I'm error inside axios to get current_order customer orders", err);
       });
   }, []);
-
-  ///------------------------ Accept pending Orders ------------------------------------
-//   const handleAccept = id => {
-//     // useEffect(() => {
-//     //   document.title = ` Drivers Orders`;
-//     //   console.log("I'm inside use effect Accept");
-//     const orderId = id;
-//     axios
-//       .post(
-//         `/api/driver/accept_order`,{ _id: orderId },{headers: {"x-access-token": localStorage.getItem("usertoken")}
-////
-//       )
-//       .then(res => {
-//         setOrder(res.data);
-//         console.log("accept the order", orderId);
-//       })
-//       .catch(err => {
-//         console.log("error accept the order", err);
-//       });
-//   };
-//---------------------------------------------------------------
-  // const handleAccept = event => {
-  //   set(event.target.value);
-  // };
-
-  // const handleAccept = event => {
-  //   const orderId = orders._id;
-  //   console.log(orderId)
-  //   $.ajax({
-  //     url: "/api/customer/send_order",
-  //     headers: {
-  //       "x-access-token": localStorage.getItem("usertoken")
-  //     },
-  //     type: "POST",
-  //     data: { _id: orderId },
-  //     datatype: "json",
-  //     success: function() {
-  //       console.log("The order has accepted");
-  //       alert("accept the order  successfully");
-  //     },
-  //     error: function() {
-  //       console.log("error in order");
-  //       alert("Error in  accept sending");
-  //     }
-  //   });
-  // };
-
   return (
     <div className={classes.root}>
       {CuOrders.map(CuOrder => (
@@ -340,6 +294,8 @@ export default function ComplexGrid2() {
                     {/* ))} */}
                   </div>
                   <div className={classes.orderDetails}>
+
+                  
                     <Typography variant="body2">
                       {/* <DirectionsBikeIcon /> */}
                     </Typography>
