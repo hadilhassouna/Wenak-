@@ -9,6 +9,7 @@ import {
 import Geocode from "react-geocode";
 import Autocomplete from "react-google-autocomplete";
 import "../../src/App.css";
+import $ from "jquery";
 import {
   Button,
   Input,
@@ -178,13 +179,10 @@ class Trial extends Component {
   onMarkerDragEnd = event => {
     let newLat = event.latLng.lat(),
       newLng = event.latLng.lng();
-    console.log(newLat);
-    console.log(newLng);
-    console.log("I'm under new lang");
+    this.props.handleClick({ newLat, newLng });
 
     Geocode.fromLatLng(newLat, newLng).then(
       response => {
-        console.log("I'm inside map Ola1");
         const address = response.results[0].formatted_address,
           addressArray = response.results[0].address_components,
           city = this.getCity(addressArray),
@@ -209,6 +207,38 @@ class Trial extends Component {
         console.error(error);
       }
     );
+    var data = {
+      location_start_lng: newLng,
+      location_start_lat: newLat,
+      location_end_lng: "8888",
+      location_end_lat: "89",
+      order_notes: "rr",
+      rate: 0,
+      state: "pending",
+      date: Date.now(),
+      price: 5
+    };
+    //event.preventDefault();
+    //   console.log("hi I’m inside submit order");
+    //   console.log(data);
+
+    //   $.ajax({
+    // 	url: "/api/customer/send_latlng",
+    // 	headers: {
+    // 	  'x-access-token': localStorage.getItem("usertoken")
+    // 	},
+    // 	type: "POST",
+    // 	data: data,
+    // 	dataType:"json",
+    // 	success: function() {
+    // 	  console.log("The order has sent successfully");
+    // 	  alert("The order sent successfully");
+    // 	},
+    // 	error: function() {
+    // 	  console.log("error in order");
+    // 	  alert("Error in order sending");
+    // 	}
+    //   });
   };
 
   /**
@@ -216,7 +246,6 @@ class Trial extends Component {
    * @param place
    */
   onPlaceSelected = place => {
-    console.log("I'm inside map Ola");
     console.log("plc", place);
     const address = place.formatted_address,
       addressArray = place.address_components,
@@ -240,7 +269,6 @@ class Trial extends Component {
         lng: lngValue
       }
     });
-    console.log("I'm inside map Ola");
   };
 
   render() {

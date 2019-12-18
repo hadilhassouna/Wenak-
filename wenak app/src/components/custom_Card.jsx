@@ -88,6 +88,8 @@ export default function CustomGrid() {
   const [userId, setUserId] = React.useState("");
   //   const [state, setState] = useState((order.state: "onway"));
   const [reciver_name, setReciver_name] = useState([]);
+  handleRate = (e, { rating, maxRating }) =>
+    this.setState({ rating, maxRating })
   //   const pending = "pending";
   //   const onWay = "onWay";
   //   const state = { pending, onWay };
@@ -198,7 +200,7 @@ export default function CustomGrid() {
                   }}
                 >
                   <p>$ {order.price}</p>
-                  {/* price */}
+                  {order.price}
                 </Typography>
               </Grid>
               {/* </div> */}

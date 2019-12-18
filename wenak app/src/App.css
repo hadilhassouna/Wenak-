@@ -105,8 +105,24 @@ a.linkedin {
   font-family: Arial, Helvetica, sans-serif;
 }
 .headerHome {
-  background-color: #d1e009 !important;
+  background-color: #2f2e2e !important;
+  height: 10px;
 }
+.slidecolor {
+  height: 10px;
+}
+.imgHome {
+  background-size: cover;
+  width: 100%;
+}
+
+.slide-container {
+  width: 100%;
+}
+
+/* .headerBar{
+  background-color: red;
+} */
 
 .slide-container {
   width: 70%;
@@ -142,11 +158,13 @@ h3 {
 }
 .each-fade {
   display: flex;
+  height: 400px;
 }
 
 .each-fade .image-container {
   width: 75%;
   overflow: hidden;
+  height: 394px;
 }
 
 .each-fade .image-container img {
@@ -159,7 +177,17 @@ h3 {
   justify-content: center;
   align-items: center;
   margin: 0;
-  background: #adceed;
+  background: rgb(174, 213, 129);
+  color: white;
+  font-family: Agency FB;
+  font-size: 50px;
+  height: 394.5px;
+}
+.backButton {
+  color: #eee !important;
+  background: #aed581 !important;
+  font-family: Agency FB !important;
+  font-size: 16px !important;
 }
 
 .white {
@@ -168,4 +196,19 @@ h3 {
 
 .input {
   border-color: #bababc !important;
+}
+#backButton {
+  color: #aed581 !important;
+  width: 160px !important;
+  height: 50px !important;
+  font-size: 30px;
+  font-family: Agency FB;
+}
+.chat {
+  background: #aed581 !important;
+}
+.footer {
+  color: #aed581 !important;
+  font-size: 20px;
+  font-family: Agency FB;
 }
