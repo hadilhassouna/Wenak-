@@ -116,6 +116,9 @@ a.linkedin {
 h3 {
   text-align: center;
 }
+.loginTitle {
+  color: #aed581 !important;
+}
 
 .each-slide > div {
   display: flex;
@@ -124,14 +127,19 @@ h3 {
   background-size: cover;
   height: 300px;
 }
-
+.gray {
+  background-color: #2f2e2e !important;
+}
 .each-slide span {
   padding: 20px;
   font-size: 20px;
   background: #efefef;
   text-align: center;
 }
-
+.butLog {
+  background-color: #aed581 !important;
+  color: #ffffff !important;
+}
 .each-fade {
   display: flex;
 }
@@ -152,4 +160,12 @@ h3 {
   align-items: center;
   margin: 0;
   background: #adceed;
+}
+
+.white {
+  color: #aed581 !important;
+}
+
+.input {
+  border-color: #bababc !important;
 }

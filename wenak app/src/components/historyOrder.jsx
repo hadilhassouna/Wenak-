@@ -124,7 +124,8 @@ export default function ComplexGrid2() {
                     <Typography variant="body2">
                       <p>
                         {" "}
-                        <PersonIcon className={classes.icons} /> Name:
+                        <PersonIcon className={classes.icons} /> 
+                        Name:
                         {order.name}
                       </p>
                     </Typography>

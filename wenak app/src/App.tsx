@@ -20,8 +20,9 @@ import { BrowserRouter, Route } from "react-router-dom";
 import DrawerIcon from "./components/Toolbar/Drawer";
 import Settings from "./components/Settings";
 import About from "./components/About";
-import ContactForm from './components/contactForm/ContactForm';
-import Trial from './components/Trial';
+import ContactForm from "./components/contactForm/ContactForm";
+import Trial from "./components/Trial";
+import viewOrd from "./components/viewOrd";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
@@ -29,13 +30,16 @@ const App: React.FC = () => {
         {/* <Sidebar /> */}
         {/* <NavBar /> */}
         {/* <DrawerIcon /> */}
-        <main >
-        
-        </main>
-        
+        <main></main>
+
         <Route exact path={"/"} component={NavBar} />
         <Route exact path={"/LoginForm"} component={LoginForm} />
-        <Route exact path={"/UserForm"} component={UserForm} className="signUp" />
+        <Route
+          exact
+          path={"/UserForm"}
+          component={UserForm}
+          className="signUp"
+        />
         {/* <NavBar /> */}
         {/* <DrawerIcon /> */}
         <main></main>
@@ -61,11 +65,11 @@ const App: React.FC = () => {
         <Route exact path={"/ContactForm"} component={ContactForm} />
         <Route exact path={"/Profile"} component={Profile} />
         <Route exact path={"/Toolbar2"} component={Toolbar2} />
-      
+
+        <Route exact path={"/viewOrd"} component={viewOrd} />
         {/* <Profile />
         <DriverOrders /> */}
       </div>
-     
     </BrowserRouter>
   );
 };
