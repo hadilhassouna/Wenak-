@@ -18,10 +18,11 @@ import { textAlign } from "@material-ui/system";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import Home from '../home';
-import Completion from '../Completion';  
+import SendOrder from '../sendOrder/SendOrder'
 import CurrentOrders from '../CurrentOrders';    
 import Orders from '../YourOrders';
 import Toolbar2 from './Toolbar2';
+
 
 
 
@@ -141,8 +142,7 @@ export default function NavbarUser() {
         </div>
       </AppBar>
       <TabPanel value={value} index={0}>
-      <Home/>
-      <Completion />
+      <SendOrder/>
 
         {/* new Orders form customers pending status */}
         {/* <NestedGrid font /> */}

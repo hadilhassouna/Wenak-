@@ -27,7 +27,6 @@ class Trial extends Component{
 				lat: this.props.center.lat,
 				lng: this.props.center.lng
 			}
-
 		}
 	}
 	/**
@@ -152,8 +151,7 @@ class Trial extends Component{
 	 */
 	onMarkerDragEnd = ( event ) => {
 		let newLat = event.latLng.lat(),
-			newLng = event.latLng.lng();
-			this.props.handleClick({newLat,newLng})
+		    newLng = event.latLng.lng();
 
 		Geocode.fromLatLng( newLat , newLng ).then(
 			response => {
@@ -193,26 +191,26 @@ class Trial extends Component{
 			price:5
 		  };
 		  //event.preventDefault();
-		//   console.log("hi I’m inside submit order");
-		//   console.log(data);
+		  console.log("hi I’m inside submit order");
+		  console.log(data);
 	  
-		//   $.ajax({
-		// 	url: "/api/customer/send_latlng",
-		// 	headers: {
-		// 	  'x-access-token': localStorage.getItem("usertoken")
-		// 	},
-		// 	type: "POST",
-		// 	data: data,
-		// 	dataType:"json",
-		// 	success: function() {
-		// 	  console.log("The order has sent successfully");
-		// 	  alert("The order sent successfully");
-		// 	},
-		// 	error: function() {
-		// 	  console.log("error in order");
-		// 	  alert("Error in order sending");
-		// 	}
-		//   });
+		  $.ajax({
+			url: "/api/customer/send_latlng",
+			headers: {
+			  'x-access-token': localStorage.getItem("usertoken")
+			},
+			type: "POST",
+			data: data,
+			dataType:"json",
+			success: function() {
+			  console.log("The order has sent successfully");
+			  alert("The order sent successfully");
+			},
+			error: function() {
+			  console.log("error in order");
+			  alert("Error in order sending");
+			}
+		  });
 
 	};
 

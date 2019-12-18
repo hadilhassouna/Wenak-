@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Toolbar from "./components/Toolbar/Toolbar.jsx";
 import Sidebar from "./components/Toolbar/Sidebar.jsx";
-import Home from "./components/home";
+// import Home from "./components/home";
+import Home_map2 from "./components/home_map2";
 // import HomePage from "./components/homePage/homePage";
 import Completion from "./components/Completion";
 import "./app.scss";
@@ -26,8 +27,10 @@ import Settings from "./components/Settings";
 import About from "./components/About";
 
 import ContactForm from './components/contactForm/ContactForm';
-import Trial from './components/Trial';
+// import Trial from './components/Trial';
 import Checkout from './components/Checkout';
+import SendOrder from './components/sendOrder/SendOrder'
+
 
 const App: React.FC = () => {
   return (
@@ -56,10 +59,10 @@ const App: React.FC = () => {
           component={UserForm}
           className="signUp"
         /> */}
-        <Route exact path={"/Trial"} component={Trial} />
-        <Route exact path={"/Home"} component={Home} />
+        {/* <Route exact path={"/Trial"} component={Trial} /> */}
+        {/* <Route exact path={"/Home"} component={Home} /> */}
+        <Route exact path={"/Home_map2"} component={Home_map2} />
         {/* <Route exact path={"/HomePage"} component={HomePage} /> */}
-        <Route exact path={"/Completion"} component={Completion} />
         <Route exact path={"/CustomerOrd"} component={CustomerOrd} />
         <Route exact path={"/DriverOrd"} component={DriverOrd} />
         <Route exact path={"/CurrentOrders"} component={CurrentOrders} />
@@ -69,6 +72,7 @@ const App: React.FC = () => {
         <Route exact path={"/ContactForm"} component={ContactForm} />
         <Route exact path={"/Profile"} component={Profile} />
         <Route exact path={"/Toolbar2"} component={Toolbar2} />
+        <Route exact path={"/SendOrder"} component={SendOrder} />
 
 
 
