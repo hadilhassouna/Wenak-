@@ -30,23 +30,19 @@ const style = {
 class Completion extends React.Component {
   constructor(props){
     super(props)
-    // this.state={
-    //   item: "",
-    //   location_start_lng: "14.7555",
-    //   location_start_lat: "-45.544",
-    //   location_end_lng: "11.5855",
-    //   location_end_lat: "-13.352",
-    //   recieverName: "",
-    //   recieverPhone: "",
-    //   additionalInfo: "",
-    //   state: "pending",
-    //   note:"",
-    // }
-    //bind methods here
-    this.handleChange = this.handleChange.bind(this);
+  //   continue = e => {
+  //     e.preventDefault();
+  //     this.props.nextStep();
+  //   };
+  //   back = e => {
+  //     e.preventDefault();
+  //     this.props.prevStep();
+  // };
+
+   this.handleChange = this.handleChange.bind(this);
     this.handleSend= this.handleSend.bind(this);
   }
-//methods
+
 handleChange(event) {
   const target = event.target;
   const value = target.value;
@@ -160,14 +156,14 @@ handleChange(event) {
               textAlign="left"
             />
             <input  id="reciverPhone" type="text" placeholder="Reciever's Phone"></input>
-            <Header className="header1"
+            {/* <Header className="header1"
               as="h3"
               content="Assign The Reciever's Location"
               style={style.h3}
               textAlign="left"
-            />
+            /> */}
           
-            <div className="trial">
+            {/* <div className="trial">
               <Trial
                 google={this.props.google}
                 center={{ lat: 31.9478, lng: 35.2296 }}
@@ -175,7 +171,7 @@ handleChange(event) {
                 width="900px"
                 zoom={7}
               />
-            </div>
+            </div> */}
           </Grid.Column>
           </div>
           <Grid.Column computer={9} mobile={6} tablet={3}>
@@ -195,9 +191,19 @@ handleChange(event) {
           <div className="butSend">
 
      
-<Button  onClick={this.handleSend.bind(this)} className="butSend" color='yellow' size='large'>
+{/* <Button  onClick={this.handleSend.bind(this)} className="butSend" color='yellow' size='large'>
             Send Your Order
-          </Button> 
+          </Button>  */}
+          <Button
+              color="primary"
+              variant="contained"
+              onClick={this.continue}
+            >Continue</Button>
+                <Button
+              color="secondary"
+              variant="contained"
+              onClick={this.back}
+            >Back</Button>
           </div>
         </Grid>
       </div>

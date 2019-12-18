@@ -13,7 +13,10 @@ class home extends React.Component {
     e.preventDefault();
     this.props.nextStep();
   };
-  
+  back = e => {
+    e.preventDefault();
+    this.props.prevStep();
+  };
 
   render() {
     return (
@@ -25,14 +28,13 @@ class home extends React.Component {
             </Header>
           <Trial
         google={this.props.google}
-        handleClick= {this.props.handleClick}
         center={{lat: 31.9478, lng: 35.2296}}
         height='450px'
         zoom={7}
       />
       </div>
       <div>
-        {/* <Grid textAlign='center' style={{ height: '10vh' }} verticalAlign='bottom'>
+        <Grid textAlign='center' style={{ height: '10vh' }} verticalAlign='bottom'>
                <Grid.Column style={{ maxWidth: 450 },{marginTop:30}}>
 
                <Button
@@ -40,10 +42,15 @@ class home extends React.Component {
               variant="contained"
               onClick={this.continue}
             >Continue</Button>
+                <Button
+              color="secondary"
+              variant="contained"
+              onClick={this.back}
+            >Back</Button>
 
-          
+       
           </Grid.Column>
-        </Grid> */}
+        </Grid>
 </div>
 
 
