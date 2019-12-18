@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Slider from "../slider.jsx";
 import logo2 from "../../assets/logo2.png";
+import { Link } from "react-router-dom";
 
 import {
   Button,
@@ -126,13 +127,14 @@ class DesktopContainer extends Component {
                   {/* <Button as="a" inverted={!fixed}>
                     Log in
                   </Button> */}
-
-                  <Button className="backButton" animated>
-                    <Button.Content visible>Go To Site</Button.Content>
-                    <Button.Content hidden>
-                      <Icon name="arrow right" />
-                    </Button.Content>
-                  </Button>
+                  <Link to="/LoginForm">
+                    <Button className="backButton" animated>
+                      <Button.Content visible>Go To Site</Button.Content>
+                      <Button.Content hidden>
+                        <Icon name="arrow right" />
+                      </Button.Content>
+                    </Button>
+                  </Link>
 
                   {/* <Button
                     as="a"

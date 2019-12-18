@@ -30,7 +30,6 @@ import Checkout from "./components/Checkout";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <Splash />
       <div className="App">
         {/* <Sidebar /> */}
         {/* <NavBar /> */}
@@ -38,7 +37,7 @@ const App: React.FC = () => {
         {/* <DrawerIcon /> */}
         <main></main>
 
-        <Route exact path={"/"} component={NavBar} />
+        <Route exact path={"/"} component={Splash} />
         <Route exact path={"/LoginForm"} component={LoginForm} />
         <Route
           exact
