@@ -9,6 +9,12 @@ import Trial from "./Trial"
 import  "../../src/App.css"
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 class home extends React.Component {
+  continue = e => {
+    e.preventDefault();
+    this.props.nextStep();
+  };
+  
+
   render() {
     return (
       <div>
@@ -19,23 +25,25 @@ class home extends React.Component {
             </Header>
           <Trial
         google={this.props.google}
+        handleClick= {this.props.handleClick}
         center={{lat: 31.9478, lng: 35.2296}}
         height='450px'
         zoom={7}
       />
       </div>
       <div>
-        <Grid textAlign='center' style={{ height: '10vh' }} verticalAlign='bottom'>
+        {/* <Grid textAlign='center' style={{ height: '10vh' }} verticalAlign='bottom'>
                <Grid.Column style={{ maxWidth: 450 },{marginTop:30}}>
 
-          
-                <Button color='yellow' size='large'>
-                  Complete Order   <KeyboardArrowDownIcon  className="iconStyle" />
-                </Button>
+               <Button
+              color="primary"
+              variant="contained"
+              onClick={this.continue}
+            >Continue</Button>
 
-       
+          
           </Grid.Column>
-        </Grid>
+        </Grid> */}
 </div>
 
 

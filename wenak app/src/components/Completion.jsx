@@ -13,70 +13,118 @@ import {
   Menu,
   Segment,
   Step,
-  Table
+  Table 
 } from "semantic-ui-react";
+import axios from "axios";
 import { InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 import Trial from "./Trial";
 import  "../../src/App.css";
 import $ from 'jquery';
+import jwt_decode from 'jwt-decode';
 const style = {
     marginTop: '2em',
     padding: '2em 0em',
 }
-  // last: {
-  //   marginBottom: '300px',
-  // },
-
-
+  
 
 class Completion extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    // this.onSignUp = this.onSignUp.bind(this);
-    this.handleSend =this.handleSend.bind(this);
+  constructor(props){
+    super(props)
+  //   continue = e => {
+  //     e.preventDefault();
+  //     this.props.nextStep();
+  //   };
+  //   back = e => {
+  //     e.preventDefault();
+  //     this.props.prevStep();
+  // };
+
+   this.handleChange = this.handleChange.bind(this);
+    this.handleSend= this.handleSend.bind(this);
   }
-  handleSend() {
+
+handleChange(event) {
+  const target = event.target;
+  const value = target.value;
+  const name = target.name;
+  this.setState({
+    [name]: value
+  })
+};
+ 
+  handleSend(){
     // event.preventDefault();
     console.log("I'm inside send function");
+    var token = localStorage.getItem('usertoken');
+    var userIdFromToken;
+    if (token) {
+    const decoded = jwt_decode(token);
+     userIdFromToken = decoded._id;
+	 console.log(userIdFromToken);
+}
     var data = {
+      //user_id:userIdFromToken,
       reciverName: $("#reciverName").val(),
-      Items: $("#Items").val(),
-      reciverPhone : $("#reciverPhone").val(),
-      details: $("#details").val(),
+      //reciverName:this.state.recieverName,
+       Items: $("#Items").val(),
+       reciverPhone : $("#recieverPhone").val(),
+      //details: this.state.note,
       location_start_lng: "50.6",
       location_start_lat:"906",
       location_end_lng: "8888",
       location_end_lat:"89",
-      order_notes:"nothing",
+      order_notes:$("#details").val(),
       rate: 0,
       state:"pending",
       date: Date.now(),
       price:5
     };
+    //event.preventDefault();
+    console.log("hi I’m inside submit order");
     console.log(data);
+
     $.ajax({
-      type: "POST",
       url: "/api/customer/send_order",
       headers: {
-        "x-access-token": localStorage.getItem("usertoken")},
+        'x-access-token': localStorage.getItem("usertoken")
+      },
+      type: "POST",
       data: data,
-      datatype: "json",
+      dataType:"json",
       success: function() {
-        // window.open("http://localhost:3000", "_self");
-        // alert("YOU ARE LOGED IN");
-        console.log("success send order")
-      }, error:
-      function() {
-        console.log("errrrroooorrrr ");}
-    })
+        console.log("The order has sent successfully");
+        alert("The order sent successfully");
+      },
+      error: function() {
+        console.log("error in order");
+        alert("Error in order sending");
+      }
+    });
   }
-    
+//     axios
+//     .post(
+//       `/api/customer/send_order`,
+//       {data: data},
+//       {
+//         headers: {
+//           'Content-Type': 'application/json',
+//           "x-access-token": localStorage.getItem("usertoken")
+//         }
+//       }
+//     )
+//     .then(res => {
+//       console.log("The order has sent successfully");
+//       alert("The order sent successfully");
+//     })
+//     .catch(err => {
+//       console.log("error in order");
+//       alert("Error in order sending");
+//     });
+// };
 
   render() {
     return (
       <div >
-  
         <Grid >
         <div className="inputDetails">
         <Header
@@ -99,7 +147,7 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left" 
             />
-            <input   id="reciverName"   type="text" placeholder="Reciever's Name">{this.state.reciver_name}</input>
+            <input id="reciverName"   type="text" placeholder="Reciever's Name"></input>
          
             <Header className="header1" 
               as="h3"
@@ -107,16 +155,15 @@ class Completion extends React.Component {
               style={style.h3}
               textAlign="left"
             />
-            <input  id="reciverPhone" type="text" placeholder="Reciever's Phone">{this.state.recieverPhone}</input>
-            <Header className="header1"
+            <input  id="reciverPhone" type="text" placeholder="Reciever's Phone"></input>
+            {/* <Header className="header1"
               as="h3"
               content="Assign The Reciever's Location"
               style={style.h3}
               textAlign="left"
-            />
+            /> */}
           
-          
-            <div className="trial">
+            {/* <div className="trial">
               <Trial
                 google={this.props.google}
                 center={{ lat: 31.9478, lng: 35.2296 }}
@@ -124,7 +171,7 @@ class Completion extends React.Component {
                 width="900px"
                 zoom={7}
               />
-            </div>
+            </div> */}
           </Grid.Column>
           </div>
           <Grid.Column computer={9} mobile={6} tablet={3}>
@@ -138,15 +185,25 @@ class Completion extends React.Component {
             <input  id="details"
               type="text"
               placeholder="Add More Details (Optional)"
-            >{this.state.order_notes}</input>
+            ></input>
           </Grid.Column>
 
           <div className="butSend">
 
      
-<Button  onClick={this.handleSend.bind(this)} className="butSend" color='yellow' size='large'>
+{/* <Button  onClick={this.handleSend.bind(this)} className="butSend" color='yellow' size='large'>
             Send Your Order
-          </Button> 
+          </Button>  */}
+          <Button
+              color="primary"
+              variant="contained"
+              onClick={this.continue}
+            >Continue</Button>
+                <Button
+              color="secondary"
+              variant="contained"
+              onClick={this.back}
+            >Back</Button>
           </div>
         </Grid>
       </div>

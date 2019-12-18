@@ -5,6 +5,7 @@ import { GoogleMap, withScriptjs, withGoogleMap, InfoWindow, Marker } from 'reac
 import Geocode from "react-geocode"
 import Autocomplete from "react-google-autocomplete"
 import  "../../src/App.css"
+import $ from 'jquery';
 import { Button, Input, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react';
 Geocode.setApiKey("AIzaSyBuqgFsDLy0e_a-OaI-MwzZI6HXfMwigvc");
 Geocode.enableDebug();
@@ -26,6 +27,7 @@ class Trial extends Component{
 				lat: this.props.center.lat,
 				lng: this.props.center.lng
 			}
+
 		}
 	}
 	/**
@@ -150,7 +152,8 @@ class Trial extends Component{
 	 */
 	onMarkerDragEnd = ( event ) => {
 		let newLat = event.latLng.lat(),
-		    newLng = event.latLng.lng();
+			newLng = event.latLng.lng();
+			this.props.handleClick({newLat,newLng})
 
 		Geocode.fromLatLng( newLat , newLng ).then(
 			response => {
@@ -178,6 +181,39 @@ class Trial extends Component{
 				console.error(error);
 			}
 		);
+        var data = {
+			location_start_lng: newLng,
+			location_start_lat:newLat,
+			location_end_lng: "8888",
+			location_end_lat:"89",
+			order_notes:"rr",
+			rate: 0,
+			state:"pending",
+			date: Date.now(),
+			price:5
+		  };
+		  //event.preventDefault();
+		//   console.log("hi I’m inside submit order");
+		//   console.log(data);
+	  
+		//   $.ajax({
+		// 	url: "/api/customer/send_latlng",
+		// 	headers: {
+		// 	  'x-access-token': localStorage.getItem("usertoken")
+		// 	},
+		// 	type: "POST",
+		// 	data: data,
+		// 	dataType:"json",
+		// 	success: function() {
+		// 	  console.log("The order has sent successfully");
+		// 	  alert("The order sent successfully");
+		// 	},
+		// 	error: function() {
+		// 	  console.log("error in order");
+		// 	  alert("Error in order sending");
+		// 	}
+		//   });
+
 	};
 
 	/**
