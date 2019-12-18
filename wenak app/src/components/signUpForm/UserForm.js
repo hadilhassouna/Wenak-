@@ -1,6 +1,4 @@
 //screen 1
-
-
 import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
 import Confirm from './Confirm';
@@ -13,7 +11,9 @@ export class UserForm extends Component {
         step: 1,
         mobile: '',
         password: '',
-        userType: ''
+        userType: '',
+        name:'',
+        user_id:0,
     }
 
     //Proceed to next step
@@ -39,8 +39,8 @@ export class UserForm extends Component {
 
     render() {
         const { step } = this.state;
-        const { mobile, password, userType } = this.state;
-        const values = { mobile, password, userType }
+        const { mobile, password, userType,name } = this.state;
+        const values = { mobile, password, userType,name}
 
         switch(step) {
             case 1:

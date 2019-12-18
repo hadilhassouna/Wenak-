@@ -1,99 +1,46 @@
-//Screen 5
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import CurrentGrid from "./Current _CustCard";
+// import ComplexGrid2 from "./C";
+import { width } from "@material-ui/system";
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    // padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    width: "1000px",
+    marginLeft: "120px"
+  }
+}));
 
+export default function NestedCustom2() {
+  const classes = useStyles();
 
-import React, { Component } from 'react'
-import { Form, Button, Rating, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react'
-import Logo from '../assets/logo.png'
-import './components.css'
+  function FormRow() {
+    return (
+      <React.Fragment>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>
+            <CurrentGrid/>
+          </Paper>
+        </Grid>
+      </React.Fragment>
+    );
+  }
 
-
-
-const style = {
-    h1: {
-        marginTop: '3em',
-    },
-    h2: {
-        margin: '4em 0em 2em',
-    },
-    h3: {
-        marginTop: '2em',
-        padding: '2em 0em',
-    },
-    last: {
-        marginBottom: '300px',
-    },
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={1}>
+        <Grid container item xs={8} spacing={3}>
+          <FormRow />
+        </Grid>
+ 
+      </Grid>
+    </div>
+  );
 }
-
-class CurrentOrders extends React.Component {
-
-    state = {}
-    handleRate = (e, { rating, maxRating }) =>
-        this.setState({ rating, maxRating })
-
-    render() {
-        return (
-
-            <div className="surrentOrder">
-
-
-                <Header as='h3' content='Your Orders' style={style.h3} textAlign='center' />
-
-                {/* <Button animated>
-                    <Button.Content visible>
-                        <Icon name='arrow left' />
-                    </Button.Content>
-                    <Button.Content hidden> Back </Button.Content>
-                </Button>
-
-                <Button.Group>
-                    <Button>Current Orders</Button>
-                    <Button>History</Button>
-                </Button.Group>
-
-                <Button color='yellow' size='large'>
-                    Cancel
-                </Button> */}
-                
-                <Image src={Logo} size='small' textAlign='center'/>
-
-                <Container fluid>
-                    <Header as='h2'>OrderID:</Header>
-                    <Header as='h2'>Location:</Header>
-                    <Header as='h2'>Status:</Header>
-                    <Header as='h2'>Date:</Header>
-                    <Header as='h2'>Price:</Header>
-                    <Header as='h2'>Rating:</Header>
-                    <Rating maxRating={5} onRate={this.handleRate} />
-                    {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-                </Container>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-
-                <Form size='small'>
-              <Segment stacked>
-              <Header as='h2'>Order Status:</Header>
-              <Header as='h2'>Preparing</Header>
-              <Header as='h2'>On The Way</Header>
-              <Header as='h2'>Completed Order</Header>
-              </Segment>
-            </Form>
-            
-            </div>
-        )
-    }
-}
-
-export default CurrentOrders
-
-
-
-
-
-
-
-
-
-

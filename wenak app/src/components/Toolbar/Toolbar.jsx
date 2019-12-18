@@ -1,58 +1,53 @@
-import React from 'react';
-
-// import DrawerToggleButton from '../SideDrawer/DrawerToggleButton.jsx';
-import './Toolbar.css';
-
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
-import LoginForm from '../loginForm';
-import UserForm from '../signUpForm/UserForm';
+import DrawerIcon from "./Drawer";
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  title: {},
+  barColor: {
+    backgroundColor: "#424242",
+    height: "80px"
+  }
+}));
 
+export default function NavBar() {
+  const classes = useStyles();
 
+  return (
+   
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
 
-class Toolbar extends React.Component {
- 
-    render() {
-        return(
-            <header className="toolbar">
-                    <nav className="toolbar__navigation">
-                        <div>
-                            {/* <DrawerToggleButton /> */}
-                        </div>
-                        <div className="toolbar__logo"><a href="/">Weenak!</a></div>
-                        <div className="spacer" />
-                        <div className="toolbar_navigation-items">
-                            <ul>
-                                <Link to={'/Home'}>
-                                 <li>Home</li>   
-                                </Link>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <DrawerIcon />
 
-                                <Link to={"/CurrentOrders"}>
-                                <li>Current Order</li>
-                                </Link>
-                                
+          </IconButton>
+          <Typography variant="h5" className={classes.title}>
+            Weenak!
+          </Typography>
 
-                                <Link to={"/Orders"}>
-                                  <li>Previous Orders</li>  
-                                </Link>
-                                
-                                <Link to={'/LoginForm'}>
-                                <li>Log In!</li>    
-                                </Link>
-                                <Link to={'/UserForm'}>
-                                <li>Sign Up</li>    
-                                </Link>
-                                
-
-
-
-                            </ul>
-                        </div>
-
-                    </nav>
-                </header>
-        );
-    }
+          <Link to={"/LoginForm"}>
+            <Button color="inherit">Login!</Button>
+          </Link>
+          <Link to={"/UserForm"}>
+            <Button color="inherit">Sign Up</Button>
+          </Link>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
-
-export default Toolbar;
