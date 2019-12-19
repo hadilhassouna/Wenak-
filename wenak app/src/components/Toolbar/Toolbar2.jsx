@@ -18,28 +18,31 @@ import { Link } from "react-router-dom";
 import DrawerIcon from "./Drawer";
 import axios from "axios";
 import $ from "jquery";
+import "./Toolbar.css";
 
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2),
-    color: "white"
+    marginRight: theme.spacing(2)
+    // color: "white"
   },
   title: {
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
-      fontFamily: "Agency FB"
+      fontFamily: "cairo",
+      color: "#aed581",
+      fontSize: "27px"
     }
   },
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    // backgroundColor: fade(theme.palette.common.white, 0.15),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
+      // backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -59,7 +62,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   inputRoot: {
-    color: "inherit"
+    color: "#2F2E2E"
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
@@ -80,6 +83,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("md")]: {
       display: "none"
     }
+  },
+  navColor: {
+    backgroundColor: "#aed581"
   }
 }));
 
@@ -125,19 +131,6 @@ export default function Toolbar2() {
         alert("Error in logout");
       });
   };
-  // $.ajax({
-  //   type: 'GET',
-  //   url: "/api/auth/logout",
-  //   datatype:"json",
-  //   success:function(res){
-  //       console.log(res);
-  //       window.location = "./LoginForm";
-  //   },
-  //   error: function(request, status, error) {
-  //         console.log("error in logout");
-  //         alert("Error in logout");
-  //       }
-  //   });
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -170,22 +163,6 @@ export default function Toolbar2() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {/* <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem> */}
-      {/* <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem> */}
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -202,18 +179,23 @@ export default function Toolbar2() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar className="orderBar" position="static">
         <Toolbar className={"col-sm-9"}>
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="inherit"
+            // color="inherit"
             aria-label="open drawer"
           >
-            <DrawerIcon />
+            <DrawerIcon className="white" />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Weenak!
+          <Typography
+            className={classes.green}
+            className={classes.title}
+            variant="h6"
+            noWrap
+          >
+            Wenak
           </Typography>
 
           <div className={classes.grow} />
@@ -234,9 +216,9 @@ export default function Toolbar2() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              // color="inherit"
             >
-              <AccountCircle />
+              <AccountCircle className="green" />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
@@ -245,13 +227,14 @@ export default function Toolbar2() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
+              // color="inherit"
             >
               <MoreIcon />
             </IconButton>
           </div>
         </Toolbar>
       </AppBar>
+
       {renderMobileMenu}
       {renderMenu}
     </div>

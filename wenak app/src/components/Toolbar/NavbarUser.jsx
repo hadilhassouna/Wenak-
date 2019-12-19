@@ -18,7 +18,7 @@ import { textAlign } from "@material-ui/system";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import Home from "../home";
-import Completion from "../Completion";
+import SendOrder from "../sendOrder/SendOrder";
 import CurrentOrders from "../CurrentOrders";
 import Orders from "../YourOrders";
 import Toolbar2 from "./Toolbar2";
@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     indicatorColor: "#FFCA28",
     fontSize: "14px",
     textColor: "#212121",
-    marginLeft: "50px",
+    marginLeft: "180px",
     marginRight: "50px",
     textAlign: "center",
     // paddingLeft: "20px",
@@ -141,8 +141,7 @@ export default function NavbarUser() {
           </div>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <Home />
-          <Completion />
+          <SendOrder />
 
           {/* new Orders form customers pending status */}
           {/* <NestedGrid font /> */}

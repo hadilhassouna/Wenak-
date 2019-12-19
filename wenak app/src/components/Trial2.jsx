@@ -1,4 +1,5 @@
 
+
 import React, { Component } from 'react'
 import { GoogleMap, withScriptjs, withGoogleMap, InfoWindow, Marker } from 'react-google-maps';
 import Geocode from "react-geocode"
@@ -26,7 +27,6 @@ class Trial extends Component{
 				lat: this.props.center.lat,
 				lng: this.props.center.lng
 			}
-
 		}
 	}
 	/**
@@ -151,8 +151,7 @@ class Trial extends Component{
 	 */
 	onMarkerDragEnd = ( event ) => {
 		let newLat = event.latLng.lat(),
-			newLng = event.latLng.lng();
-			this.props.handleClick({newLat,newLng})
+		    newLng = event.latLng.lng();
 
 		Geocode.fromLatLng( newLat , newLng ).then(
 			response => {
@@ -192,26 +191,26 @@ class Trial extends Component{
 			price:5
 		  };
 		  //event.preventDefault();
-		//   console.log("hi I’m inside submit order");
-		//   console.log(data);
+		  console.log("hi I’m inside submit order");
+		  console.log(data);
 	  
-		//   $.ajax({
-		// 	url: "/api/customer/send_latlng",
-		// 	headers: {
-		// 	  'x-access-token': localStorage.getItem("usertoken")
-		// 	},
-		// 	type: "POST",
-		// 	data: data,
-		// 	dataType:"json",
-		// 	success: function() {
-		// 	  console.log("The order has sent successfully");
-		// 	  alert("The order sent successfully");
-		// 	},
-		// 	error: function() {
-		// 	  console.log("error in order");
-		// 	  alert("Error in order sending");
-		// 	}
-		//   });
+		  $.ajax({
+			url: "/api/customer/send_latlng",
+			headers: {
+			  'x-access-token': localStorage.getItem("usertoken")
+			},
+			type: "POST",
+			data: data,
+			dataType:"json",
+			success: function() {
+			  console.log("The order has sent successfully");
+			  alert("The order sent successfully");
+			},
+			error: function() {
+			  console.log("error in order");
+			  alert("Error in order sending");
+			}
+		  });
 
 	};
 
@@ -250,10 +249,9 @@ class Trial extends Component{
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
-          
 					<GoogleMap className="mapStyle"  google={ this.props.google }
-					defaultZoom={ this.props.zoom }
-					defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
+					           defaultZoom={ this.props.zoom }
+					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
 					>
 						{/* InfoWindow on top of marker */}
 						<InfoWindow
@@ -279,8 +277,7 @@ class Trial extends Component{
 								height: '40px',
 								paddingLeft: '16px',
 								marginTop: '2px',
-                marginBottom: '500px',
-                
+								marginBottom: '500px'
 							}}
 							onPlaceSelected={ this.onPlaceSelected }
 							types={['(regions)']}
@@ -293,17 +290,16 @@ class Trial extends Component{
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
 				<div>
-     					<div className="form-group"   className="formDetails" >
-						<label  className="maplable1" htmlFor="">City</label>
+					<div className="form-group"   className="formDetails" >
+						<label  className="mapLable" htmlFor="">City</label>
                         <Input  className="mapInput" name="city" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }placeholder='City' />
-                		<label  className="maplable1" htmlFor="">Area</label>
+                		<label  className="mapLable" htmlFor="">Area</label>
                         <Input  className="mapInput" name="area" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area } placeholder='Area' />
-                  		<label  className="maplable1" htmlFor="">State</label>
+                  		<label  className="mapLable" htmlFor="">State</label>
                         <Input className="mapInput"  name="state" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state } placeholder='State' />
-                		<label  className="maplable1" htmlFor="">Address</label>
+                		<label  className="mapLable" htmlFor="">Address</label>
                         <Input  className="mapInput" name="address" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address } placeholder='Address' />
                     </div>
-                    
 				</div>
 
 				<AsyncMap className="mapStyle"

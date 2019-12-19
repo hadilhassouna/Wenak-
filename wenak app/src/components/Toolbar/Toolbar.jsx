@@ -23,8 +23,9 @@ const useStyles = makeStyles(theme => ({
     textAlign: "right",
     float: "right",
     // color: "#ffffff",
-    marginLeft: "1700px",
-    marginRight: "20px"
+    marginLeft: "1500px",
+    marginRight: "20px",
+    marginTop: "2px"
   },
   colorlog: {
     color: "#ffffff",
@@ -68,7 +69,7 @@ export default function NavBar() {
             <DrawerIcon className={classes.white} />
           </IconButton>
           <Typography className={classes.wenak}>Wenak</Typography>
-          <Typography className={classes.logIN}>
+          {/* <Typography className={classes.logIN}>
             <Link to={"/LoginForm"}>
               <Button className={classes.colorlog} color="inherit">
                 Login!
@@ -79,7 +80,7 @@ export default function NavBar() {
                 Sign Up
               </Button>
             </Link>
-          </Typography>
+          </Typography> */}
         </Toolbar>
       </AppBar>
     </div>

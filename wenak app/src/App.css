@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Agency+FB&display=swap");
 .nav {
   background: yellow;
 }
@@ -202,13 +203,34 @@ h3 {
   width: 160px !important;
   height: 50px !important;
   font-size: 30px;
-  font-family: Agency FB;
+  font-family: cairo;
 }
-.chat {
-  background: #aed581 !important;
+.contino {
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
 }
 .footer {
   color: #aed581 !important;
   font-size: 20px;
   font-family: Agency FB;
+}
+.maplable1 {
+  margin-left: 15px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: #676161;
+}
+.mapInput {
+  margin-bottom: 15px;
+}
+.accept {
+  color: #ffffff;
+  background-color: #aed581 !important;
+  width: 180px !important;
+  height: 40px;
+  margin-top: 15px !important;
+  font-size: 18px !important;
+  border-radius: 10px !important;
+  margin-right: 15px;
 }
