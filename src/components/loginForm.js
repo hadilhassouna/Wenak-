@@ -72,12 +72,11 @@ class LoginForm extends Component {
         }
         return false;
     };
-
+    
         if (type === "Customer") {
           
-          window.location.href = "/NavbarUser";
+          window.location.href = "https://safe-cliffs-58966.herokuapp.com/NavbarUser";
           console.log(window);
-          
          
         } else {
           window.location = "/DriverOrd";
