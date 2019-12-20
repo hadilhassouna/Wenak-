@@ -75,7 +75,7 @@ class LoginForm extends Component {
     
         if (type === "Customer") {
           
-          window.location.href = "https://safe-cliffs-58966.herokuapp.com/NavbarUser";
+          window.location.href = "/src/components/Toolbar/NavbarUser";
           console.log(window);
          
         } else {
