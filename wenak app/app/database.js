@@ -4,7 +4,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.connect(URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 });
 
 var db = mongoose.connection;
@@ -19,7 +19,7 @@ const UserSchema = Schema({
   mobilenum: { type: Number },
   name: { type: String },
   password: { type: String },
-  type: { type: String }
+  type: { type: String },
 });
 
 const User = mongoose.model("User", UserSchema);
@@ -29,7 +29,7 @@ let save_user = user_ => {
     mobilenum: user_.mobilenum,
     password: user_.password,
     name: user_.name,
-    type: user_.type
+    type: user_.type,
   });
   user_model.save();
 };
@@ -43,7 +43,7 @@ const CustomerSchema = Schema({
   password: { type: String },
   email: { type: String },
   img: { type: String },
-  address: { type: String }
+  address: { type: String },
 });
 
 const Customer = mongoose.model("Customer", CustomerSchema);
@@ -55,7 +55,7 @@ let save = user => {
     password: user.password,
     email: user.email,
     img: user.img,
-    address: user.address
+    address: user.address,
   });
   customer_model.save();
 };
@@ -66,7 +66,7 @@ const DriverSchema = Schema({
   driver_id: { type: Number },
   name: { type: String },
   mobilenum: { type: Number },
-  password: { type: String }
+  password: { type: String },
 });
 
 const Driver = mongoose.model("Driver", DriverSchema);
@@ -75,7 +75,7 @@ let save_driver = driver => {
   var driver_model = new Driver({
     name: driver.name,
     mobilenum: driver.mobilenum,
-    password: driver.password
+    password: driver.password,
   });
   driver_model.save();
 };
@@ -94,7 +94,7 @@ const OrderSchema = Schema({
   rate: { type: Number },
   state: { type: String },
   date: { type: Date },
-  price: { type: Number }
+  price: { type: Number },
 });
 
 const Order = mongoose.model("Order", OrderSchema);
@@ -113,7 +113,7 @@ let save_order = order => {
     rate: order.rate,
     state: order.state,
     date: order.date,
-    price: order.price
+    price: order.price,
   });
   order_model.save();
 };
@@ -126,5 +126,5 @@ module.exports = {
   save_driver,
   Order,
   save_order,
-  save_user
+  save_user,
 };

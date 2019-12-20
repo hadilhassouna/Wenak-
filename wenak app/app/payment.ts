@@ -1,23 +1,29 @@
-const express = require('express');
-const router= express.Router();
-const bodyParser = require('body-parser');
+const express = require("express");
+const router = express.Router();
+const bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({extended: false}));
-router.use(bodyParser.json());
+// router.use(bodyParser.json());
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY); // ?
+router.use(require("body-parser").text());
 
+router.post("/charge", async (req: any, res: any) => {
+  try {
+    const {status} = await stripe.charges.create({
+      amount: 300, // cents
+      currency: "usd",
+      description: "Delivery fee",
+      source: req.body
+    });
 
-
-router.post('/api/doPayment/', (req: any, res:any) => {
-  return stripe.charges
-    .create({
-      amount: req.body.amount, // Unit: cents
-      currency: 'usd',
-      source: req.body.tokenId,
-      description: 'Test payment',
-    })
-    .then((result:any) => res.status(200).json(result));
+    res.json({status, Success: "Success"});
+  } catch (err) {
+    console.log(err);
+    res.status(500).end();
+  }
 });
 
-export {}
+// app.listen(9000, () => console.log("Listening on port 9000"));
+
+export {};
 module.exports = router;

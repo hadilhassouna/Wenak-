@@ -1,49 +1,13 @@
-// import React, { Component } from 'react'
-// import {GoogleMap, withScriptjs, withGoogleMap} from 'react-google-maps';
-
-
-// function Map() {
-//     return (<GoogleMap defaultZoom = {10} defaultCenter = {{lat: 31.9478, lng: 35.2296}}/>); 
-// }
-
-// const wrappedMap = withScriptjs(withGoogleMap(Map)) 
-
-
-// class Trial extends React.Component {
-//     render() {
-//         return (
-//           <div style={{width: '100px', height: '100px'}}>
-//          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-//           process.env.REACT_APP_GOOGLE_KEY
-//         }`}
-//                   loadingElement={<div style={{ height: `100%` }} />}
-//                   containerElement={<div style={{ height: `100%` }} />}
-//                   mapElement={<div style={{ height: `100%` }} />}
-//                   />
-//           </div>
-//         );
-//     }
-// }
-
-// export default Trial
-
-
-
-
-
-// AIzaSyDpbTFDpUCq7ny1MS4io2tBZA1AjKx1e8s
-
-// AIzaSyDfnYu1_y7srLbBw5pKqBDPh5zdLc0_UZ4
 
 import React, { Component } from 'react'
 import { GoogleMap, withScriptjs, withGoogleMap, InfoWindow, Marker } from 'react-google-maps';
 import Geocode from "react-geocode"
 import Autocomplete from "react-google-autocomplete"
+import  "../../src/App.css"
+import $ from 'jquery';
 import { Button, Input, Container, Grid, Header, Icon, Image, Item, Label, Menu, Segment, Step, Table, } from 'semantic-ui-react';
 Geocode.setApiKey("AIzaSyBuqgFsDLy0e_a-OaI-MwzZI6HXfMwigvc");
 Geocode.enableDebug();
-
-
 
 class Trial extends Component{
 
@@ -62,6 +26,7 @@ class Trial extends Component{
 				lat: this.props.center.lat,
 				lng: this.props.center.lng
 			}
+
 		}
 	}
 	/**
@@ -186,7 +151,8 @@ class Trial extends Component{
 	 */
 	onMarkerDragEnd = ( event ) => {
 		let newLat = event.latLng.lat(),
-		    newLng = event.latLng.lng();
+			newLng = event.latLng.lng();
+			this.props.handleClick({newLat,newLng})
 
 		Geocode.fromLatLng( newLat , newLng ).then(
 			response => {
@@ -214,6 +180,39 @@ class Trial extends Component{
 				console.error(error);
 			}
 		);
+        var data = {
+			location_start_lng: newLng,
+			location_start_lat:newLat,
+			location_end_lng: "8888",
+			location_end_lat:"89",
+			order_notes:"rr",
+			rate: 0,
+			state:"pending",
+			date: Date.now(),
+			price:5
+		  };
+		  //event.preventDefault();
+		//   console.log("hi I’m inside submit order");
+		//   console.log(data);
+	  
+		//   $.ajax({
+		// 	url: "/api/customer/send_latlng",
+		// 	headers: {
+		// 	  'x-access-token': localStorage.getItem("usertoken")
+		// 	},
+		// 	type: "POST",
+		// 	data: data,
+		// 	dataType:"json",
+		// 	success: function() {
+		// 	  console.log("The order has sent successfully");
+		// 	  alert("The order sent successfully");
+		// 	},
+		// 	error: function() {
+		// 	  console.log("error in order");
+		// 	  alert("Error in order sending");
+		// 	}
+		//   });
+
 	};
 
 	/**
@@ -251,9 +250,10 @@ class Trial extends Component{
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
-					<GoogleMap google={ this.props.google }
-					           defaultZoom={ this.props.zoom }
-					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
+          
+					<GoogleMap className="mapStyle"  google={ this.props.google }
+					defaultZoom={ this.props.zoom }
+					defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
 					>
 						{/* InfoWindow on top of marker */}
 						<InfoWindow
@@ -273,13 +273,14 @@ class Trial extends Component{
 						/>
 						<Marker />
 						{/* For Auto complete Search Box */}
-						<Autocomplete
+						<Autocomplete className="mapStyle"
 							style={{
 								width: '100%',
 								height: '40px',
 								paddingLeft: '16px',
 								marginTop: '2px',
-								marginBottom: '500px'
+                marginBottom: '500px',
+                
 							}}
 							onPlaceSelected={ this.onPlaceSelected }
 							types={['(regions)']}
@@ -292,25 +293,20 @@ class Trial extends Component{
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
 				<div>
-					<div className="form-group">
-						<label htmlFor="">City</label>
-                        <Input name="city" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }placeholder='City' />
+     					<div className="form-group"   className="formDetails" >
+						<label  className="maplable1" htmlFor="">City</label>
+                        <Input  className="mapInput" name="city" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }placeholder='City' />
+                		<label  className="maplable1" htmlFor="">Area</label>
+                        <Input  className="mapInput" name="area" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area } placeholder='Area' />
+                  		<label  className="maplable1" htmlFor="">State</label>
+                        <Input className="mapInput"  name="state" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state } placeholder='State' />
+                		<label  className="maplable1" htmlFor="">Address</label>
+                        <Input  className="mapInput" name="address" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address } placeholder='Address' />
                     </div>
-					<div className="form-group">
-						<label htmlFor="">Area</label>
-                        <Input name="area" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area } placeholder='Area' />
-                    </div>
-					<div className="form-group">
-						<label htmlFor="">State</label>
-                        <Input name="state" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state } placeholder='State' />
-                    </div>
-					<div className="form-group">
-						<label htmlFor="">Address</label>
-                        <Input name="address" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address } placeholder='Address' />
-                    </div>
+                    
 				</div>
 
-				<AsyncMap
+				<AsyncMap className="mapStyle"
 					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuqgFsDLy0e_a-OaI-MwzZI6HXfMwigvc&libraries=places"
 					loadingElement={
 						<div style={{ height: `100%` }} />
@@ -323,10 +319,12 @@ class Trial extends Component{
 					}
 				/>
 			</div>
+			
 		} else {
-			map = <div style={{height: this.props.height}} />
+			map = <div  className="mapStyle"  style={{height: this.props.height}} />
 		}	
 		return( map )
+		
 	}
 }
 export default Trial

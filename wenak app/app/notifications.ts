@@ -9,9 +9,9 @@ const config = require("./config");
 const Order = require("./database.js").Order;
 const Pusher = require("pusher");
 const ObjectId = require("mongodb").ObjectID;
-var VerifyToken = require("./authontication/AuthController.js");
+const VerifyToken = require("./authontication/AuthController.js");
 
-var pusher = new Pusher({
+const pusher = new Pusher({
   appId: "916313",
   key: "87e78d78194c0e51f286",
   secret: "14f74092b4f27209a030",

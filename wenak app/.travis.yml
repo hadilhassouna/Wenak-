@@ -12,6 +12,7 @@ script:
     provider: pages
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
-    local_dir: build
+    # local_dir: build
     on:
         branch: gh-pages
+        

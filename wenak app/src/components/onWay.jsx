@@ -53,13 +53,13 @@ const useStyles = makeStyles(theme => ({
   },
   accept: {
     color: "#FFFFFF",
-    backgroundColor: "#4caf50",
+    backgroundColor: "#4CAF50",
     width: "130px",
     height: " 40px"
   },
   view: {
     color: "#FFFFFF",
-    backgroundColor: "#cddc39",
+    backgroundColor: "#CDDC39",
     width: "130px",
     height: " 40px"
   },
@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: "15px"
   },
   icons: {
-    color: "#bdbdbd",
+    color: "#BDBDBD",
     marginRight: "9px",
     marginTop: "5px"
   },
@@ -76,9 +76,8 @@ const useStyles = makeStyles(theme => ({
     //   padding:"",
     marginBottom: "5px"
   },
-
   iconTab: {
-    color: "#fafafa",
+    color: "#FAFAFA",
     textAlign: "right",
     marginLeft: "15px"
   }
@@ -88,31 +87,28 @@ export default function ComplexGrid3() {
   const [orders, setOrder] = React.useState([]);
   const [userId, setUserId] = React.useState("");
   const [reciver_name, setReciver_name] = useState([]);
-
   /////////////////////////hooks
   useEffect(() => {
     document.title = `Drivers Orders`;
     console.log("I'm inside use effect");
-    fetchPosts();
-  }, []);
-
-  const fetchPosts = () => {
     axios
       .get(`/api/driver/current_order_d`, {
         headers: {
           "x-access-token": localStorage.getItem("usertoken")
         }
       })
-      .then(
-        res => setOrder(res.data)
-        // console.log("I'm inside current order axios", res.data);
-      )
+      .then(res => {
+        setOrder(res.data);
+        console.log("I'm inside current order nnnn axios", res.data);
+      })
       .catch(err => {
         console.log("I'm error", err);
       });
-  };
-  console.log("I'm inside current order axios", orders);
-
+  }, []);
+  // const fetchPosts = () => {
+   
+  // };
+  console.log("I’m inside current order axios", orders);
   // useEffect(() => {
   //   const updateInvoiceData = async () => {
   //     const results = await api.invoice.findData();
@@ -184,7 +180,6 @@ export default function ComplexGrid3() {
                       </p>
                     </Typography>
                   </div>
-
                   <div className={classes.orderDetails}>
                     <Typography variant="body2">
                       <p>
@@ -194,7 +189,6 @@ export default function ComplexGrid3() {
                       </p>
                     </Typography>
                   </div>
-
                   <div className={classes.orderDetails}>
                     <Typography variant="body2">
                       <p>
@@ -210,7 +204,7 @@ export default function ComplexGrid3() {
               </Grid>
             </Grid>
             <div
-              style={{ float: "right", marginRight: "31px", fontSize: "39px" }}
+              style={{ float: "right", marginRight: "31px", fontSize: "39px"}}
             >
               <Grid item>
                 <Typography
@@ -228,7 +222,7 @@ export default function ComplexGrid3() {
                 <Button
                   className={classes.accept}
                   variant="contained"
-                  color="#4caf50"
+                  color="#4CAF50"
                   onClick={() => deliverOrder(order._id)}
                 >
                   Deliverd <DoneIcon className={classes.iconTab} />
@@ -236,8 +230,8 @@ export default function ComplexGrid3() {
                 <Button
                   className={classes.view}
                   variant="contained"
-                  color="#cddc39"
-                  // onClick={() => setOrder((order.state: "onway"))}
+                  color="#CDDC39"
+                  // onClick={() => setOrder((order.state: “onway”))}
                 >
                   View <VisibilityIcon className={classes.iconTab} />
                 </Button>
@@ -249,4 +243,3 @@ export default function ComplexGrid3() {
     </div>
   );
 }
-//

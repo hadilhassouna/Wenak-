@@ -1,139 +1,177 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import InfoIcon from '@material-ui/icons/Info';
-import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import SettingsIcon from "@material-ui/icons/Settings";
+import PhoneIcon from "@material-ui/icons/Phone";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Link } from "react-router-dom";
+import InfoIcon from "@material-ui/icons/Info";
 
-
-
-
-
-
-const drawerWidth = 240;
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
+const useStyles = makeStyles({
+  list: {
+    width: 250
   },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+  fullList: {
+    width: "auto"
   },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-}));
-
+  sidIcon: {
+    color: "#ffffff"
+  }
+});
 
 export default function DrawerIcon() {
   const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [state, setState] = React.useState({
+    left: false
+  });
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
+  const toggleDrawer = (side, open) => event => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [side]: open });
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <Link to={"/Settings"}>
+        <List className="sidIcon">
+          {["Settings"].map((text, index) => (
+            <ListItem className="sidIcon" button key={text}>
+              <ListItemIcon className="sidIcon">
+                {index % 2 === 0 ? <SettingsIcon /> : <SettingsIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Link>
+
+      <Divider />
+
+      <Link to={"/About"}>
+        <List>
+          {["About Us"].map((text, index) => (
+            <ListItem className="sidIcon" button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? (
+                  <InfoIcon />
+                ) : (
+                  <Link to={"/About"}>
+                    <InfoIcon />
+                  </Link>
+                )}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Link>
+
+      <Divider />
+
+      <Link to={"/ContactForm"}>
+        <List>
+          {["Contact Us"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <PhoneIcon /> : <PhoneIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Link>
+    </div>
+  );
+
+  const fullList = side => (
+    <div
+      className={classes.fullList}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <Link to={"/Settings"}>
+        <List>
+          {["Settings"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <SettingsIcon /> : <SettingsIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Link>
+
+      <Divider />
+
+      <Link to={"/About"}>
+        <List>
+          {["About Us"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? (
+                  <InfoIcon />
+                ) : (
+                  <Link to={"/About"}>
+                    <InfoIcon />
+                  </Link>
+                )}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Link>
+
+      <Divider />
+
+      <Link to={"/ContactForm"}>
+        <List>
+          {["Contact Us"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <PhoneIcon /> : <PhoneIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Link>
+    </div>
+  );
+
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
+    <div>
+      <Button onClick={toggleDrawer("left", true)}>
+        <MenuIcon />
+      </Button>
+
+      <SwipeableDrawer
+        open={state.left}
+        onClose={toggleDrawer("left", false)}
+        onOpen={toggleDrawer("left", true)}
       >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {['Profile', 'Wallet'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <AccountBoxIcon /> : <LocalAtmIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['About Us!', 'Contact Us'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InfoIcon /> : <ContactPhoneIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      
+        {sideList("left")}
+      </SwipeableDrawer>
     </div>
   );
 }

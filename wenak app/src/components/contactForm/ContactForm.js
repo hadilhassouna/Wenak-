@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 // Externals
 import Field from './Field';
 import Button from './Button';
+import NavBar from '.././Toolbar/Toolbar';
+
 
 
 class ContactForm extends Component {
@@ -26,6 +28,7 @@ class ContactForm extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         {/* Name field */}
         <Field
           label="Name"
