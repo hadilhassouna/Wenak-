@@ -51,6 +51,8 @@ export default function DrawerIcon() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
         >
+          <br/>
+         
           <Link to={"/"}>
         <List className="sidIcon">
           {["Home Page"].map((text, index) => (
@@ -63,9 +65,11 @@ export default function DrawerIcon() {
           ))}
         </List>
       </Link>
+      
+      <br/>
 
       <Divider />
-      <br/>
+      
       <br/>
 
       <Link to={"/Settings"}>
