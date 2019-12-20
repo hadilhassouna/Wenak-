@@ -52,9 +52,9 @@ class LoginForm extends Component {
         console.log(localStorage.getItem("usertoken"));
         console.log(type);
         if (type === "Customer") {
-          <Link to='./NavbarUse'>
-          window.location = "/NavbarUser";
-          </Link>
+          
+          window.location.href = "/NavbarUser";
+         
         } else {
           window.location = "/DriverOrd";
         }
