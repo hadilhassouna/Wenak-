@@ -51,9 +51,32 @@ class LoginForm extends Component {
         localStorage.setItem("usertoken", res.token);
         console.log(localStorage.getItem("usertoken"));
         console.log(type);
+
+        function url_redirect(url){
+          var X = setTimeout(function(){
+              window.location.replace(url);
+              return true;
+          },300);
+          if( window.location = url ){
+            clearTimeout(X);
+            return true;
+        } else {
+            if( window.location.href = url ){
+                clearTimeout(X);
+                return true;
+            }else{
+                clearTimeout(X);
+                window.location.replace(url);
+                return true;
+            }
+        }
+        return false;
+    };
+
         if (type === "Customer") {
           
           window.location.href = "/NavbarUser";
+          console.log(window);
          
         } else {
           window.location = "/DriverOrd";
