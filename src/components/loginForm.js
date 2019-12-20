@@ -51,35 +51,11 @@ class LoginForm extends Component {
         localStorage.setItem("usertoken", res.token);
         console.log(localStorage.getItem("usertoken"));
         console.log(type);
-
-        function url_redirect(url){
-          var X = setTimeout(function(){
-              window.location.replace(url);
-              return true;
-          },300);
-          if( window.location = url ){
-            clearTimeout(X);
-            return true;
-        } else {
-            if( window.location.href = url ){
-                clearTimeout(X);
-                return true;
-            }else{
-                clearTimeout(X);
-                window.location.replace(url);
-                return true;
-            }
-        }
-        return false;
-    };
-    
         if (type === "Customer") {
-          
-          window.location.href = "/src/components/Toolbar/NavbarUser";
-          console.log(window);
-         
+         window.location = "https://safe-cliffs-58966.herokuapp.com/NavbarUser" 
+
         } else {
-          window.location = "/DriverOrd";
+          window.location = "https://safe-cliffs-58966.herokuapp.com/DriverOrd";
         }
       },
       error: function(request, status, error) {
