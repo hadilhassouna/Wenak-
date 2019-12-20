@@ -63,8 +63,10 @@ export default function DrawerIcon() {
           ))}
         </List>
       </Link>
-      
+
       <Divider />
+      <br/>
+      <br/>
 
       <Link to={"/Settings"}>
         <List className="sidIcon">
@@ -79,7 +81,6 @@ export default function DrawerIcon() {
         </List>
       </Link>
 
-      <Divider />
 
       <Link to={"/About"}>
         <List>
@@ -100,7 +101,6 @@ export default function DrawerIcon() {
         </List>
       </Link>
 
-      <Divider />
 
       <Link to={"/ContactForm"}>
         <List>
@@ -136,6 +136,7 @@ export default function DrawerIcon() {
           ))}
         </List>
       </Link>
+      <Divider />
 
       <Link to={"/Settings"}>
         <List>
@@ -150,7 +151,6 @@ export default function DrawerIcon() {
         </List>
       </Link>
 
-      <Divider />
 
       <Link to={"/About"}>
         <List>
@@ -171,7 +171,6 @@ export default function DrawerIcon() {
         </List>
       </Link>
 
-      <Divider />
 
       <Link to={"/ContactForm"}>
         <List>
