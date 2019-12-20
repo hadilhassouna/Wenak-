@@ -1,20 +1,11 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment,
-  Flag,
-  Dropdown
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Image, Message, Segment, Flag, Dropdown} from "semantic-ui-react";
 import Logo2 from "../assets/logo2.png";
 import $ from "jquery";
 import { Link } from "react-router-dom";
 import NavBar from "./Toolbar/Toolbar";
 import "../App.css";
+import NavbarUser from './Toolbar/NavbarUser';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -61,7 +52,9 @@ class LoginForm extends Component {
         console.log(localStorage.getItem("usertoken"));
         console.log(type);
         if (type === "Customer") {
+          <Link to='./NavbarUse'>
           window.location = "/NavbarUser";
+          </Link>
         } else {
           window.location = "/DriverOrd";
         }
