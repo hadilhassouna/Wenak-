@@ -20,6 +20,7 @@ class LoginForm extends Component {
     //this.getUserType();
     this.handleChange = this.handleChange.bind(this);
     this.login = this.login.bind(this);
+    this.chooseType = this.chooseType.bind(this);
   }
 
   //update the user
@@ -27,6 +28,16 @@ class LoginForm extends Component {
     this.setState({
       type: data
     });
+  }
+  chooseType(type){
+    if (type === "Customer") {
+          
+      window.location = "/NavbarUser" ;
+     
+    } else {
+      window.location = "/DriverOrd";
+    }
+  
   }
 
   //login user
@@ -47,19 +58,14 @@ class LoginForm extends Component {
       success: function(res) {
         console.log("sucess login the user");
         console.log("Hi I'm inside login post");
-        alert("Hello " + mobilenum);
+        //salert("Hello " + mobilenum);
         var type = res.type;
         var token = localStorage.setItem("usertoken", res.token);
         localStorage.setItem("usertoken", res.token);
+
         console.log(localStorage.getItem("usertoken"));
         console.log(type);
-        if (type === "Customer") {
-          
-          window.open = "http://localhost:3000/NavbarUser" ;
-         
-        } else {
-          window.location = "/DriverOrd";
-        }
+        this.chooseType(type)
       },
       error: function(request, status, error) {
         console.log("error in mobilenumor password");
