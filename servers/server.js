@@ -30,18 +30,18 @@ const payment = require('./payment.js');
 // app.get('/', function (req, res) {
 //     res.send('Hello world');
 // });
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static("build"));
-//     const path = require("path");
-//     app.get("*", (req, res) => {
-//       res.sendFile(path.resolve(__dirname, "build", "index.html"));
-//     });
-//   }
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('../build'));
-}
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, '../build', 'index.html'));
-});
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("../build"));
+    const path = require("path");
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "../build", "index.html"));
+    });
+  }
+// if (process.env.NODE_ENV === 'production') {
+// 	app.use(express.static('../build'));
+// }
+// app.get('*', (request, response) => {
+// 	response.sendFile(path.join(__dirname, '../build', 'index.html'));
+// });
 
 app.listen(process.env.PORT || 4000);

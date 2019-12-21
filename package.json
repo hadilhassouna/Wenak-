@@ -29,6 +29,7 @@
     "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
@@ -74,15 +75,15 @@
     "typescript": "3.7.2"
   },
   "scripts": {
-    "start": "node ./servers/server.js",
+    "start": "concurrently \"npm run server\" \"npm run start-client\"",
+    "server-start": "node ./servers/server.js",
     "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon ./servers/server.js",
+    "server": "node ./servers/server.js",
     "watch-ts": "tsc -w",
-    "tsc": "tsc",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build "
+    "tsc": "tsc"
   },
   "eslintConfig": {
     "extends": "react-app"
