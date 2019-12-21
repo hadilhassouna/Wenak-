@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import NavBar from "./Toolbar/Toolbar";
 import "../App.css";
 import NavbarUser from './Toolbar/NavbarUser';
+import { Prompt } from 'react-router';
+
 
 class LoginForm extends Component {
   constructor(props) {
@@ -52,10 +54,11 @@ class LoginForm extends Component {
         console.log(localStorage.getItem("usertoken"));
         console.log(type);
         if (type === "Customer") {
-         window.location = "https://safe-cliffs-58966.herokuapp.com/NavbarUser" 
-
+          
+          window.open = "http://localhost:3000/NavbarUser" ;
+         
         } else {
-          window.location = "https://safe-cliffs-58966.herokuapp.com/DriverOrd";
+          window.location = "/DriverOrd";
         }
       },
       error: function(request, status, error) {
@@ -64,7 +67,9 @@ class LoginForm extends Component {
       }
     });
   }
-  handleChange(event) {
+
+handleChange(event) {
+    
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -72,7 +77,7 @@ class LoginForm extends Component {
       [name]: value
     });
   }
-
+  
   render() {
     return (
       <div>
